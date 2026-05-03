@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="template/template.csproj" />
+  <Project Path="Pro01/Pro01.csproj" />
+  <Project Path="Pro02/Pro02.csproj" />
+  <Project Path="template/01_template.csproj" />
 </Solution>
