@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using static System.Console;
 using static System.Math;
 
@@ -8,8 +9,19 @@ namespace Dokushu04
     {
         static void Main(string[] args)
         {
-            WriteLine(Abs(-789));
-            WriteLine(Round(1.789));
+            throw new MyAppException("例外発生！");
         }
+    }
+
+    internal class MyAppException : Exception
+    { 
+        public MyAppException() { }
+
+        public MyAppException(string message) : base(message) { }
+
+        public MyAppException(string message, Exception innerException) : base(message, innerException) { }
+
+        public MyAppException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
     }
 }
