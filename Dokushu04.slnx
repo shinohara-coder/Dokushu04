@@ -2,5 +2,6 @@
   <Project Path="Pro01/Pro01.csproj" />
   <Project Path="Pro02/Pro02.csproj" />
   <Project Path="Pro03/Pro03.csproj" Id="fcef59ce-c853-46c5-a1ec-501da5f78241" />
+  <Project Path="Pro04/Pro04.csproj" Id="037aba7e-66c3-49dc-81ac-7f20ff4f3a7f" />
   <Project Path="template/01_template.csproj" />
 </Solution>
