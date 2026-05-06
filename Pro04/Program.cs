@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using static Pro04.hoge.MyClass;
 
 namespace Pro04.hoge
 {
+    internal class MyClass
+    { 
+        internal class MyHelper
+        {
+            public void Show()
+            {
+                Console.WriteLine("Nested Class is running!");
+            }
+        }
+
+        public void Run()
+        {
+            MyHelper helper = new MyHelper();
+            helper.Show();
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            foreach (var name in Enum.GetValues(typeof(Season)))
-            {
-                Console.WriteLine($"{(int)name} : {name}");
-            }
-        }
-    }
+            MyClass c = new MyClass();
+            c.Run();
 
-    internal enum Season { 
-        Spring,
-        Summer,
-        Autum,
-        Winter,
-        All = Spring + Summer + Autum + Winter,
+            var h = new MyHelper();
+            h.Show();
+        }
     }
 
 }
