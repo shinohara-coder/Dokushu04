@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Pro05
 {
@@ -35,7 +36,10 @@ namespace Pro05
         static partial void Log();
         static void Main(string[] args)
         {
-            Log();
+            Console.WriteLine(default(int));
+            Console.WriteLine(default(double));
+            Console.WriteLine(default(string));
+
         }
     }
 
