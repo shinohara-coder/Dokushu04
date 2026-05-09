@@ -39,7 +39,7 @@ namespace Pro05
             Console.WriteLine(default(int));
             Console.WriteLine(default(double));
             Console.WriteLine(default(string));
-
+            Console.WriteLine(default(MyClass));
         }
     }
 
