@@ -7,5 +7,9 @@
   <Project Path="Pro06/Pro06.csproj" Id="71236232-66e1-46b1-ac3b-faa855dfbe62" />
   <Project Path="Pro07/Pro07.csproj" Id="2e600a1b-d003-46b7-aa27-51a3a7085c83" />
   <Project Path="Pro08/Pro08.csproj" Id="837dd679-096a-4755-b439-4ce0633c0905" />
+  <Project Path="Pro09/Pro09.csproj" Id="a2e3a7f5-9982-4360-8c8f-559c3895bdf2" />
+  <Project Path="Pro10/Pro10.csproj" Id="f17827b2-1dd0-421b-8aba-2b86aa946325" />
+  <Project Path="Pro11/Pro11.csproj" Id="2fd26548-aba5-4464-8da4-02968c530889" />
+  <Project Path="Pro12/Pro12.csproj" Id="b83fd76f-3a1a-45b2-a22b-e8797d3c42b8" />
   <Project Path="template/01_template.csproj" />
 </Solution>
