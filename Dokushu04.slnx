@@ -11,5 +11,5 @@
   <Project Path="Pro10/Pro10.csproj" Id="f17827b2-1dd0-421b-8aba-2b86aa946325" />
   <Project Path="Pro11/Pro11.csproj" Id="2fd26548-aba5-4464-8da4-02968c530889" />
   <Project Path="Pro12/Pro12.csproj" Id="b83fd76f-3a1a-45b2-a22b-e8797d3c42b8" />
-  <Project Path="template/01_template.csproj" />
+  <Project Path="Pro13/Pro13.csproj" Id="3755121c-2503-4f15-a9c1-fab4b80d230b" />
 </Solution>
