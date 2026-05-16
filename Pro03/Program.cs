@@ -8,27 +8,10 @@ namespace Pro03
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Devide(10, 0);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("【メイン画面】エラーが発生したため、処理を中断しました。");
-            }
-        }
+            var list = new List<string> { "からすなぜ鳴くの", "からすは山に", "可愛い七つの", "子があるからよ" };
+            var result = list.FindAll(str => str.StartsWith("からす"));
 
-        static void Devide(int a, int b)
-        {
-            try
-            {
-                int result = a / b;
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("【システムログ】0で割ろうとする計算が発生しました。確認してください。");
-                throw;
-            }
+            result.ForEach(s => Console.WriteLine(s));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Runtime.Serialization;
 
 namespace Dokushu04
@@ -21,9 +22,26 @@ namespace Dokushu04
 
         public int Calculate() => this.Value * this.Value;
 
+        public static bool operator true(LambdaMember e) => e.Value == 0;
+        public static bool operator false(LambdaMember e) => e.Value != 0;
+
         static void Main(string[] args)
         {
-            
+            var lm = new LambdaMember()
+            { Value = 2};
+
+            Console.WriteLine(lm.Current);
+            Console.WriteLine(lm[3]);
+            Console.WriteLine(lm.Calculate());
+
+            if (lm)
+            {
+                Console.WriteLine(true);
+            }
+            else
+            {
+                Console.WriteLine(false);
+            }
         }
     }
 }
