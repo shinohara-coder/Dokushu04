@@ -3,14 +3,27 @@ using System.Runtime.Serialization;
 
 namespace Pro04.hoge
 {
-    
-    class Program
+    internal class Book
     {
-        static void Main(string[] args)
+        public string Isbn { get; set; } = "";
+        public string Title { get; set; } = "";
+        public int Price { get; set; } = 0;
+        public string Publisher { get; set; } = "";
+        public DateTime Published { get; set; } = DateTime.Today;
+
+        public override string ToString()
         {
-            var list = new List<string> { "からすなぜ鳴くの", "からすは山に", "可愛い七つの", "子があるからよ" };
-            Console.WriteLine(list.Exists(str => str.Length >= 9));
+            return $"{Title} ({Publisher}) {Price}円 {Published:d}刊行";
         }
     }
 
+    internal class Review
+    {
+
+    }
+
+    internal static class AppTavles
+    {
+
+    }
 }
