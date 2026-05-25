@@ -15,12 +15,7 @@ namespace Pro04
                      //orderby b.Price descending, b.Published ascending
                      //select b;
 
-            
 
-           foreach (Book b in bs)
-            {
-                Console.WriteLine(b);
-            }
 
         }
     }
