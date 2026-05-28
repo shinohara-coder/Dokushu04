@@ -10,27 +10,34 @@ namespace Pro04
     {
         static void Main(string[] args)
         {
-            //var bs = from b in AppTables.Books
-            //         group b by b.Publisher into pubs
-            //         where pubs.Average(b => b.Price) >= 3500
-            //         select new {
-            //             Published = pubs.Key,
-            //             AveragePrice = pubs.Average(b => b.Price)
-            //         };
+            /*var bs = from b in AppTables.Books
+                     join r in AppTables.Reviews on b.Isbn equals r.Isbn
+                     select new
+                     {
+                         Title = b.Title,
+                         Reviewer = r.Name,
+                         Body = r.Body
+                     };*/
 
 
             var bs = AppTables.Books
-                    .GroupBy(b => b.Publisher)
-                    .Select(pubs => new
-                    {
-                        Published = pubs.Key,
-                        AveragePrice = pubs.Average(b => b.Price)
-                    })
-                    .Where(x => x.AveragePrice >= 2000);
+                    .Join(
+                        AppTables.Reviews,
+                        b => b.Isbn,
+                        r => r.Isbn,
+                        (b, r) => new
+                        {
+                            Title = b.Title,
+                            Reviewer = r.Name,
+                            Body = r.Body
+                        }
+                    );
             
             foreach (var b in bs)
             {
-                Console.WriteLine($"{b.Published} {b.AveragePrice}円");
+                Console.WriteLine($"「{b.Title}」({b.Reviewer})");
+                Console.WriteLine($"{b.Body}");
+                Console.WriteLine("-----------");
             }
         }
     }
