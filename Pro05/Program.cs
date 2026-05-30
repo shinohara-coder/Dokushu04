@@ -7,23 +7,20 @@ namespace Pro05
     {
         static void Main(string[] args)
         {
-            var t1 = new Thread(Count);
-            var t2 = new Thread(Count);
-            var t3 = new Thread(Count);
+            Task t1 = Task.Run(() => Count(1));
+            Task t2 = Task.Run(() => Count(2));
+            Task t3 = Task.Run(() => Count(3));
 
-            t1.Start(1);
-            t2.Start(2);
-            t3.Start(3);
-
-            t1.Join();
-            t2.Join();
-            t3.Join();
-
+            //t1.Wait();
+            //t2.Wait();
+            //t3.Wait();
+            //Task.WaitAny(t1, t2, t3);
+            Task.WaitAll(t1, t2, t3);
             Console.WriteLine("すべての処理が終了しました。");
         }
 
 
-        static void Count(object? n)
+        static void Count(int n)
         {
             for (int i = 0; i < 50; i++)
             {

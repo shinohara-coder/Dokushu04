@@ -1,38 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
+﻿using System.Net;
 
 namespace Pro09
 {
-    delegate void OutputProcess(string str);
-    internal class DelegeteUse
-    {
-        void ArrayWalk(string[] data, OutputProcess output)
+    internal class AsyncHttp
+    {   
+        static async Task Main(string[] args)
         {
-            foreach (var value in data)
-            {
-                output(value);
-            }
+            var client = new HttpClient();
+            var result = await client.GetStringAsync("https://codezine.jp");
+            Console.WriteLine(result);
         }
+        
+        //static void Main(string[] args)
+        //{
+        //    var client = new WebClient();
+        //    client.DownloadStringCompleted += (sender, e) =>
+        //    {
+        //        Console.WriteLine(e.Result);
+        //    };
 
-        static void AddQuote(string data)
-        {
-            Console.WriteLine($"[{data}]");
-        }
-
-        static void AddKakko(string data)
-        {
-            Console.WriteLine($"「{data}」");
-        }
-
-        static void Main(string[] args)
-        {
-            string[] data = { "あかまきがみ", "あおまきがみ", "きまきがみ" };
-            var du = new DelegeteUse();
-            OutputProcess proc = AddQuote;
-            du.ArrayWalk(data, proc);
-            du.ArrayWalk(data, AddKakko);
-        }
+        //    client.DownloadStringAsync(new Uri("https://codezine.jp/"));
+        //    Console.ReadLine();
+        //}
     }
 }

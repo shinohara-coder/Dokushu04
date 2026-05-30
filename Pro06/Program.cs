@@ -4,54 +4,38 @@ using System.Diagnostics.Metrics;
 
 namespace Pro06
 {
-    internal class Program
+    internal class LockBasic
     {
+        object lockobj = new object();
+        public int Count { get; private set; } = 0;
         static void Main(string[] args)
         {
-            Person p = new Person("孝雄", "堀内");
-            Console.WriteLine(p.GetHashCode());
-            Dictionary<Person, int> d = new Dictionary<Person, int>();
-            d.Add(p, 10);
-            p.LastName = "中田";
-            Console.WriteLine(p.GetHashCode());
-            Console.WriteLine(d[p]);
+            const int TaskNum = 500000;
+            var ts = new Task[TaskNum];
+            var tb = new LockBasic();
+
+            for (int i = 0; i < TaskNum; i++)
+            {
+                ts[i] = Task.Run(() => tb.Increment());
+            }
+
+            for (int i = 0; i < TaskNum; i++)
+            {
+                ts[i].Wait();
+            }
+
+            Console.Write(tb.Count);
+        }
+
+
+        private void Increment()
+        {
+            lock (lockobj)
+            {
+                this.Count++;
+            }
         }
     }
 
-    internal class Person : IEquatable<Person>
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-
-        public Person(string firstName, string lastName)
-        {
-            this.FirstName = firstName;
-            this.LastName = lastName;
-        }
-
-        public bool Equals(Person? other)
-        {
-            if (Object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (other == null || this.GetType() != other.GetType())
-            {
-                return false;
-            }
-
-            return this.FirstName == other.FirstName && this.LastName == other.LastName;
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return this.Equals(obj as Person);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.FirstName.GetHashCode() ^ this.LastName.GetHashCode();
-        }
-    }
+   
 }
