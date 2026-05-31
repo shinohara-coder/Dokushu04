@@ -1,38 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
+﻿using IronPython.Hosting;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace Pro10
 {
-    delegate void OutputProcess(string str);
-    internal class DelegeteUseCounter
+    internal class PythonCall
     {
-        void ArrayWalk(string[] data, OutputProcess output)
-        {
-            foreach (var value in data)
-            {
-                output(value);
-            }
-        }
-
+        
         static void Main(string[] args)
         {
-            string[] data = { "あかまきがみ", "あおまきがみ", "きまきがみ" };
-            var du = new DelegeteUseCounter();
-            var c = new Counter();
-            du.ArrayWalk(data, c.AddLength);
-            Console.WriteLine(c.Result);
-        }
-    }
-
-    internal class Counter
-    {
-        public int Result { get; private set; }
-
-        public void AddLength(string value)
-        {
-            Result += value.Length;
+            var py = Python.CreateRuntime();
+            dynamic script = py.UseFile("C:\\Users\\hirok\\source\\repos\\Dokushu04\\Pro11\\myClass.py");
+            dynamic clazz = script.MyClass();
+            Console.WriteLine(clazz.greet("山田"));
         }
     }
 
