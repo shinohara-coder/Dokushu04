@@ -11,11 +11,9 @@ namespace Pro10
 
         static void Main(string[] args)
         {
-            Console.WriteLine(sizeof(int));
-            Console.WriteLine(sizeof(double));
-            Console.WriteLine(sizeof(bool));
-            Console.WriteLine(sizeof(long));
-            Console.WriteLine(sizeof(decimal));
+            int i = 128;
+            sbyte b = (sbyte)i;
+            Console.WriteLine(b);
         }
     }
 
