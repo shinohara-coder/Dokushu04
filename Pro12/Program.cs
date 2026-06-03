@@ -11,9 +11,9 @@ namespace Pro10
 
         static void Main(string[] args)
         {
-            int i = 128;
+            int i = 255;
             sbyte b = (sbyte)i;
-            Console.WriteLine(b);
+            Console.WriteLine(Convert.ToString(b, 16));
         }
     }
 
