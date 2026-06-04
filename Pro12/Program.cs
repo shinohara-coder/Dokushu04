@@ -11,9 +11,7 @@ namespace Pro10
 
         static void Main(string[] args)
         {
-            int i = 255;
-            sbyte b = (sbyte)i;
-            Console.WriteLine(Convert.ToString(b, 16));
+            Console.WriteLine(0.2M * 3 == 0.6M);
         }
     }
 
