@@ -16,7 +16,7 @@ namespace Pro10
             const string STR = "いろは";
             var result = "";
             Stopwatch sw1 = Stopwatch.StartNew();
-            for (int i = 0; i < 1e+5; i++)
+            for (int i = 0; i < 3e+5; i++)
             {
                 result += STR;
             }
@@ -27,7 +27,7 @@ namespace Pro10
 
             var builder = new StringBuilder();
             Stopwatch sw2 = Stopwatch.StartNew();
-            for (int i = 0; i < 1e+5; i++)
+            for (int i = 0; i < 3e+5; i++)
             {
                 builder.Append(STR);
             }
