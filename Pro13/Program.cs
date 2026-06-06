@@ -4,18 +4,31 @@ using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Pro13
 {
-    internal class DelegateLambda
+    
+    internal class NameOfNull
     {
         static void Main(string[] args)
         {
-            var data1 = new[] { "い", "ろ", "は" };
-            var data2 = new[] { "い", "ろ", "は" };
-            Console.WriteLine(data2 == data1);
-            Console.WriteLine(data2.Equals(data2));
-            Console.WriteLine(data1.SequenceEqual(data2));
+            object obj = new NameOfNull();
+            switch (obj)
+            {
+                case int i:
+                    Console.WriteLine(Math.Abs(i));
+                    break;
+
+                case string str:
+                    Console.WriteLine(str[0]);
+                    break;
+
+
+                default:
+                    Console.WriteLine("意図しない型です。");
+                    break;
+            }
         }
     }
 

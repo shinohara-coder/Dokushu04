@@ -9,31 +9,23 @@ namespace Pro10
 {
     internal class DelegateAnonymous
     {
-        
-
         static void Main(string[] args)
         {
-            const string STR = "いろは";
-            var result = "";
-            Stopwatch sw1 = Stopwatch.StartNew();
-            for (int i = 0; i < 3e+5; i++)
+            var drink = "ウイスキー";
+            switch (drink)
             {
-                result += STR;
-            }
-            sw1.Stop();
-            Console.WriteLine($"所要時間：{sw1.ElapsedMilliseconds}ミリ秒");
+                case "日本酒":
+                case "ビール":
+                case "ワイン":
+                    Console.WriteLine("醸造酒です。");
+                    break;
 
-            result = "";
-
-            var builder = new StringBuilder();
-            Stopwatch sw2 = Stopwatch.StartNew();
-            for (int i = 0; i < 3e+5; i++)
-            {
-                builder.Append(STR);
+                case "ブランデー":
+                case "ウイスキー":
+                case "ウォッカ":
+                    Console.WriteLine("蒸留酒です。");
+                    break;
             }
-            result = builder.ToString();
-            sw2.Stop();
-            Console.WriteLine($"所要時間：{sw2.ElapsedMilliseconds}ミリ秒");
         }
     }
 
