@@ -10,14 +10,13 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var str1 = "wings";
-            var str2 = "WINGS";
-
-            func(str1.Equals(str2, StringComparison.OrdinalIgnoreCase));
-            func(string.Compare(str1, str2, StringComparison.OrdinalIgnoreCase));
+            var full = "ＷＩＮＧＳ";
+            var half = "WINGS";
+            var ci = CultureInfo.CurrentCulture.CompareInfo;
+            func(ci.Compare(full, half, CompareOptions.IgnoreWidth));
         }
 
-        static void func(object str)
+        static void func(object? str)
         {
             Console.WriteLine(str);
         }
