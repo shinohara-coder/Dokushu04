@@ -13,22 +13,23 @@ namespace Pro13
     {
         static void Main(string[] args)
         {
-            object obj = new NameOfNull();
-            switch (obj)
+            for (int i = 1; i < 10; i++)
             {
-                case int i:
-                    Console.WriteLine(Math.Abs(i));
-                    break;
-
-                case string str:
-                    Console.WriteLine(str[0]);
-                    break;
-
-
-                default:
-                    Console.WriteLine("意図しない型です。");
-                    break;
+                for (int j = 1; j < 10; j++)
+                {
+                    var result = i * j;
+                    if (result > 40)
+                    {
+                        //goto END;
+                        break;
+                    }
+                    Console.Write($"{result,2} ");
+                }
+                Console.WriteLine();
             }
+
+        END:
+            Console.WriteLine("Fnished!!");
         }
     }
 
