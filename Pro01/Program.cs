@@ -1,6 +1,7 @@
 ﻿//#define DEBUG
 using System;
 using System.Globalization;
+using System.Security.AccessControl;
 using SelfCSharp.Chap09.Priority1;
 //using MyUtil = SelfCSharp.Chap09.Priority2.MyUtil;
 
@@ -10,8 +11,8 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var str = "123456o7890";
-            func(str.All(ch => char.IsDigit(ch)));
+            func(string.Format(
+                "カスタム(補完なし) :{0:#,###.###}", 123456123.789));
         }
 
         static void func(object? str)
