@@ -10,10 +10,8 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var full = "ＷＩＮＧＳ";
-            var half = "WINGS";
-            var ci = CultureInfo.CurrentCulture.CompareInfo;
-            func(ci.Compare(full, half, CompareOptions.IgnoreWidth));
+            var str = "123456o7890";
+            func(str.All(ch => char.IsDigit(ch)));
         }
 
         static void func(object? str)
