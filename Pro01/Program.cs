@@ -20,6 +20,11 @@ namespace SelfCSharp.Chap09.Priority1
             {
                 func($"位置:{match.Index} マッチ文字列:{match.Value}");
             }
+
+            foreach (Group m in match.Groups)
+            {
+                func(m.Value);
+            }
         }
 
         static void func(object? str)

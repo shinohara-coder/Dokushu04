@@ -1,47 +1,39 @@
-﻿using Microsoft.VisualBasic;
+﻿//#define DEBUG
 using System;
-using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Security.AccessControl;
+using System.Text.RegularExpressions;
+using SelfCSharp.Chap09.Priority1;
+//using MyUtil = SelfCSharp.Chap09.Priority2.MyUtil;
 
-namespace Dokushu04
+namespace SelfCSharp.Chap09.Priority1
 {
-    internal class LambdaMember
+    internal class LambdaCapture
     {
-        private int _value;
-
-        LambdaMember() => Console.WriteLine("constructor");
-
-        public int Value
-        {
-            get => this._value;
-            set => this._value = value;
-        }
-
-        public DateTime Current => DateTime.Now;
-
-        public int this[int index] => this.Value * index;
-
-        public int Calculate() => this.Value * this.Value;
-
-        public static bool operator true(LambdaMember e) => e.Value == 0;
-        public static bool operator false(LambdaMember e) => e.Value != 0;
-
         static void Main(string[] args)
         {
-            var lm = new LambdaMember()
-            { Value = 2};
+            var str = "仕事用はwings@example.comです。プライベート用はYAMA@example.comです。";
+            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
 
-            Console.WriteLine(lm.Current);
-            Console.WriteLine(lm[3]);
-            Console.WriteLine(lm.Calculate());
+            MatchCollection result = rgx.Matches(str);
 
-            if (lm)
+            foreach (Match m in result)
             {
-                Console.WriteLine(true);
+                //func(m.Value);
+                foreach (Group g in m.Groups)
+                {
+                    func(g.Value);
+                }
+                func("----------------");
             }
-            else
-            {
-                Console.WriteLine(false);
-            }
+
+        }
+
+        static void func(object? str)
+        {
+            Console.WriteLine(str);
         }
     }
 }
+
