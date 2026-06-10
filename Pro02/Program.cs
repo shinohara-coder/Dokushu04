@@ -14,13 +14,15 @@ namespace SelfCSharp.Chap09.Priority1
         static void Main(string[] args)
         {
             var str = "仕事用はwings@example.comです。プライベート用はYAMA@example.comです。";
-            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
+            //var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
+            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", 
+                RegexOptions.RightToLeft | RegexOptions.IgnoreCase);
 
             MatchCollection result = rgx.Matches(str);
 
             foreach (Match m in result)
             {
-                //func(m.Value);
+                func($"位置：{m.Index} マッチ文字列：{m.Value}");
                 foreach (Group g in m.Groups)
                 {
                     func(g.Value);
