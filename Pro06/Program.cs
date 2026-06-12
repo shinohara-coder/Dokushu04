@@ -6,36 +6,21 @@ namespace Pro06
 {
     internal class LockBasic
     {
-        object lockobj = new object();
-        public int Count { get; private set; } = 0;
         static void Main(string[] args)
         {
-            const int TaskNum = 500000;
-            var ts = new Task[TaskNum];
-            var tb = new LockBasic();
-
-            for (int i = 0; i < TaskNum; i++)
+            DateTime dt = default;
+            func(dt);
+            if (DateTime.TryParse("2026/6/12 21:25:49", out dt))
             {
-                ts[i] = Task.Run(() => tb.Increment());
+                func(dt);
             }
-
-            for (int i = 0; i < TaskNum; i++)
-            {
-                ts[i].Wait();
-            }
-
-            Console.Write(tb.Count);
         }
 
-
-        private void Increment()
+        private static void func(object? str)
         {
-            lock (lockobj)
-            {
-                this.Count++;
-            }
+            Console.WriteLine(str);
         }
     }
 
-   
+    
 }
