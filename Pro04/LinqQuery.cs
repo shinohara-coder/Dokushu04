@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualBasic;
-using Pro04.hoge;
 using System;
 using System.Collections.Generic;
 using System.Text;
