@@ -10,28 +10,33 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            Task<TimeSpan> t = RunAsync();
-            while (!t.IsCompleted)
+            var animals = new[] { "とら", "うさぎ", "たつ" };
+            var list = new LinkedList<string>(animals);
+
+            foreach (var v in list)
             {
-                t.Wait(200);
-                Console.Write(".");
-            }
-            Console.WriteLine(t.Result);
+                func(v);
             }
 
-        static async Task<TimeSpan> RunAsync()
+            func(list.Count);
+            func(list.Contains("うま"));
+
+            list.AddFirst("ねずみ");
+            list.AddLast("いのしし");
+            list.AddBefore(list.Last, "いぬ");
+            list.AddAfter(list.First, "うし");
+            PrintList(list);
+
+        }
+
+        private static void func(object? str)
         {
-            var watch = Stopwatch.StartNew();
-            await Task.Run(() =>
-            {
-                string result = "";
-                for (int i = 0; i < 100000; i++)
-                {
-                    result += "いろは";
-                }
-            });
-            watch.Stop();
-            return watch.Elapsed;
+            Console.WriteLine(str);
+        }
+
+        static void PrintList<T>(LinkedList<T> list)
+        {
+            func(string.Join(", ", list.ToArray()));
         }
     }
 }

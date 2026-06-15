@@ -10,22 +10,41 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            var array1 = new[] { "dog", "cat", "mouse", "fox", "lion", "tigar", "rabbit" };
+            var list = new List<int> { 10, 15, 30, 60 };
+            var list2 = new List<int> { 1, 5, 3, 6 };
 
-            Array.Sort(array1);
-            //func(string.Join(" & ", array1));
+            list.Insert(2, 7);
+            list.Add(120);
 
-            //func(Array.BinarySearch(array1, "tigar"));
+            //list.ForEach(v => func(v));
 
-            var array2 = new[] { "あ", "い", "う", "え", "お" };
-            var array3 = new string[5];
-            Array.Copy(array2, 1, array3, 1, 3);
-            func(string.Join(" & ", array3));
+            //func(list.Count);
+            //func(list[0]);
+            //func(list.Contains(30));
+            //func(list.IndexOf(30));
+            //func(list.LastIndexOf(30));
+            func(list.Remove(60));
+            PrintList(list);
+
+            list.AddRange(list2);
+            PrintList(list);
+
+            list.Reverse();
+            PrintList(list);
+
+            var ary = new int[3];
+            list.CopyTo(2, ary, 0, 3);
+            func(string.Join(", ", ary));
         }
 
         private static void func(object? str)
         {
             Console.WriteLine(str);
+        }
+
+        private static void PrintList<T>(List<T> list)
+        {
+            func(string.Join(", ", list.ToArray()));
         }
     }
 }
