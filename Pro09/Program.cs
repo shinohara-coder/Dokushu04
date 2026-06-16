@@ -4,23 +4,24 @@ namespace Pro09
 {
     internal class AsyncHttp
     {   
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            var client = new HttpClient();
-            var result = await client.GetStringAsync("https://codezine.jp");
-            Console.WriteLine(result);
-        }
-        
-        //static void Main(string[] args)
-        //{
-        //    var client = new WebClient();
-        //    client.DownloadStringCompleted += (sender, e) =>
-        //    {
-        //        Console.WriteLine(e.Result);
-        //    };
+            Task t1 = Task.Run(() => Count(1));
+            Task t2 = Task.Run(() => Count(2));
+            Task t3 = Task.Run(() => Count(3));
 
-        //    client.DownloadStringAsync(new Uri("https://codezine.jp/"));
-        //    Console.ReadLine();
-        //}
+            t1.Wait();
+            t2.Wait();
+            t3.Wait();
+            Console.WriteLine("すべての処理が終了しました。");
+        }
+
+        static void Count(int n)
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine($"Task{n}：{i}");
+            }
+        }
     }
 }
