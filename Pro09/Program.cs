@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 
 namespace Pro09
 {
@@ -6,22 +7,28 @@ namespace Pro09
     {   
         static void Main(string[] args)
         {
-            Task t1 = Task.Run(() => Count(1));
-            Task t2 = Task.Run(() => Count(2));
-            Task t3 = Task.Run(() => Count(3));
-
-            t1.Wait();
-            t2.Wait();
-            t3.Wait();
-            Console.WriteLine("すべての処理が終了しました。");
+            Task<TimeSpan> t = RunAsync();
+            while (!t.IsCompleted)
+            {
+                t.Wait(200);
+                Console.Write(".");
+            }
+            Console.WriteLine(t.Result);
         }
 
-        static void Count(int n)
+        static async Task<TimeSpan> RunAsync()
         {
-            for (int i = 0; i < 50; i++)
+            var watch = Stopwatch.StartNew();
+            await Task.Run(() =>
             {
-                Console.WriteLine($"Task{n}：{i}");
-            }
+                var result = "";
+                for (int i = 0; i < 100000; i++)
+                {
+                    result += "いろは";
+                }
+            });
+            watch.Stop();
+            return watch.Elapsed;
         }
     }
 }
