@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -11,21 +12,22 @@ namespace Pro10
     {
         static void Main(string[] args)
         {
-            var drink = "ウイスキー";
-            switch (drink)
-            {
-                case "日本酒":
-                case "ビール":
-                case "ワイン":
-                    Console.WriteLine("醸造酒です。");
-                    break;
+            var hs = new HashSet<int> { 1, 20, 30, 60, 10, 15 };
+            hs.Add(10);
+            hs.Add(5);
+            hs.Remove(60);
 
-                case "ブランデー":
-                case "ウイスキー":
-                case "ウォッカ":
-                    Console.WriteLine("蒸留酒です。");
-                    break;
+            foreach (var v in hs)
+            {
+                func(v);
             }
+
+            func(hs.Count);
+        }
+
+        static void func(object? obj)
+        {
+            Console.WriteLine(obj.ToString());
         }
     }
 

@@ -6,13 +6,32 @@ namespace Pro10
 {
     internal class PythonCall
     {
-        
+
         static void Main(string[] args)
         {
-            var py = Python.CreateRuntime();
-            dynamic script = py.UseFile("C:\\Users\\hirok\\source\\repos\\Dokushu04\\Pro11\\myClass.py");
-            dynamic clazz = script.MyClass();
-            Console.WriteLine(clazz.greet("山田"));
+            var list = new Queue<int>();
+            list.Enqueue(10);
+            list.Enqueue(15);
+            list.Enqueue(30);
+            list.Enqueue(60);
+
+            foreach (var v in list)
+            {
+                func(v);
+            }
+
+            func(list.Count());
+            func(list.Contains(80));
+            func(list.Dequeue());
+            func(list.Peek());
+            func(list.Dequeue());
+
+            func(string.Join(", ", list.ToArray()));
+        }
+
+        static void func(object? obj)
+        {
+            Console.WriteLine(obj.ToString());
         }
     }
 
