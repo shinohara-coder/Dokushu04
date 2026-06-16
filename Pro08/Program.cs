@@ -27,6 +27,14 @@ namespace Pro06
             list.AddAfter(list.First, "うし");
             PrintList(list);
 
+            list.Remove("たつ");
+            list.RemoveLast();
+            PrintList(list);
+
+            var node = list.First;
+            list.Remove(node);
+            list.AddBefore(list.Last, node);
+            PrintList(list);
         }
 
         private static void func(object? str)
