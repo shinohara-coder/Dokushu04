@@ -13,24 +13,23 @@ namespace Pro13
     {
         static void Main(string[] args)
         {
-            for (int i = 1; i < 10; i++)
-            {
-                for (int j = 1; j < 10; j++)
-                {
-                    var result = i * j;
-                    if (result > 40)
-                    {
-                        //goto END;
-                        break;
-                    }
-                    Console.Write($"{result,2} ");
-                }
-                Console.WriteLine();
-            }
+            var hs = new HashSet<int> { 1, 10, 15, 20, 30 };
+            hs.IntersectWith(new HashSet<int>() { 1, 10, 20, 30, 60 });
+            PrintSet(hs);
 
-        END:
-            Console.WriteLine("Fnished!!");
+        }
+
+        static void func(object? obj)
+        {
+            Console.WriteLine(obj.ToString());
+        }
+
+        static void PrintSet<T>(HashSet<T> set)
+        {
+            func(string.Join(", ", set.ToArray()));
         }
     }
+
+
 
 }
