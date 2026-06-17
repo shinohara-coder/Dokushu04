@@ -12,19 +12,18 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var str = "自宅の電話番号は、084-000-0000です。携帯は、080-0000-0000です。";
-            Regex rgx = new Regex(@"(\d{2,4})-(\d{2,4})-(\d{4})");
-            Match match = rgx.Match(str);
-
-            if (match.Success)
+            var headers = new List<string> { "得意先コード", "得意先名", "電話番号", "得意先名" };
+            var duplicates = headers
+                .GroupBy(h => h, StringComparer.Ordinal)
+                .Where(g => g.Count() > 1)
+                .Select(g => $"「{g.Key}」")
+                .ToList();
+            
+            foreach (var v in duplicates)
             {
-                func($"位置:{match.Index} マッチ文字列:{match.Value}");
+                func(v);
             }
 
-            foreach (Group m in match.Groups)
-            {
-                func(m.Value);
-            }
         }
 
         static void func(object? str)
