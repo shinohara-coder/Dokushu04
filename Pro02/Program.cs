@@ -13,28 +13,36 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var str = "仕事用はwings@example.comです。プライベート用はYAMA@example.comです。";
-            //var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
-            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", 
-                RegexOptions.RightToLeft | RegexOptions.IgnoreCase);
+            var set = new SortedSet<int> { 30, 60, 10, 15 };
 
-            MatchCollection result = rgx.Matches(str);
+            set.Add(10);
+            set.Add(5);
+            set.Remove(60);
 
-            foreach (Match m in result)
-            {
-                func($"位置：{m.Index} マッチ文字列：{m.Value}");
-                foreach (Group g in m.Groups)
-                {
-                    func(g.Value);
-                }
-                func("----------------");
-            }
+            //foreach (var s in set)
+            //{
+            //    func(s);
+            //}
 
+            var set2 = new SortedSet<int> { 10, 15, 30 };
+            //func(set.IsSupersetOf(set2));
+
+            set.ExceptWith(new HashSet<int> { 15, 30 });
+            set.Remove(10);
+            Printset(set);
         }
 
         static void func(object? str)
         {
             Console.WriteLine(str);
+        }
+
+        static void Printset<T>(SortedSet<T> set)
+        {
+            foreach (var v in set)
+            {
+                func(v);
+            }
         }
     }
 }
