@@ -7,9 +7,9 @@ namespace Pro04
 {   
     internal class LinqQuery
     {
-        static void Main(string[] args)
-        {
+        //static void Main(string[] args)
+        //{
             
-        }
+        //}
     }
 }

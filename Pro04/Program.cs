@@ -5,17 +5,35 @@ using static System.Math;
 
 namespace Pro03
 {
-    public class Result<T>
+    internal class Person
     {
-        public bool IsSuccess { get; }
-        public T? Data { get; }
+        private string _firstName;
+        private string _lastName;
 
-        public string? ErrorMessage { get; }
+        public Person(string firstName, string lastName)
+        {
+            this._firstName = firstName;
+            this._lastName = lastName;
+        }
 
-        
+        //public Person() : this("権兵衛", "名無") { }
+        public Person() { }
+
+        public void Show()
+        {
+            Console.WriteLine($"名前は{this._lastName}{this._firstName}です。");
+        }
     }
-    internal class Program
+    
+    internal class ConstructorBasic
     {
-        
+        static void Main(string[] args)
+        {
+            var p = new Person()
+            {
+
+            };
+            p.Show();
+        }
     }
 }
