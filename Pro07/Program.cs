@@ -10,41 +10,26 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            var list = new List<int> { 10, 15, 30, 60 };
-            var list2 = new List<int> { 1, 5, 3, 6 };
+            string? input = Console.ReadLine();
 
-            list.Insert(2, 7);
-            list.Add(120);
-
-            //list.ForEach(v => func(v));
-
-            //func(list.Count);
-            //func(list[0]);
-            //func(list.Contains(30));
-            //func(list.IndexOf(30));
-            //func(list.LastIndexOf(30));
-            func(list.Remove(60));
-            PrintList(list);
-
-            list.AddRange(list2);
-            PrintList(list);
-
-            list.Reverse();
-            PrintList(list);
-
-            var ary = new int[3];
-            list.CopyTo(2, ary, 0, 3);
-            func(string.Join(", ", ary));
-        }
+            func($"郵便番号変換後：{FormatPostal(input)}");
+        }   
 
         private static void func(object? str)
         {
             Console.WriteLine(str);
         }
 
-        private static void PrintList<T>(List<T> list)
+        /// <summary>郵便番号を 〒XXX-XXXX 形式に整形する（7桁の場合のみ）</summary>
+        private static string FormatPostal(string raw)
         {
-            func(string.Join(", ", list.ToArray()));
+            if (string.IsNullOrWhiteSpace(raw)) return "";
+            var digits = new string(raw.Where(char.IsDigit).ToArray());
+            if (digits.Length == 7)
+            {
+                return $"〒{digits[..3]}-{digits[3..]}";
+            }
+            return raw;
         }
     }
 }
