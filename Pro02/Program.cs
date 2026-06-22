@@ -1,6 +1,7 @@
 ﻿//#define DEBUG
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Security.AccessControl;
 using System.Text.RegularExpressions;
@@ -13,36 +14,43 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var set = new SortedSet<int> { 30, 60, 10, 15 };
+            var dic = new Dictionary<string, string>()
+            {
+                ["Rose"] = "バラ",
+                ["SunFlower"] = "ひまわり",
+                ["Morning Glory"] = "あさがお"
+            };
 
-            set.Add(10);
-            set.Add(5);
-            set.Remove(60);
+            //func(dic.Count);
+            //func(dic.ContainsKey("Rose"));
+            //func(dic.ContainsValue("バラ"));
 
-            //foreach (var s in set)
+            //dic.TryGetValue("SunFlower", out var name);
+            //func(name);
+
+            //func("--------------");
+            //foreach (var key in dic.Keys)
             //{
-            //    func(s);
+            //    func($"{key} : {dic[key]}");
             //}
 
-            var set2 = new SortedSet<int> { 10, 15, 30 };
-            //func(set.IsSupersetOf(set2));
+            //func("--------------");
+            //foreach (var v in dic.Values)
+            //{
+            //    func(v);
+            //}
 
-            set.ExceptWith(new HashSet<int> { 15, 30 });
-            set.Remove(10);
-            Printset(set);
+            dic.Remove("Rose");
+
+            foreach (var m in dic)
+            {
+                func(m.ToString());
+            }
         }
 
         static void func(object? str)
         {
             Console.WriteLine(str);
-        }
-
-        static void Printset<T>(SortedSet<T> set)
-        {
-            foreach (var v in set)
-            {
-                func(v);
-            }
         }
     }
 }
