@@ -1,21 +1,17 @@
-﻿using System;
+﻿using MyLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Pro06
+namespace Pro08
 {
-    internal class MyApp
-    {
-        public static readonly string Title = "独習C#";
-    }
-
     internal class MySingleton
     {
         static void Main(string[] args)
         {
-            func(MyApp.Title);
+            func(MyConfig.Title);
             //MyApp.Title = "hoge";
         }
 
