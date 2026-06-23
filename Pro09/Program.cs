@@ -4,31 +4,23 @@ using System.Net;
 namespace Pro09
 {
     internal class AsyncHttp
-    {   
+    {
+        int myfield = 0;
+        static int myfield2 = 0;
         static void Main(string[] args)
         {
-            Task<TimeSpan> t = RunAsync();
-            while (!t.IsCompleted)
-            {
-                t.Wait(200);
-                Console.Write(".");
-            }
-            Console.WriteLine(t.Result);
-        }
+            var mylocal = 1;
+            const int MY_CONST = 2;
 
-        static async Task<TimeSpan> RunAsync()
-        {
-            var watch = Stopwatch.StartNew();
-            await Task.Run(() =>
+            static void Hoge()
             {
-                var result = "";
-                for (int i = 0; i < 100000; i++)
-                {
-                    result += "いろは";
-                }
-            });
-            watch.Stop();
-            return watch.Elapsed;
+                //Console.WriteLine(myfield);
+                //Console.WriteLine(mylocal);
+                Console.WriteLine(myfield2);
+                Console.WriteLine(MY_CONST);
+                Console.WriteLine(nameof(mylocal));
+            }
+            Hoge();
         }
     }
 }
