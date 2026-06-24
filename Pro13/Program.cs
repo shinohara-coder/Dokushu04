@@ -9,33 +9,24 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace Pro13
 {
     
-    internal class NameOfNull
+    internal class PassRefBasic
     {
+        public int CountUp(ref int data)
+        {
+            //data++;
+            return ++data;
+        }
         static void Main(string[] args)
         {
-            var hs = new HashSet<int> { 1, 10, 15, 20, 30 };
-            hs.IntersectWith(new HashSet<int>() { 1, 10, 20, 30, 60 });
-            PrintSet(hs);
-
-            hs.ExceptWith(new HashSet<int> { 15, 30 });
-            PrintSet(hs);
-
-            hs.UnionWith(new HashSet<int> { 10, 15, 30 });
-            PrintSet(hs);
-
-            hs.SymmetricExceptWith(new HashSet<int> { 1, 10, 30 });
-            PrintSet(hs);
-
+            int data = 1;
+            var p = new PassRefBasic();
+            func(p.CountUp(ref data));
+            func(data);
         }
 
         static void func(object? obj)
         {
             Console.WriteLine(obj.ToString());
-        }
-
-        static void PrintSet<T>(HashSet<T> set)
-        {
-            func(string.Join(", ", set.ToArray()));
         }
     }
 

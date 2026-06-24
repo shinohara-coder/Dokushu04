@@ -1,50 +1,33 @@
-﻿using SelfCSharp.Chap10;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
-using System.Runtime.CompilerServices;
 using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Pro14
 {
-
-    internal class NameOfNull
+    internal class PassRefArray
     {
+        public int[] Update(ref int[] data)
+        {
+            data = new[] { 10, 20, 30 };
+            //data = new[] { 100, 200, 300 };
+            return data;
+        }
+
         static void Main(string[] args)
         {
-            //var bs = from b in AppTables.Books
-            //         where b.Price < 3000
-            //         select new { Title = b.Title, Price = b.Price };
-
-            var bs = AppTables.Books
-                    .GroupBy(b => new
-                    {
-                        PublishYear = b.Published.Year,
-                        PublishMonth = b.Published.Month
-                    })
-                    .OrderBy(pubs => pubs.Key.PublishYear)
-                    .ThenBy(pubs => pubs.Key.PublishMonth);
-                
-            foreach (var b in bs)
-            {
-                func($"[{b.Key.PublishYear}年-{b.Key.PublishMonth}月]");
-                foreach (var t in b)
-                {
-                    func(t);
-                }
-            }
+            var data = new[] { 2, 4, 6 };
+            var p = new PassRefArray();
+            func(p.Update(ref data)[0]);
+            func(data[0]);
         }
 
         static void func(object? obj)
         {
             Console.WriteLine(obj.ToString());
         }
-
-        
     }
-
-
-
 }

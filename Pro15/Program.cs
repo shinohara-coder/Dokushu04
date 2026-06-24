@@ -6,23 +6,17 @@ using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Text;
 
-namespace Pro10
+namespace Pro15
 {
-    internal class PassArray
+    internal struct Coodinate
     {
-        public int[] Update(int[] data)
-        {
-            data = new[] { 10, 20, 30 };
-            data = new[] { 100, 200, 300 };
-            return data;
-        }
         
+    }
+    internal class PassRefArray
+    {
         static void Main(string[] args)
         {
-            var data = new[] { 2, 4, 6 };
-            var p = new PassArray();
-            func(p.Update(data)[0]);
-            func(data[0]);
+           
         }
 
         static void func(object? obj)
@@ -30,5 +24,4 @@ namespace Pro10
             Console.WriteLine(obj.ToString());
         }
     }
-
 }
