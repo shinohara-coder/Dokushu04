@@ -4,26 +4,28 @@ namespace Pro10
 {
     internal class AttrBasic
     {
+        internal class Person
+        {
+            public string firstName = "";
+            public string lastName = "";
+
+            public void Show(string greeting = "こんにちは", string title = "さん")
+            {
+                Console.WriteLine($"{greeting}、{this.lastName}{this.firstName}{title}！");
+            }
+        }
+        
         static void Main(string[] args)
         {
-            var s = new Stack<int>();
-            s.Push(10);
-            s.Push(15);
-            s.Push(30);
-            s.Push(60);
-
-            foreach (var v in s)
+            var p = new Person
             {
-                func(v);
-            }
+                lastName = "田中",
+                firstName = "三郎"
+            };
 
-            func(s.Count());
-            func(s.Contains(50));
-            func(s.Pop());
-            func(s.Peek());
-            func(s.Pop());
-
-            func(string.Join(", ", s.ToArray()));
+            p.Show();
+            p.Show(title: "氏", greeting: "こんばんは");
+            //p.Show("氏", greeting: "こんばんは");
         }
 
         static void func(object? obj)

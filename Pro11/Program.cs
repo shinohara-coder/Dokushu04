@@ -4,29 +4,23 @@ using System.Runtime.CompilerServices;
 
 namespace Pro10
 {
-    internal class PythonCall
+    internal class ArgParams
     {
-
+        public int TotalProducts(params int[] values)
+        {
+            int result = 1;
+            foreach (var value in values)
+            {
+                result *= value;
+            }
+            return result;
+        }
+        
         static void Main(string[] args)
         {
-            var list = new Queue<int>();
-            list.Enqueue(10);
-            list.Enqueue(15);
-            list.Enqueue(30);
-            list.Enqueue(60);
-
-            foreach (var v in list)
-            {
-                func(v);
-            }
-
-            func(list.Count());
-            func(list.Contains(80));
-            func(list.Dequeue());
-            func(list.Peek());
-            func(list.Dequeue());
-
-            func(string.Join(", ", list.ToArray()));
+            var v = new ArgParams();
+            Console.WriteLine(v.TotalProducts(12, 15, -1, 10));
+            Console.WriteLine(v.TotalProducts(5, 7, 8, 2, 2, 5));
         }
 
         static void func(object? obj)
