@@ -10,23 +10,22 @@ using System.Text;
 
 namespace Pro17
 {
-    internal class Reffor
+    internal class RefForeach
     {
         static void Main(string[] args)
         {
-            var result = 0;
-            var sum = 0;
-
-            for (ref var i = ref result; i < 100; i++)
+            var list = new[] { 1, 2, 3, 4, 5 };
+            foreach(ref var value in list.AsSpan())
             {
-                sum += i;
-                if (sum > 1000)
-                {
-                    break;
-                }
+                value *= value;
             }
+            func(string.Join(", ", list));
 
-            func($"合計が1000を超えるのは、1～{result}を加算した時です。");
+            var list2 = new[] { 1, 2, 3, 4, 5 };
+            foreach(ref var value in list2)
+            {
+                value *= value;
+            }
         }
 
         static void func(object? obj)
