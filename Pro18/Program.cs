@@ -8,18 +8,19 @@ using System.Diagnostics.Metrics;
 using System.Numerics;
 using System.Text;
 
-namespace Pro17
+namespace Pro18
 {
-    internal class RefForeach
+    internal class TupleBasic
     {
+        internal (int max, int min) GetMaxMin(int x, int y)
+        {
+            return (x >= y) ? (x, y) : (y, x);
+        }
         static void Main(string[] args)
         {
-            var list = new[] { 1, 2, 3, 4, 5 };
-            foreach(ref var value in list.AsSpan())
-            {
-                value *= value;
-            }
-            func(string.Join(", ", list));
+            var info = new { Title = "速習C#", Price = 1000 };
+            func(info.Title);
+            func(info.Price);
         }
 
         static void func(object? obj)
