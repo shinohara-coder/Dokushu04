@@ -1,39 +1,65 @@
 ﻿using System;
+using System.Formats.Asn1;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using static System.Console;
 using static System.Math;
 
-namespace Pro03
+namespace Pro04
 {
-    internal class Person
+    internal class TwoFreeArray
     {
-        private string _firstName;
-        private string _lastName;
+        private int[] _size;
+        private int[,] _list;
 
-        public Person(string firstName, string lastName)
+        internal TwoFreeArray(int size1, int size2)
         {
-            this._firstName = firstName;
-            this._lastName = lastName;
+            this._size = new[] { size1, size2 };
+            this._list = new int[size1, size2];
         }
 
-        //public Person() : this("権兵衛", "名無") { }
-        public Person() { }
-
-        public void Show()
+        public int this[int index1, int index2]
         {
-            Console.WriteLine($"名前は{this._lastName}{this._firstName}です。");
+            set
+            {
+                this._list[this.GetIndex(index1, 0), this.GetIndex(index2, 1)] = value;
+            }
+
+            get
+            {
+                return this._list[this.GetIndex(index1, 0), this.GetIndex(index2, 1)];
+            }
+        }
+
+        // インデックスを循環させて取得するメソッド
+        private int GetIndex(int index, int dimension)
+        {
+            if (index < 0)
+            {
+                return 0;
+            }
+            return index % this._size[dimension];
         }
     }
-    
-    internal class ConstructorBasic
+
+    internal class Program
     {
         static void Main(string[] args)
         {
-            var p = new Person()
+            var arr = new TwoFreeArray(3, 2);
+            int k = 1;
+            for (int i = 0; i < 3; i++)
             {
+                for (int j = 0; j < 2; j++)
+                {
+                    arr[i, j] = k++;
+                }
+            }
 
-            };
-            p.Show();
+            Console.WriteLine(arr[51, 99]);
+            Console.WriteLine(arr[-1, 0]);
+            Console.WriteLine(arr[4, 0]);
         }
     }
 }

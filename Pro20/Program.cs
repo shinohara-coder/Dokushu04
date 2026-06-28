@@ -1,23 +1,18 @@
-﻿//#define DEBUG
-using SelfCSharp.Chap09.Priority1;
+﻿using Microsoft.VisualBasic;
 using System;
-using System.Collections;
-using System.Globalization;
-using System.Security.AccessControl;
-using System.Text.RegularExpressions;
-//using MyUtil = SelfCSharp.Chap09.Priority2.MyUtil;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
+using System.Numerics;
+using System.Text;
 
-namespace SelfCSharp.Chap09.Priority1
+namespace Pro20
 {
-    internal class PrimeList : IEnumerable<int>
+    internal class PrimeNumber
     {
-        int max = 2;
-        public PrimeList(int max)
-        {
-            this.max = max;
-        }
-
-        public IEnumerator<int> GetEnumerator()
+        internal IEnumerable<int> GetPrimes(int max)
         {
             bool IsPrime(int value)
             {
@@ -34,13 +29,14 @@ namespace SelfCSharp.Chap09.Priority1
             }
 
             const int Min = 2;
-            if (this.max < Min)
+
+            if (max < Min)
             {
                 Console.WriteLine("引数maxは2以上の値を指定してください。");
                 yield break;
             }
 
-            for (int num = Min; num <= this.max; num++)
+            for (int num = Min; num <= max; num++)
             {
                 if (IsPrime(num))
                 {
@@ -48,33 +44,34 @@ namespace SelfCSharp.Chap09.Priority1
                 }
             }
         }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
     }
-    internal class LambdaCapture
+    
+    internal class IteratorBasic
     {
         static void Main(string[] args)
         {
+            var p = new PrimeNumber();
             Console.WriteLine("正の整数値を入力してください。");
             string? result = Console.ReadLine();
 
             if (int.TryParse(result, out int num))
             {
-                var list = new PrimeList(num);
-                foreach (int value in list)
+                var primes = p.GetPrimes(num);
+                foreach (int value in primes)
                 {
-                    Console.WriteLine(value);
+                    func(value);
                 }
             }
             else
             {
-                Console.WriteLine("正の整数値を入力してください。");
+                func("正の整数値を入力してください。");
             }
+            
+        }
+
+        static void func(object? obj)
+        {
+            Console.WriteLine(obj.ToString());
         }
     }
 }
-
-

@@ -8,56 +8,54 @@ using static System.Math;
 
 namespace Pro03
 {
-    internal class Person
+    internal class FreeArray
     {
-        private string firstName = "";
-        private string lasttName = "";
+        private int _size;
+        private int[] _list;
 
-        public Person (string firstName, string lastName)
+        internal FreeArray(int size)
         {
-            this.firstName = firstName;
-            this.lasttName = lastName;
+            this._size = size;
+            this._list = new int[size];
         }
 
-        public string Show()
+        public int this[int index]
         {
-            return $"名前は{this.lasttName}{this.firstName}です。";
+            set
+            {
+                this._list[this.GetIndex(index)] = value;
+            }
+
+            get
+            {
+                return this._list[this.GetIndex(index)];
+            }
+        }
+
+        private int GetIndex(int index)
+        {
+            if (index < 0)
+            {
+                return 0;
+            }
+            return index % this._size;
         }
     }
     
     internal class Program
     {
-        [DllImport("kernel32.dll")]
-        private extern static bool Beep(uint dwFreq, uint dwDuration);
         static void Main(string[] args)
         {
-            var p = new Person("太郎", "山田");
-            func(p.Show());
+            var arr = new FreeArray(5);
+            arr[0] = 1;
+            arr[1] = 10;
+            arr[2] = 15;
+            arr[3] = 30;
+            arr[4] = 60;
 
-            Beep(440, 200);
-            Beep(660, 200);
-            Beep(880, 200);
-            Beep(1200, 200);
-
-            double Discount(int price, double rate)
-            {
-                return price * (1 - rate);
-            }
-
-            string? input = Console.ReadLine();
-            if (int.TryParse(input, out int price))
-            {
-                func($"定価：{price} 2割引後価格：{Discount(price, 0.2)}");
-            }
-            else
-            {
-                func("エラー：整数値を入力してください。");
-            }
-        }
-
-        static void func(object? str)
-        {
-            Console.WriteLine(str);
+            Console.WriteLine(arr[2]);
+            Console.WriteLine(arr[-10]);
+            Console.WriteLine(arr[9]);
         }
     }
 }

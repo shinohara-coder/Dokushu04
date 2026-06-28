@@ -18,4 +18,6 @@
   <Project Path="Pro16/Pro16.csproj" Id="42760df9-53be-4fd9-95c3-fb805374018f" />
   <Project Path="Pro17/Pro17.csproj" Id="f79326c2-f11f-417f-9f3f-f86098500c8f" />
   <Project Path="Pro18/Pro18.csproj" Id="68c207c3-c8cb-4b51-a1c0-6e335edd2706" />
+  <Project Path="Pro19/Pro19.csproj" Id="9454c79f-0035-4451-8a0a-07547efed437" />
+  <Project Path="Pro20/Pro20.csproj" Id="29b10abf-4776-40f4-9c42-5f83b430cad1" />
 </Solution>

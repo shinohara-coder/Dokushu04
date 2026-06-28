@@ -5,20 +5,28 @@ using System.Text.RegularExpressions;
 
 namespace Pro05
 {
-    internal class Circle
+    internal class JapaneseMonth
     {
-        private double radius;
+        private string[] _month =
+            {"睦月", "如月", "弥生", "卯月", "皐月", "水無月", "文月", 
+            "葉月", "長月", "神無月", "霜月", "師走"};
 
-        public Circle(double radius)
+        public JapaneseMonth() { }
+
+        public int this[string name]
         {
-            this.radius = radius;
+            get
+            {
+                return Array.IndexOf(this._month, name) + 1;
+            }
         }
 
-        public Circle() : this(1.0) {}
-
-        public double GetArea()
+        public string this[int index]
         {
-            return Math.PI * this.radius * this.radius;
+            get
+            {
+                return this._month[index - 1];
+            }
         }
     }
 
@@ -26,23 +34,10 @@ namespace Pro05
     {
         static void Main(string[] args)
         {
-            string input = Console.ReadLine();
-
-            if (double.TryParse(input, out double radius))
-            {
-                Circle c = new Circle(radius);
-                Console.WriteLine($"半径{radius}の円の面積は{c.GetArea():F2}です。");
-            }
-            else
-            {
-                Console.WriteLine("エラー: 正しい数値を入力してください。");
-            }
-
-            
+            var mon = new JapaneseMonth();
+            Console.WriteLine(mon["神無月"]);
+            Console.WriteLine(mon[12]);
         }
-        
-        
-        
     }
 
 }

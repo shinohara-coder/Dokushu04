@@ -8,17 +8,14 @@ using System.Text;
 
 namespace Pro06
 {
-    internal class Figure
+    internal class Circle
     {
-        public static double Pi = Math.PI;
-        public static void GetCircleArea(double r)
+        public double this[double radius]
         {
-            Console.WriteLine($"円の面積は{r * r * Pi:F4}");
-        }
-
-        public static void GetTriAngleArea(double width, double height)
-        {
-            Console.WriteLine($"三角形の面積は{width * height / 2:F4}");
+            get
+            {
+                return radius * radius * Math.PI;
+            }
         }
     }
 
@@ -26,9 +23,8 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"{Figure.Pi:F4}");
-            Figure.GetCircleArea(5);
-            Figure.GetTriAngleArea(3, 5);
+            var c = new Circle();
+            Console.Write($"{c[10]:F4}");
         }
     }
 
