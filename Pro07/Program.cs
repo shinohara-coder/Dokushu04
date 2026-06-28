@@ -4,32 +4,33 @@ using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Numerics;
 
-namespace Pro06
+namespace Pro07
 {
+    internal class BusinessPeroson : Person
+    {
+        public string Work()
+        {
+            return $"{this.LastName}{this.FirstName}は、働きます。";
+        }
+
+        public override string Show()
+        {
+            return $"会社員の{this.LastName}{this.FirstName}です。";
+        }
+    }
+
     internal class AsyncBasic
     {
         static void Main(string[] args)
         {
-            string? input = Console.ReadLine();
-
-            func($"郵便番号変換後：{FormatPostal(input)}");
-        }   
-
-        private static void func(object? str)
-        {
-            Console.WriteLine(str);
-        }
-
-        /// <summary>郵便番号を 〒XXX-XXXX 形式に整形する（7桁の場合のみ）</summary>
-        private static string FormatPostal(string raw)
-        {
-            if (string.IsNullOrWhiteSpace(raw)) return "";
-            var digits = new string(raw.Where(char.IsDigit).ToArray());
-            if (digits.Length == 7)
+            var bp = new BusinessPeroson
             {
-                return $"〒{digits[..3]}-{digits[3..]}";
-            }
-            return raw;
-        }
+                FirstName = "一郎",
+                LastName = "小渕"
+            };
+
+            Console.WriteLine(bp.Work());
+            Console.WriteLine(bp.Show());
+        }   
     }
 }

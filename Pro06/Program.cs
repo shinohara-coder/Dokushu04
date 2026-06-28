@@ -8,14 +8,25 @@ using System.Text;
 
 namespace Pro06
 {
-    internal class Circle
+    internal class BusinessPeroson : Person
     {
-        public double this[double radius]
+        public string Work()
         {
-            get
-            {
-                return radius * radius * Math.PI;
-            }
+            return $"{this.LastName}{this.FirstName}は、働きます。";
+        }
+
+        public new string Show()
+        {
+            return $"会社員の{this.LastName}{this.FirstName}です。";
+        }
+    }
+
+    internal class EliteBusinessPerson : BusinessPeroson
+    {
+        public new string Work()
+        {
+            var reslut = base.Work();
+            return $"{reslut}いつでもテキパキと。";
         }
     }
 
@@ -23,10 +34,13 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            var c = new Circle();
-            Console.Write($"{c[10]:F4}");
-        }
-    }
+            var ep = new EliteBusinessPerson
+            { 
+                FirstName = "一郎", 
+                LastName = "田中" 
+            };
 
-    
+            Console.WriteLine(ep.Work());
+        }
+    }   
 }
