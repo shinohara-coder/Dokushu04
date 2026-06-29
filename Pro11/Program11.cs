@@ -1,32 +1,47 @@
 ﻿using IronPython.Hosting;
 using System.Diagnostics;
+using System.IO.Pipes;
 using System.Runtime.CompilerServices;
 
 namespace Pro10
 {
-    internal class ArgParams
+    internal class Person
     {
-        public int TotalProducts(int initial, params int[] values)
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+        public Person() { }
+
+        public virtual string Show()
         {
-            int result = 1;
-            foreach (var value in values)
-            {
-                result *= value;
-            }
-            return result;
+            return $"名前は{this.LastName}{this.FirstName}です。";
         }
-        
-        static void Main(string[] args)
+    }
+
+    internal class BusinessPerson : Person
+    {
+        public override string Show()
         {
-            var v = new ArgParams();
-            Console.WriteLine(v.TotalProducts(12, 15, -1, 10));
-            Console.WriteLine(v.TotalProducts(5, 7, 8, 2, 2, 5));
-            func(v.TotalProducts(100));
+            return $"会社員の{this.LastName}{this.FirstName}です。"; 
         }
 
-        static void func(object? obj)
+        public string Work()
         {
-            Console.WriteLine(obj.ToString());
+            return $"{this.LastName}{this.FirstName}は、働きます。";
+        }
+    }
+    
+    internal class ArgParams
+    {
+        
+        static void Main(string[] arngs)
+        {
+            Person bp = new BusinessPerson
+            {
+                FirstName = "一郎",
+                LastName = "屋敷"
+            };
+            Console.WriteLine(bp.Work());
+            Console.WriteLine(bp.Show());
         }
     }
 
