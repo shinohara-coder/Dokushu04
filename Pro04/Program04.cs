@@ -43,7 +43,7 @@ namespace Pro04
         }
     }
 
-    internal class Program
+    internal class Program04
     {
         static void Main(string[] args)
         {
