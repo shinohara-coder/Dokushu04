@@ -8,26 +8,41 @@ using System.Text;
 
 namespace Pro10
 {
-    internal class PassArray
+    internal class Person
     {
-        public int[] Update(int[] data)
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+
+        public virtual string Show()
         {
-            data = new[] { 10, 20, 30 };
-            data = new[] { 100, 200, 300 };
-            return data;
+            return $"名前は{this.LastName}{this.FirstName}です。";
+
         }
-        
-        static void Main(string[] args)
+    }
+
+    internal class BusinessPerson : Person
+    {
+        public override string Show()
         {
-            var data = new[] { 2, 4, 6 };
-            var p = new PassArray();
-            func(p.Update(data)[0]);
-            func(data[0]);
+            return $"会社員の{this.LastName}{this.FirstName}です。";
         }
 
-        static void func(object? obj)
+        public string Work()
         {
-            Console.WriteLine(obj.ToString());
+            return $"{this.LastName}{this.FirstName}は、働きます。";
+        }
+    }
+
+    internal class TypeGetBasic
+    {
+        static void Main(string[] args)
+        {
+            Person p1 = new Person();
+            Console.WriteLine(p1.GetType());
+            Person p2 = new BusinessPerson();
+            Console.WriteLine(p2.GetType());
+            Type t = typeof(Person);
+            Console.WriteLine(t.FullName);
         }
     }
 
