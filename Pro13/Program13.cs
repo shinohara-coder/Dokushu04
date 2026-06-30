@@ -11,22 +11,16 @@ namespace Pro13
     
     internal class PassRefBasic
     {
-        public int CountUp(ref int data)
-        {
-            //data++;
-            return ++data;
-        }
         static void Main(string[] args)
         {
-            int data = 1;
-            var p = new PassRefBasic();
-            func(p.CountUp(ref data));
-            func(data);
-        }
-
-        static void func(object? obj)
-        {
-            Console.WriteLine(obj.ToString());
+            //object obj = 123;
+            double obj = 123;
+            Console.WriteLine(obj switch
+            {
+                123 => "123です。",
+                int i => "数値です。",
+                _ => "意図しない値です。"
+            });
         }
     }
 

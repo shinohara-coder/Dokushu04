@@ -40,7 +40,7 @@ namespace Pro10
                 FirstName = "一郎",
                 LastName = "屋敷"
             };
-            Console.WriteLine(bp.Work());
+            //Console.WriteLine(bp.Work());
             Console.WriteLine(bp.Show());
         }
     }
