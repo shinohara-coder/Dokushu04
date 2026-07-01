@@ -12,31 +12,20 @@ namespace Pro16
 {
     internal class PassOUt
     {
-        public void GetMaxMin(int x, int y, out int max, out int min)
-        {
-            if (x >= y)
-            {
-                max = x;
-                min = y;
-            }
-            else
-            {
-                max = y;
-                min = x;
-            }
-        }
         static void Main(string[] args)
         {
-            var a = new PassOUt();
-            //int resultMax, resultMin;
-            a.GetMaxMin(5, 3, out int resultMax, out int resultMin);
-            func(resultMax);
-            func(resultMin);
-        }
+            var p = new Person
+            {
+                FirstName = "一郎",
+                LastName = "田中"
+            };
 
-        static void func(object? obj)
-        {
-            Console.WriteLine(obj.ToString());
+            Console.WriteLine(p switch
+            {
+                { FirstName: "一郎", LastName: var ln} => $"{ln}イチくん、こんにちは！",
+                { FirstName: "次郎", LastName: "山田"} => "山田次郎くんですね。",
+                _ => "どなたですか？"
+            });
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Numerics;
@@ -14,17 +15,22 @@ namespace Pro17
     {
         static void Main(string[] args)
         {
-            var list = new[] { 1, 2, 3, 4, 5 };
-            foreach(ref var value in list.AsSpan())
+            Console.Write("正数値を入力：");
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out int score))
             {
-                value *= value;
+                Console.WriteLine(score switch
+                {
+                    > 80 => "Excellent!!",
+                    > 60 => "Good!",
+                    > 40 => "Normal",
+                    _ => "Bad...",
+                });
             }
-            func(string.Join(", ", list));
-        }
-
-        static void func(object? obj)
-        {
-            Console.WriteLine(obj.ToString());
+            else
+            {
+                Console.WriteLine("正数を入力してください。");
+            }
         }
     }
 }
