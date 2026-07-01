@@ -20,4 +20,5 @@
   <Project Path="Pro18/Pro18.csproj" Id="68c207c3-c8cb-4b51-a1c0-6e335edd2706" />
   <Project Path="Pro19/Pro19.csproj" Id="9454c79f-0035-4451-8a0a-07547efed437" />
   <Project Path="Pro20/Pro20.csproj" Id="29b10abf-4776-40f4-9c42-5f83b430cad1" />
+  <Project Path="TestProject01/TestProject01.csproj" Id="d14e30d1-8b5b-4628-8fbc-0943e36fc68b" />
 </Solution>
