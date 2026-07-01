@@ -13,12 +13,12 @@ namespace Pro13
     {
         static void Main(string[] args)
         {
-            //object obj = 123;
-            double obj = 123;
+            object obj = 123;
+            //double obj = 123;
             Console.WriteLine(obj switch
             {
                 123 => "123です。",
-                int i => "数値です。",
+                double i => "数値です。",
                 _ => "意図しない値です。"
             });
         }

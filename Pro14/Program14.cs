@@ -8,26 +8,24 @@ using System.Text;
 
 namespace Pro14
 {
-    internal class PassRefArray
+    internal class Person
     {
-        public int[] Update(ref int[] data)
-        {
-            data = new[] { 10, 20, 30 };
-            //data = new[] { 100, 200, 300 };
-            return data;
-        }
 
+    }
+    
+    internal class PassRefBasic
+    {
         static void Main(string[] args)
         {
-            var data = new[] { 2, 4, 6 };
-            var p = new PassRefArray();
-            func(p.Update(ref data)[0]);
-            func(data[0]);
-        }
-
-        static void func(object? obj)
-        {
-            Console.WriteLine(obj.ToString());
+            object obj = new Person();
+            //double obj = 123;
+            Console.WriteLine(obj switch
+            {
+                int i => $"数値です。：{i}",
+                string str => $"文字列型です：{str}",
+                double d => $"浮動小数です：{d}",
+                var data => $"その他の型でした。：{data}"
+            });
         }
     }
 }
