@@ -12,26 +12,11 @@ namespace Pro19
 {
     internal class IteratorBasic
     {
-        internal IEnumerable<string> GetStirngs()
-        {
-            yield return "あいうえお";
-            yield return "かきくけこ";
-            yield return "さしすせそ";
-        }
+       
         static void Main(string[] args)
         {
-            var ite = new IteratorBasic();
-            IEnumerable<string> strList = ite.GetStirngs();
-
-            foreach (var str in strList)
-            {
-                func(str);
-            }
+            Console.WriteLine("ありがとう".Repeat(3));
         }
 
-        static void func(object? obj)
-        {
-            Console.WriteLine(obj.ToString());
-        }
     }
 }
