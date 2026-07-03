@@ -5,38 +5,29 @@ using System.Text.RegularExpressions;
 
 namespace Pro05
 {
-    internal class JapaneseMonth
+    interface IHoge
     {
-        private string[] _month =
-            {"睦月", "如月", "弥生", "卯月", "皐月", "水無月", "文月", 
-            "葉月", "長月", "神無月", "霜月", "師走"};
+        void Foo(string str);
+    }
 
-        public JapaneseMonth() { }
+    interface IHoge2
+    {
+        void Foo(string str2);
+    }
 
-        public int this[string name]
+    internal class MyClass : IHoge, IHoge2
+    {
+        public void Foo(string str)
         {
-            get
-            {
-                return Array.IndexOf(this._month, name) + 1;
-            }
-        }
-
-        public string this[int index]
-        {
-            get
-            {
-                return this._month[index - 1];
-            }
+            Console.WriteLine($"暗黙的 = {str}");
         }
     }
 
-    internal class MyClass
+    internal class interfaceOverlap
     {
         static void Main(string[] args)
         {
-            var mon = new JapaneseMonth();
-            Console.WriteLine(mon["神無月"]);
-            Console.WriteLine(mon[12]);
+            
         }
     }
 

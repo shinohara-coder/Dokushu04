@@ -1,61 +1,62 @@
 ﻿using System;
-using System.Formats.Asn1;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
+using System.Globalization;
+using System.Security.AccessControl;
 using System.Text.RegularExpressions;
-using static System.Console;
-using static System.Math;
+using SelfCSharp.Chap09.Priority1;
 
-namespace Pro03
+namespace SelfCSharp.Chap09.Priority1
 {
-    internal class FreeArray
+    internal abstract class Figure
     {
-        private int _size;
-        private int[] _list;
+        public double Width { get; set; }
+        public double Height { get; set; }
 
-        internal FreeArray(int size)
+        public Figure(double width, double height)
         {
-            this._size = size;
-            this._list = new int[size];
+            this.Width = width;
+            this.Height = height;
         }
 
-        public int this[int index]
-        {
-            set
-            {
-                this._list[this.GetIndex(index)] = value;
-            }
+        public abstract double GetArea();
+    }
 
-            get
-            {
-                return this._list[this.GetIndex(index)];
-            }
-        }
+    internal class Triangle : Figure
+    {
+        public Triangle(double width, double height) : base(width, height) { }
 
-        private int GetIndex(int index)
+        public override double GetArea()
         {
-            if (index < 0)
-            {
-                return 0;
-            }
-            return index % this._size;
+            return this.Width * this.Height / 2;
         }
     }
-    
-    internal class Program
+
+    internal class Square : Figure
+    {
+        public Square(double width, double height)
+            : base(width, height) { }
+
+        public override double GetArea()
+        {
+            return this.Width * this.Height;
+        }
+    }
+
+    internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var arr = new FreeArray(5);
-            arr[0] = 1;
-            arr[1] = 10;
-            arr[2] = 15;
-            arr[3] = 30;
-            arr[4] = 60;
+            Figure t = new Triangle(10, 30);
+            Console.WriteLine(t.GetArea());
+            Figure s = new Square(10, 30);
+            Console.WriteLine(s.GetArea());
+        }
 
-            Console.WriteLine(arr[2]);
-            Console.WriteLine(arr[-10]);
-            Console.WriteLine(arr[9]);
+        static void func(object? str)
+        {
+            Console.WriteLine(str);
         }
     }
 }
+

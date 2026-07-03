@@ -8,38 +8,25 @@ using static System.Math;
 
 namespace Pro04
 {
-    internal class TwoFreeArray
+    interface IFigure
     {
-        private int[] _size;
-        private int[,] _list;
+        double GetArea();
+    }
 
-        internal TwoFreeArray(int size1, int size2)
+    internal class Triangle : IFigure
+    {
+        public double Width { get; set; }
+        public double Heiht { get; set; }
+
+        public Triangle(double width, double height)
         {
-            this._size = new[] { size1, size2 };
-            this._list = new int[size1, size2];
+            this.Width = width;
+            this.Heiht = height;
         }
 
-        public int this[int index1, int index2]
+        public double GetArea()
         {
-            set
-            {
-                this._list[this.GetIndex(index1, 0), this.GetIndex(index2, 1)] = value;
-            }
-
-            get
-            {
-                return this._list[this.GetIndex(index1, 0), this.GetIndex(index2, 1)];
-            }
-        }
-
-        // インデックスを循環させて取得するメソッド
-        private int GetIndex(int index, int dimension)
-        {
-            if (index < 0)
-            {
-                return 0;
-            }
-            return index % this._size[dimension];
+            return this.Width * this.Heiht / 2;
         }
     }
 
@@ -47,19 +34,8 @@ namespace Pro04
     {
         static void Main(string[] args)
         {
-            var arr = new TwoFreeArray(3, 2);
-            int k = 1;
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    arr[i, j] = k++;
-                }
-            }
-
-            Console.WriteLine(arr[51, 99]);
-            Console.WriteLine(arr[-1, 0]);
-            Console.WriteLine(arr[4, 0]);
+            var t = new Triangle(10, 30);
+            Console.WriteLine(t.GetArea());
         }
     }
 }
