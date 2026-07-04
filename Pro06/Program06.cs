@@ -8,39 +8,30 @@ using System.Text;
 
 namespace Pro06
 {
-    internal class BusinessPeroson : Person
+    public interface IHoge
     {
-        public string Work()
+        void Log(string msg)
         {
-            return $"{this.LastName}{this.FirstName}は、働きます。";
-        }
-
-        public new string Show()
-        {
-            return $"会社員の{this.LastName}{this.FirstName}です。";
+            Console.WriteLine($"Log: {msg}");
         }
     }
 
-    internal class EliteBusinessPerson : BusinessPeroson
+    public class Hoge : IHoge
     {
-        public new string Work()
+        public void Log(string msg)
         {
-            var reslut = base.Work();
-            return $"{reslut}いつでもテキパキと。";
+            Console.WriteLine($"Hoge: {msg}");
         }
     }
+    
 
     internal class LockBasic
     {
         static void Main(string[] args)
         {
-            var ep = new EliteBusinessPerson
-            { 
-                FirstName = "一郎", 
-                LastName = "田中" 
-            };
-
-            Console.WriteLine(ep.Work());
+            var h = new Hoge();
+            ((IHoge)h).Log("任意のメッセージ");
+            h.Log("クラスのメッセージ");
         }
     }   
 }
