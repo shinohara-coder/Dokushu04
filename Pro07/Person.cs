@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.IO.Pipes;
 using System.Text;
 
-namespace Pro07
+namespace SelfCSharp
 {
-    internal class Person
+    namespace Pro07
     {
-        public string FirstName { get; set; } = "";
-        public string LastName { get; set; } = "";
-
-        public virtual string Show()
+        namespace Ns
         {
-            return $"名前は{this.LastName}{this.FirstName}です。";
+            internal class NamespaceBasic
+            {
+                public void Hoge()
+                {
+                    Console.WriteLine("Hogeメソッド実行");
+                }
+            }
         }
     }
 }
