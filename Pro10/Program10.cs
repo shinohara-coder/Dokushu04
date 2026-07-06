@@ -7,37 +7,24 @@ using System.Runtime.CompilerServices;
 
 namespace Pro10
 {
-    internal class MyParent
-    {
-        public MyParent(string childname)
-        {
-            Console.WriteLine($"{childname}の親です。");
-        }
-
-        ~MyParent()
-        {
-            Console.WriteLine("親のファイナライザー");
-        }
-    }
-
-    internal class MyChild : MyParent
-    {
-        public MyChild(string childname) : base(childname)
-        {
-            Console.WriteLine($"子の{childname}です。");
-        }
-
-        ~MyChild()
-        {
-            Console.WriteLine("このファイナライザー");
-        }
-    }
-
     internal class MySingleton
     {
         static void Main(string[] args)
         {
-            var c = new MyChild("小太郎");
+            try
+            {
+                using (var sr = new StreamReader(@"\nothing.dat"))
+                {
+                    Console.WriteLine(sr.ReadToEnd());
+                }
+            }
+            catch (Exception ex) when (
+            ex is FileNotFoundException ||
+            ex is ArgumentException)
+            {
+                Console.WriteLine("ファイルにアクセスできません。");
+                Console.WriteLine(ex.StackTrace);
+            }
         }
     }
 }

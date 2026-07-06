@@ -13,15 +13,16 @@ namespace Pro08
         {
             try
             {
-                using (var sr = new StreamReader(@"C:\Users\sc_design\Desktop\sample\SelfCSharp\Chap09\OpeBool.cs"))
-                {
-                    Console.WriteLine(sr.ReadToEnd());
-                }
+                var f = new StreamReader(@"C:\nothing.dat");
+            }
+            catch (FileNotFoundException ex) when (ex.Message.Contains(".dat"))
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("存在しない.datファイルが指定されました。");
             }
             catch (FileNotFoundException ex)
             {
-                Console.WriteLine("ファイルが見つかりませんでした。");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.Message);
             }
         }
     }
