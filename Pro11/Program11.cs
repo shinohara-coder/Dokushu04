@@ -7,12 +7,19 @@ namespace Pro10
 {
     internal class ArgParams
     {
-        
         static void Main(string[] arngs)
         {
-            //var str = "田中一郎";
-            string? str = null;
-            Console.WriteLine(str ?? throw new Exception("変数strがnullです。"));
+            try
+            {
+                using (var sr = new StreamReader(@"C:\nothing.dat"))
+                {
+                    Console.WriteLine(sr.ReadToEnd());
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                throw;
+            }
         }
     }
 
