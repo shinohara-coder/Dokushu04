@@ -11,16 +11,22 @@ namespace Pro13
     
     internal class PassRefBasic
     {
+        enum Season : long
+        {
+            Spring = 255,
+            Summer,
+            Autumn,
+            Winter,
+            All = Spring + Summer + Autumn + Winter,
+        }
         static void Main(string[] args)
         {
-            object obj = 123;
-            //double obj = 123;
-            Console.WriteLine(obj switch
-            {
-                123 => "123です。",
-                double i => "数値です。",
-                _ => "意図しない値です。"
-            });
+            var s = Season.All;
+            Console.WriteLine(s);
+            Console.WriteLine(s.ToString());
+            Console.WriteLine(s.ToString("D"));
+            Console.WriteLine(s.ToString("X"));
+            Console.WriteLine(s.ToString("G"));
         }
     }
 

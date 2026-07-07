@@ -1,31 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using System.Runtime.CompilerServices;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Pro14
 {
-    internal class Person
-    {
 
-    }
-    
     internal class PassRefBasic
     {
+        enum Season
+        {
+            Spring,
+            Summer,
+            Autumn,
+            Winter,
+            All = Spring + Summer + Autumn + Winter,
+        }
         static void Main(string[] args)
         {
-            object obj = new Person();
-            //double obj = 123;
-            Console.WriteLine(obj switch
+            //var str = (Season)Enum.Parse(typeof(Season), "Summer");
+            //var num = (Season)Enum.Parse(typeof(Season), "1");
+            //Console.WriteLine($"{str} - {str.GetType()}");
+            //Console.WriteLine($"{num} - {num.GetType()}");
+
+            var seasons = Enum.GetValues(typeof(Season));
+            foreach (var name in seasons)
             {
-                int i => $"数値です。：{i}",
-                string str => $"文字列型です：{str}",
-                double d => $"浮動小数です：{d}",
-                var data => $"その他の型でした。：{data}"
-            });
+                Console.WriteLine($"{(int)name} : {name}");
+            }
         }
     }
+
+
+
 }
