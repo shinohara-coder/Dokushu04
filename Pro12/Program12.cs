@@ -14,10 +14,20 @@ namespace Pro10
         {
             try
             {
+                //checked
+                //{
+                //    var i = int.MaxValue;
+                //    Console.WriteLine(++i);
+                //}
+                //var i = int.MaxValue;
+                //Console.WriteLine(checked(++i));
+
                 checked
                 {
-                    var i = int.MaxValue;
-                    Console.WriteLine(++i);
+                    var m = double.MaxValue;
+                    var n = double.Epsilon;
+                    Console.WriteLine(m * m);
+                    Console.WriteLine(n * n);
                 }
             }
             catch (OverflowException ex)
