@@ -10,20 +10,32 @@ using System.Text;
 
 namespace Pro15
 {
+    [Flags]
+    enum FontStyle
+    {
+        Bold = 1,
+        Italic = 2,
+        Underline = 4,
+        All = (Bold | Italic | Underline),
+    }
+    
     internal class PassReIn
     {
         static void Main(string[] args)
         {
-            //var t = ("C#", "Java", "Visual Basic");
-            //var t = ("Python", "Ruby", "PHP");
-            var t = ("Kotlin", "TypeScript", "C++");
-            Console.WriteLine(t switch
+            var styles = FontStyle.Bold | FontStyle.Italic;
+
+            if (styles.HasFlag(FontStyle.Bold))
             {
-                ("C#", "Java", "Visual Basic") => "コンパイル言語",
-                ("Python", "Ruby", var lang) => $"インタプリター言語{lang}",
-                ("Kotlin", "TypeScript", _) => "トランスコンパイル言語",
-                _ => "その他"
-            });
+                Console.WriteLine("太字指定されています。");
+            }
+
+            if (styles.HasFlag(FontStyle.Bold | FontStyle.Italic))
+            {
+                Console.WriteLine("太字&斜体指定されています。");
+            }
+
+            Console.WriteLine(styles);
         }
     }
 }
