@@ -23,7 +23,7 @@ namespace Pro15
     {
         static void Main(string[] args)
         {
-            var styles = FontStyle.Bold | FontStyle.Italic;
+            var styles = FontStyle.Bold | FontStyle.Italic | FontStyle.Underline;
 
             if (styles.HasFlag(FontStyle.Bold))
             {

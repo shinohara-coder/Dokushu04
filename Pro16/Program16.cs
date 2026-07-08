@@ -10,22 +10,27 @@ using System.Text;
 
 namespace Pro16
 {
+    internal struct Coodinates
+    {
+        internal double Latitude;
+        internal double Longitude;
+
+        //internal Coodinates() { }
+
+        public override string ToString()
+        {
+            return $"緯度: {this.Latitude} / 経度: {this.Longitude}";
+        }
+    }
     internal class PassOUt
     {
+        
         static void Main(string[] args)
         {
-            var p = new Person
-            {
-                FirstName = "一郎",
-                LastName = "田中"
-            };
-
-            Console.WriteLine(p switch
-            {
-                { FirstName: "一郎", LastName: var ln} => $"{ln}イチくん、こんにちは！",
-                { FirstName: "次郎", LastName: "山田"} => "山田次郎くんですね。",
-                _ => "どなたですか？"
-            });
+            var c = new Coodinates();
+            c.Latitude = 35.681167;
+            c.Longitude = 139.767052;
+            Console.WriteLine(c);
         }
     }
 }
