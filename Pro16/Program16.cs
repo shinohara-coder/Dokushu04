@@ -12,10 +12,15 @@ namespace Pro16
 {
     internal struct Coodinates
     {
-        internal double Latitude;
-        internal double Longitude;
+        internal double Latitude { get; set; }
+        internal double Longitude { get; set; }
 
-        //internal Coodinates() { }
+        public Coodinates() { }
+        internal Coodinates(double lat, double lon) 
+        {
+            this.Latitude = lat;
+            this.Longitude = lon;
+        }
 
         public override string ToString()
         {
@@ -27,9 +32,16 @@ namespace Pro16
         
         static void Main(string[] args)
         {
+            //var c = new Coodinates(35.681167, 139.767052);
+            //var c = new Coodinates
+            //{
+            //    Latitude = 35.681167,
+            //    Longitude = 139.767052
+            //};
             var c = new Coodinates();
-            c.Latitude = 35.681167;
-            c.Longitude = 139.767052;
+
+            //c.Latitude = 35.681167;
+            //c.Longitude = 139.767052;
             Console.WriteLine(c);
         }
     }
