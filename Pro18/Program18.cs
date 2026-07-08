@@ -1,34 +1,32 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data.SqlTypes;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Text;
-
-namespace Pro18
+﻿namespace Pro18
 {
+    internal struct MutableValue
+    {
+        public string Name { get; set; }
+
+        public MutableValue()
+        {
+            this.Name = "名無権兵衛";
+        }
+
+        public void Update(string name)
+        {
+            this.Name = name;
+            Console.WriteLine("Update method is finished!!");
+        }
+
+        public void UpdateNest(string name)
+        {
+            this.Name = name;
+        }
+    }
     internal class RefForeach
     {
+        static readonly MutableValue mv = new();
         static void Main(string[] args)
         {
-            Console.Write("正数値を入力：");
-            var input = Console.ReadLine();
-            if (int.TryParse(input, out int score))
-            {
-                Console.WriteLine(score switch
-                {
-                    < 0 or > 100 => "異常値",
-                    >= 0 and <= 100 => "正常値"
-                });
-            }
-            else
-            {
-                Console.WriteLine("正数を入力してください。");
-            }
+            mv.Update("佐藤栄作");
+            Console.WriteLine(mv.Name);
         }
     }
 }
