@@ -25,6 +25,7 @@
         static readonly MutableValue mv = new();
         static void Main(string[] args)
         {
+            //mv.Name = "佐藤栄作";
             mv.Update("佐藤栄作");
             Console.WriteLine(mv.Name);
         }

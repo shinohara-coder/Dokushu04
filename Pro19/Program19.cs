@@ -10,12 +10,19 @@ using System.Text;
 
 namespace Pro19
 {
+    
     internal class IteratorBasic
     {
-       
+        public record Person(string FirstName, string LastName, int Age);
         static void Main(string[] args)
         {
-            Console.WriteLine("ありがとう".Repeat(3));
+            var p1 = new Person("太郎", "山田", 10);
+            var p2 = new Person("太郎", "山田", 10);
+
+            Console.WriteLine(p1);
+            Console.WriteLine(p1 == p2);
+            (string fname, string lname, int age) = p1;
+            Console.WriteLine(lname);
         }
 
     }
