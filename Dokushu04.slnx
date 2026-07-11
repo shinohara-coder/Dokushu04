@@ -21,5 +21,8 @@
   <Project Path="Pro19/Pro19.csproj" Id="9454c79f-0035-4451-8a0a-07547efed437" />
   <Project Path="Pro20/Pro20.csproj" Id="29b10abf-4776-40f4-9c42-5f83b430cad1" />
   <Project Path="Pro21/Pro21.csproj" Id="325a4e04-ddcc-4d7f-8b8a-1f4b58c9a199" />
+  <Project Path="Pro22/Pro22.csproj" Id="b3160a26-a149-4671-aa57-587b83f7172d" />
+  <Project Path="Pro23/Pro23.csproj" Id="79078213-36b7-4cc9-bb1e-637491262a5e" />
+  <Project Path="Pro24/Pro24.csproj" Id="4cffc05d-04d0-4df6-bc8c-8fda23629958" />
   <Project Path="TestProject01/TestProject01.csproj" Id="d14e30d1-8b5b-4628-8fbc-0943e36fc68b" />
 </Solution>

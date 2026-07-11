@@ -17,11 +17,12 @@ namespace Pro21
         static void Main(string[] args)
         {
             var p = new Person("太郎", "山田", 10);
-            var pc1 = p with { Age = 20 };
+            var pc1 = p with { FirstName = "幸太郎" };
             var pc2 = p with { };
 
             Console.WriteLine(pc1);
             Console.WriteLine(pc2);
+            Console.WriteLine(object.ReferenceEquals(p, pc2));
         }
     }
 }
