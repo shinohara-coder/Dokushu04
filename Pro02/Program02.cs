@@ -4,7 +4,7 @@
     {
         internal void Hoge()
         {
-            var value = new T();
+            //var value = new T();
         }
     }
     internal class LambdaCapture
