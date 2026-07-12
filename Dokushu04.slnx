@@ -1,5 +1,4 @@
 <Solution>
-  <Project Path="MyLib/MyLib.csproj" Id="7367c560-551e-4d08-91a4-899570b02543" />
   <Project Path="Pro01/Pro01.csproj" />
   <Project Path="Pro02/Pro02.csproj" />
   <Project Path="Pro03/Pro03.csproj" Id="fcef59ce-c853-46c5-a1ec-501da5f78241" />
@@ -24,5 +23,6 @@
   <Project Path="Pro22/Pro22.csproj" Id="b3160a26-a149-4671-aa57-587b83f7172d" />
   <Project Path="Pro23/Pro23.csproj" Id="79078213-36b7-4cc9-bb1e-637491262a5e" />
   <Project Path="Pro24/Pro24.csproj" Id="4cffc05d-04d0-4df6-bc8c-8fda23629958" />
+  <Project Path="Pro25/Pro25.csproj" Id="ab55ff8e-f467-4fb5-a19d-8078768a4257" />
   <Project Path="TestProject01/TestProject01.csproj" Id="d14e30d1-8b5b-4628-8fbc-0943e36fc68b" />
 </Solution>
