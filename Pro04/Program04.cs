@@ -1,41 +1,39 @@
-﻿using System;
-using System.Formats.Asn1;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using static System.Console;
-using static System.Math;
-
-namespace Pro04
+﻿namespace SelfCSharp.Chap09.Priority1
 {
-    interface IFigure
+    internal class Person
     {
-        double GetArea();
-    }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
 
-    internal class Triangle : IFigure
-    {
-        public double Width { get; set; }
-        public double Heiht { get; set; }
-
-        public Triangle(double width, double height)
+        public Person(string firstName, string lastName)
         {
-            this.Width = width;
-            this.Heiht = height;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
-        public double GetArea()
+        public override bool Equals(object? obj)
         {
-            return this.Width * this.Heiht / 2;
+            if (Object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj == null || this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            return obj is Person p &&
+                this.FirstName == p.FirstName &&
+                this.LastName == p.LastName;
         }
     }
-
-    internal class Program04
+    internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var t = new Triangle(10, 30);
-            Console.WriteLine(t.GetArea());
+            
         }
     }
 }
+
