@@ -32,7 +32,9 @@
     {
         static void Main(string[] args)
         {
-            
+            var p = new Person("哲夫", "萩原");
+            var p2 = new Person("哲夫", "萩原");
+            Console.WriteLine(p.Equals(p2));
         }
     }
 }
