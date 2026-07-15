@@ -1,52 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-//using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
-
-namespace Pro05
+﻿namespace SelfCSharp.Chap09.Priority1
 {
-    interface IHoge
+    internal class Person : IEquatable<Person>
     {
-        void Foo(string str);
-    }
+        public string FirstName { get; private set; }
+        //public string LastName { get; private set; }
+        public string LastName { get; set; }
 
-    interface IHoge2
-    {
-        void Foo(string str2);
-    }
-
-    internal class MyClass : IHoge, IHoge2
-    {
-        public void Foo(string str)
+        public Person(string firstName, string lastName)
         {
-            Console.WriteLine($"暗黙的 = {str}");
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
-        void IHoge.Foo(string str)
+        public bool Equals(Person? other)
         {
-            Console.WriteLine($"IHoge.Foo = {str}");
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other == null || this.GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            return this.FirstName == other.FirstName && this.LastName == other.LastName;
         }
 
-        void IHoge2.Foo(string str)
+        public override bool Equals(object? obj)
         {
-            Console.WriteLine($"IHoge.Foo2 = {str}");
+            return this.Equals(obj as Person);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.FirstName.GetHashCode() ^ this.LastName.GetHashCode();
         }
     }
-
-    internal class interfaceOverlap
+    internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var mc = new MyClass();
-            mc.Foo("い");
-
-            var ih = (IHoge)mc;
-            ih.Foo("ろ");
-
-            var ih2 = (IHoge2)mc;
-            ih2.Foo("は");
+            var p = new Person("太郎", "今宮");
+            Console.WriteLine(p.GetHashCode());
+            var d = new Dictionary<Person, int>();
+            var old_p = p;
+            d.Add(p, 10);
+            //p.LastName = "柱谷";
+            Console.WriteLine(p.GetHashCode());
+            Console.WriteLine(d[old_p]);
         }
     }
-
 }
+
