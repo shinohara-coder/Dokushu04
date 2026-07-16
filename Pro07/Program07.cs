@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-using SelfCSharp.Pro07.Ns;
-
-namespace Pro07
+﻿namespace Pro07
 {
     internal class AsyncBasic
     {
         static void Main(string[] args)
         {
-            var nsb = new NamespaceBasic();
-            nsb.Hoge();
+            int data = 100;
+            Console.WriteLine(data);
+            object obj = data;
+            Console.WriteLine(typeof(object));
         }   
     }
 }
