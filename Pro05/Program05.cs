@@ -12,6 +12,7 @@
             this.LastName = lastName;
         }
 
+        //IEquatable<Person>インターフェイスの実装
         public bool Equals(Person? other)
         {
             if (Object.ReferenceEquals(this, other))
@@ -27,6 +28,7 @@
             return this.FirstName == other.FirstName && this.LastName == other.LastName;
         }
 
+        // Objectクラスのオーバーライド
         public override bool Equals(object? obj)
         {
             return this.Equals(obj as Person);
