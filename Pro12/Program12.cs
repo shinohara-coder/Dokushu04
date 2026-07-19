@@ -8,32 +8,31 @@ using System.Text;
 
 namespace Pro10
 {
+    internal class Coodinate
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public static implicit operator Coodinate(int num)
+        {
+            return new Coodinate()
+            {
+                X = num,
+                Y = num
+            };
+        }
+
+        public override string ToString()
+        {
+            return $"X: {this.X} Y: {this.Y}";
+        }
+    }
     internal class TypeGetBasic
     {
         static void Main(string[] args)
         {
-            try
-            {
-                //checked
-                //{
-                //    var i = int.MaxValue;
-                //    Console.WriteLine(++i);
-                //}
-                //var i = int.MaxValue;
-                //Console.WriteLine(checked(++i));
-
-                checked
-                {
-                    var m = double.MaxValue;
-                    var n = double.Epsilon;
-                    Console.WriteLine(m * m);
-                    Console.WriteLine(n * n);
-                }
-            }
-            catch (OverflowException ex)
-            {
-                Console.WriteLine("オーバーフロー発生");
-            }
+            Coodinate c = 25;
+            Console.WriteLine(c);
         }
     }
 

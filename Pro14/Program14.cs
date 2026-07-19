@@ -1,39 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Pro14
+﻿namespace Pro14
 {
-
-    internal class PassRefBasic
+    internal class DelegeteNoUse
     {
-        enum Season
+        void ArrayWalk(string[] data)
         {
-            Spring,
-            Summer,
-            Autumn,
-            Winter,
-            All = Spring + Summer + Autumn + Winter,
+            foreach (var value in data)
+            {
+                Console.WriteLine($"[{value}]");
+            }
         }
         static void Main(string[] args)
         {
-            //var str = (Season)Enum.Parse(typeof(Season), "Summer");
-            //var num = (Season)Enum.Parse(typeof(Season), "1");
-            //Console.WriteLine($"{str} - {str.GetType()}");
-            //Console.WriteLine($"{num} - {num.GetType()}");
-
-            var seasons = Enum.GetValues(typeof(Season));
-            foreach (var name in seasons)
-            {
-                Console.WriteLine($"{(int)name} : {name}");
-            }
+            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてと" };
+            var nu = new DelegeteNoUse();
+            nu.ArrayWalk(data);
         }
     }
-
-
-
 }

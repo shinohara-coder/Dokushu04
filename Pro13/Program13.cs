@@ -1,35 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Pro13
+﻿namespace Pro13
 {
-    
+    delegate void Process(string str);
     internal class PassRefBasic
-    {
-        enum Season : long
+    {   
+        static void Run(string s)
         {
-            Spring = 255,
-            Summer,
-            Autumn,
-            Winter,
-            All = Spring + Summer + Autumn + Winter,
+            Console.WriteLine($"{s}走ります。");
+        }
+
+        static void Greet(string s)
+        {
+            Console.WriteLine($"{s}、皆さん。");
+        }
+
+        static string Hoge(string s)
+        {
+            return $"{s}を受け取ったよ。";
         }
         static void Main(string[] args)
         {
-            var s = Season.All;
-            Console.WriteLine(s);
-            Console.WriteLine(s.ToString());
-            Console.WriteLine(s.ToString("D"));
-            Console.WriteLine(s.ToString("X"));
-            Console.WriteLine(s.ToString("G"));
+            var p = new Process(Run);
+            p("グダグダ");
+
+            p = new Process(Greet);
+            p("こにゃにゃちは");
+
+            p = new Process(Console.WriteLine);
+            p("ほげほげ");
+
+            var f = new FileInfo(@"C:\data\sample.txt");
+            var ps = new Process(f.MoveTo);
         }
     }
-
-
-
 }

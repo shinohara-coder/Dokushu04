@@ -7,20 +7,19 @@ using System.Runtime.Serialization;
 
 namespace Pro10
 {
-    internal class MyAppException : Exception
+    internal class Coodinate
     {
-        public MyAppException() { }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        public MyAppException(string message) : base(message)
+        public static explicit operator int(Coodinate c)
         {
+            return c.X * c.X+ c.Y * c.Y;
         }
 
-        public MyAppException(string message, Exception innerException) : base(message, innerException)
+        public override string ToString()
         {
-        }
-
-        public MyAppException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
+            return $"X: {this.X} Y: {this.Y}";
         }
     }
     
@@ -28,9 +27,8 @@ namespace Pro10
     {
         static void Main(string[] arngs)
         {
-            var i = int.MaxValue;
-            Console.WriteLine(++i);
-            throw new MyAppException("例外発生！");
+            var c = new Coodinate() { X = 10, Y = 20 };
+            Console.WriteLine((int)c);
         }
     }
 
