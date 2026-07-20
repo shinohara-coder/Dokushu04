@@ -1,28 +1,23 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Text;
-
-namespace Pro19
+﻿namespace Pro19
 {
     
-    internal class IteratorBasic
+    internal class DelegateAnonymous
     {
-        public record Person(string FirstName, string LastName, int Age);
+        void ArrayWalk(string[] data, Func<string, string> output)
+        {
+            foreach (var value in data)
+            {
+                Console.WriteLine(output(value));
+            }
+        }
         static void Main(string[] args)
         {
-            var p1 = new Person("太郎", "山田", 10);
-            var p2 = new Person("太郎", "山田", 10);
-
-            Console.WriteLine(p1);
-            Console.WriteLine(p1 == p2);
-            (string fname, string lname, int age) = p1;
-            Console.WriteLine(lname);
+            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてと" };
+            var dm = new DelegateAnonymous();
+            dm.ArrayWalk(data, delegate (string d)
+            {
+                return $" [{d}] ";
+            });
         }
 
     }

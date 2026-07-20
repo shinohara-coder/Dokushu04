@@ -1,48 +1,39 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Text;
-
-namespace Pro16
+﻿namespace Pro16
 {
-    internal struct Coodinates
+    internal delegate void OutputProcess(string str);
+    internal class DelegateUseCounter
     {
-        internal double Latitude { get; set; }
-        internal double Longitude { get; set; }
-
-        public Coodinates() { }
-        internal Coodinates(double lat, double lon) 
+        void ArrayWalk(string[] data, OutputProcess output)
         {
-            this.Latitude = lat;
-            this.Longitude = lon;
+            foreach (var value in data)
+            {
+                output(value);
+            }
         }
-
-        public override string ToString()
-        {
-            return $"緯度: {this.Latitude} / 経度: {this.Longitude}";
-        }
-    }
-    internal class PassOUt
-    {
-        
         static void Main(string[] args)
         {
-            //var c = new Coodinates(35.681167, 139.767052);
-            //var c = new Coodinates
-            //{
-            //    Latitude = 35.681167,
-            //    Longitude = 139.767052
-            //};
-            var c = new Coodinates();
+            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてとなにぬねのはひふへほ" };
+            var du = new DelegateUseCounter();
+            var c = new Counter();
+            du.ArrayWalk(data, c.AddLength);
+            Console.WriteLine(c.Result);
+            Console.WriteLine("----------");
+            du.ArrayWalk(data, c.ShowLength);
+        }
+    }
 
-            //c.Latitude = 35.681167;
-            //c.Longitude = 139.767052;
-            Console.WriteLine(c);
+    internal class Counter
+    {
+        public int Result { get; private set; }
+
+        public void AddLength(string value)
+        {
+            Result += value.Length;
+        }
+
+        public void ShowLength(string value)
+        {
+            Console.WriteLine($"\"{value}\"の文字数は{value.Length.ToString().PadLeft(2, ' ')}");
         }
     }
 }

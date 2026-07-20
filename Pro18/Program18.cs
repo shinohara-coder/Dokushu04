@@ -1,33 +1,34 @@
 ﻿namespace Pro18
 {
-    internal struct MutableValue
+    internal delegate string OutputProcess(string str);
+    internal class DelegateMultiResult
     {
-        public string Name { get; set; }
-
-        public MutableValue()
+        void ArrayWalk(string[] data, OutputProcess output)
         {
-            this.Name = "名無権兵衛";
+            foreach (var value in data)
+            {
+                Console.WriteLine(output(value));
+            }
         }
 
-        public void Update(string name)
+        static string AddQuote(string data)
         {
-            this.Name = name;
-            Console.WriteLine("Update method is finished!!");
+            return $" [{data}] ";
         }
 
-        public void UpdateNest(string name)
+        static string Front4(string data)
         {
-            this.Name = name;
+            return data.Substring(0, 4);
         }
-    }
-    internal class RefForeach
-    {
-        static readonly MutableValue mv = new();
+
         static void Main(string[] args)
         {
-            //mv.Name = "佐藤栄作";
-            mv.Update("佐藤栄作");
-            Console.WriteLine(mv.Name);
+            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてと" };
+            var dr = new DelegateMultiResult();
+            OutputProcess proc = AddQuote;
+            proc += Front4;
+            proc += AddQuote;
+            dr.ArrayWalk(data, proc);
         }
     }
 }

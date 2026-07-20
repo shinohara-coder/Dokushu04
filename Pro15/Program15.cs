@@ -1,41 +1,33 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Text;
-
-namespace Pro15
+﻿namespace Pro15
 {
-    [Flags]
-    enum FontStyle
+    internal delegate void OutputProcess(string str);   
+    internal class DelegeteUse
     {
-        Bold = 1,
-        Italic = 2,
-        Underline = 4,
-        All = (Bold | Italic | Underline),
-    }
-    
-    internal class PassReIn
-    {
+        void ArrayWalk(string[] data, OutputProcess output)
+        {
+            foreach (var value in data)
+            {
+                output(value);
+            }
+        }
+
+        static void AddQuote(string data)
+        {
+            Console.WriteLine($" [{data}] ");
+        }
+
+        static void AddSlash(string data)
+        {
+            Console.WriteLine($" /{data}/ ");
+        }
+
         static void Main(string[] args)
         {
-            var styles = FontStyle.Bold | FontStyle.Italic | FontStyle.Underline;
-
-            if (styles.HasFlag(FontStyle.Bold))
-            {
-                Console.WriteLine("太字指定されています。");
-            }
-
-            if (styles.HasFlag(FontStyle.Bold | FontStyle.Italic))
-            {
-                Console.WriteLine("太字&斜体指定されています。");
-            }
-
-            Console.WriteLine(styles);
+            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてと" };
+            var du = new DelegeteUse();
+            du.ArrayWalk(data, AddQuote);
+            Console.WriteLine("-------------");
+            du.ArrayWalk(data, AddSlash);
         }
     }
 }
