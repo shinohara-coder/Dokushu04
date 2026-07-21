@@ -4,8 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Action act = () => Console.WriteLine("Hello world!!");
-            act();
+            var msg = "山田五郎";
+            var show = () => { Console.WriteLine(msg); };
+            show();
         }
     }
 }
