@@ -1,11 +1,20 @@
 ﻿namespace Pro21
 {
-    internal class IteratorBasic
+    internal class LambdaCapture
     {
+        static Action CreateAction(int init)
+        {
+            int value = init;
+            return () =>
+            {
+                value++;
+                Console.WriteLine(value);
+            };
+        }
         static void Main(string[] args)
         {
-            var msg = "山田五郎";
-            var show = () => { Console.WriteLine(msg); };
+            var show = CreateAction(10);
+            show();
             show();
         }
     }
