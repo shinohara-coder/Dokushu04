@@ -12,6 +12,10 @@
             set => this._value = Value;
         }
 
+        public DateTime Current => DateTime.Now;
+
+        public int this[int index] => this.Value * index;
+
         static void Main(string[] args)
         {
             
