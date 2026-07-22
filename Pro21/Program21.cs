@@ -16,6 +16,9 @@
             var show = CreateAction(10);
             show();
             show();
+            show();
+            show();
+            show();
         }
     }
 }
