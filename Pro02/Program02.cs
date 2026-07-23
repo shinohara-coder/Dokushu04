@@ -1,18 +1,14 @@
 ﻿namespace SelfCSharp.Chap09.Priority1
 {
-    internal class MyGenerics<T> where T : new()
-    {
-        internal void Hoge()
-        {
-            //var value = new T();
-        }
-    }
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var m = new MyGenerics<int>();
-            m.Hoge();
+            var list = new List<string> { "からすなぜ鳴くの", "からすは山に",
+                 "可愛い七つの", "子があるからよ"};
+            var result = list.FindAll(str => str.StartsWith("からす"));
+
+            result.ForEach(s => Console.WriteLine(s));
         }
     }
 }
