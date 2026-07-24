@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pro06
+namespace Pro07
 {
     internal class Book
     {
