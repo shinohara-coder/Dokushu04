@@ -6,18 +6,27 @@ namespace Pro07
     {
         static void Main(string[] args)
         {
-            //var bs = from b in AppTables.Books
-            //         where b.Price < 3000
-            //         select new { Isbn = b.Isbn ,Title = b.Title, Price = b.Price, Publisher = b.Publisher };
+            var bs = from b in AppTables.Books
+                     group b by b.Publisher into pubs
+                     where pubs.Average(b => b.Price) >= 3500
+                     select new
+                     {
+                         Published = pubs.Key,
+                         AveragePrice = pubs.Average(b => b.Price)
+                     };
 
-            var bs = AppTables.Books
-                    .Where(b => b.Price < 3000)
-                    .Select(b => new { Title = b.Title, Price = b.Price });
+            //var bs = AppTables.Books
+            //        .GroupBy(b => new
+            //        {
+            //            Publisher = b.Publisher,
+            //            PublishYear = b.Published.Year
+            //        });
 
+            //Console.WriteLine(bs);
             foreach (var b in bs)
             {
-                Console.WriteLine(b);
+                Console.WriteLine($"{b.Published} {b.AveragePrice}円");
             }
-        }   
+        }
     }
 }

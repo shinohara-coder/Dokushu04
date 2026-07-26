@@ -14,7 +14,7 @@ namespace Pro07
 
         public override string ToString()
         {
-            return $"{Title}（{Publisher}）{Price}円 {Publisher:d}刊行";
+            return $"{Title}（{Publisher}）{Price}円 {Published:d}刊行";
         }
     }
 
@@ -44,7 +44,7 @@ namespace Pro07
                     Title = "独習PHP",
                     Price = 3740,
                     Publisher = "翔泳社",
-                    Published = new DateTime(2021,6,14)
+                    Published = new DateTime(2027,6,14)
                 },
                 new Book {
                     Isbn = "978-4-7981-6884-5",
