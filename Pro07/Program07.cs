@@ -7,29 +7,33 @@ namespace Pro07
     {
         static void Main(string[] args)
         {
-            //var bs = from b in AppTables.Books
-            //         group b by b.Publisher into pubs
-            //         where pubs.Average(b => b.Price) >= 1000
-            //         select new
-            //         {
-            //             Published = pubs.Key,
-            //             AveragePrice = pubs.Average(b => b.Price)
-            //         };
+            var bs = from b in AppTables.Books
+                     join r in AppTables.Reviews on b.Isbn equals r.Isbn
+                     select new
+                     {
+                         Title = b.Title,
+                         Reviwer = r.Name,
+                         Body = r.Body
+                     };
+                     
 
-            var bs = AppTables.Books
-                    .GroupBy(b => b.Publisher)
-                    .Where(pubs => pubs.Average(b => b.Price) >= 3500)
-                    .Select(pubs => new
-                    {
-                        Published = pubs.Key,
-                        AveragePrice = pubs.Average(b => b.Price)
-                    });
-                   
+            //var bs = AppTables.Books
+            //        .GroupBy(b => new
+            //        {
+            //            PublishYear = b.Published.Year,
+            //            PublishMonth = b.Published.Month
+            //        })
+            //        .OrderBy(pubs => pubs.Key.PublishYear)
+            //        .ThenBy(pubs => pubs.Key.PublishMonth);
+
+
 
             //Console.WriteLine(bs);
             foreach (var b in bs)
             {
-                Console.WriteLine($"{b.Published} {b.AveragePrice}円");
+                Console.WriteLine($"「{b.Title}」({b.Reviwer})");
+                Console.WriteLine($"{b.Body}");
+                Console.Write('\n');
             }
         }
     }
