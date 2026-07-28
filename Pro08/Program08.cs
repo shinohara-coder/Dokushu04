@@ -3,41 +3,31 @@ using static System.Math;
 
 namespace Pro08
 {   
-    internal class Coodinate
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public static Coodinate operator +(in Coodinate c1, in Coodinate c2)
-        {
-            return new Coodinate()
-            {
-                X = c1.X + c2.X,
-                Y = c1.Y + c2.Y
-            };
-        }
-
-        //public static Coodinate operator +(Coodinate c, int x)
-        //{
-        //    return new Coodinate()
-        //    {
-        //        X = c.X + x,
-        //        Y = c.Y
-        //    };
-        //}
-
-        public override string ToString()
-        {
-            return $"X: {this.X} Y: {this.Y}";
-        }
-    }
     internal class MySingleton
     {
         static void Main(string[] args)
         {
-            var c1 = new Coodinate { X = 10, Y = 20 };
-            c1 += new Coodinate() { X = 15, Y = 25 };
-            Console.WriteLine(c1);
+            var t1 = new Thread(Count);
+            var t2 = new Thread(Count);
+            var t3 = new Thread(Count);
+
+            t1.Start(1);
+            t2.Start(2);
+            t3.Start(3);
+
+            Console.WriteLine("中間地点");
+            t1.Join();
+            t2.Join();
+            t3.Join();
+            Console.WriteLine("全ての処理が終了しました。");
+        }
+
+        static void Count(object? n)
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine($"Thread{n}: {i}");
+            }
         }
     }
 }
