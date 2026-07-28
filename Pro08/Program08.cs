@@ -15,10 +15,19 @@ namespace Pro08
             t2.Start(2);
             t3.Start(3);
 
-            Console.WriteLine("中間地点");
+            
+            //Console.WriteLine("中間地点1");
             t1.Join();
+            //Console.WriteLine("中間地点2");
             t2.Join();
+            //Console.WriteLine("中間地点3");
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine($"メイン処理：{i}");
+            }
             t3.Join();
+            
+
             Console.WriteLine("全ての処理が終了しました。");
         }
 
