@@ -1,35 +1,35 @@
-﻿using IronPython.Hosting;
-using Microsoft.Scripting;
-using System.Diagnostics;
-using System.IO.Pipes;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
-
-namespace Pro10
+﻿namespace Pro11
 {
-    internal class Coodinate
+    internal class LockBasicBad
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public static explicit operator int(Coodinate c)
+        object lockobj = new object();
+        public int Count { get; private set; } = 0;
+        static void Main(string[] args)
         {
-            return c.X * c.X+ c.Y * c.Y;
+            const int TaskNum = 500000;
+            var ts = new Task[TaskNum];
+            var tb = new LockBasicBad();
+
+            for (int i = 0; i < TaskNum; i++)
+            {
+                ts[i] = Task.Run(() => tb.Increment());
+            }
+
+            for (int i = 0; i < TaskNum; i++)
+            {
+                ts[i].Wait();
+            }
+
+            Console.WriteLine(tb.Count);
         }
 
-        public override string ToString()
+        private void Increment()
         {
-            return $"X: {this.X} Y: {this.Y}";
+            lock (lockobj)
+            {
+                this.Count++;
+            }
         }
     }
-    
-    internal class ArgParams
-    {
-        static void Main(string[] arngs)
-        {
-            var c = new Coodinate() { X = 10, Y = 20 };
-            Console.WriteLine((int)c);
-        }
-    }
-
 }
+
