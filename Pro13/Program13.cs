@@ -1,35 +1,34 @@
-﻿namespace Pro13
+﻿using System.Diagnostics;
+
+namespace Pro13
 {
-    delegate void Process(string str);
-    internal class PassRefBasic
+    internal class AsyncReurn
     {   
-        static void Run(string s)
-        {
-            Console.WriteLine($"{s}走ります。");
-        }
-
-        static void Greet(string s)
-        {
-            Console.WriteLine($"{s}、皆さん。");
-        }
-
-        static string Hoge(string s)
-        {
-            return $"{s}を受け取ったよ。";
-        }
+       
         static void Main(string[] args)
         {
-            var p = new Process(Run);
-            p("グダグダ");
+            Task<TimeSpan> t = RunAsync();
+            while (!t.IsCompleted)
+            {
+                t.Wait(200);
+                Console.Write(".");
+            }
+            Console.WriteLine(t.Result);
+        }
 
-            p = new Process(Greet);
-            p("こにゃにゃちは");
-
-            p = new Process(Console.WriteLine);
-            p("ほげほげ");
-
-            var f = new FileInfo(@"C:\data\sample.txt");
-            var ps = new Process(f.MoveTo);
+        static async Task<TimeSpan> RunAsync()
+        {
+            var watch = Stopwatch.StartNew();
+            await Task.Run(() =>
+            {
+                var result = "";
+                for (int i = 0; i < 100000; i++)
+                {
+                    result += "いろは";
+                }
+            });
+            watch.Stop();
+            return watch.Elapsed;
         }
     }
 }
