@@ -1,34 +1,19 @@
-﻿namespace Pro18
+﻿using System.Diagnostics;
+
+namespace Pro18
 {
-    internal delegate string OutputProcess(string str);
     internal class DelegateMultiResult
     {
-        void ArrayWalk(string[] data, OutputProcess output)
+        [Conditional("DEBUG")]
+        static void Message()
         {
-            foreach (var value in data)
-            {
-                Console.WriteLine(output(value));
-            }
-        }
-
-        static string AddQuote(string data)
-        {
-            return $" [{data}] ";
-        }
-
-        static string Front4(string data)
-        {
-            return data.Substring(0, 4);
+            Console.WriteLine("デバッグ時にだけ表示します。");
         }
 
         static void Main(string[] args)
         {
-            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてと" };
-            var dr = new DelegateMultiResult();
-            OutputProcess proc = AddQuote;
-            proc += Front4;
-            proc += AddQuote;
-            dr.ArrayWalk(data, proc);
+            Message();
+            Console.WriteLine("終了しました。");
         }
     }
 }
