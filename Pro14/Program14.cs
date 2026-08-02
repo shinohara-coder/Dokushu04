@@ -2,18 +2,12 @@
 {
     internal class DelegeteNoUse
     {
-        void ArrayWalk(string[] data)
+        static async Task Main(string[] args)
         {
-            foreach (var value in data)
-            {
-                Console.WriteLine($"[{value}]");
-            }
-        }
-        static void Main(string[] args)
-        {
-            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてと" };
-            var nu = new DelegeteNoUse();
-            nu.ArrayWalk(data);
+            var client = new HttpClient();
+            //client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
+            var result = await client.GetStringAsync("https://www.berry.co.jp/");
+            Console.WriteLine(result);
         }
     }
 }

@@ -1,39 +1,31 @@
 ﻿namespace Pro16
 {
-    internal delegate void OutputProcess(string str);
-    internal class DelegateUseCounter
+    internal class AsyncStream
     {
-        void ArrayWalk(string[] data, OutputProcess output)
+        static async Task Main(string[] args)
         {
-            foreach (var value in data)
+            await foreach (var result in fetchAsync())
             {
-                output(value);
+                Console.WriteLine(result.Substring(0, 500));
+                Console.WriteLine("\n----------------------------------------------------------------------------\n");
             }
         }
-        static void Main(string[] args)
-        {
-            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてとなにぬねのはひふへほ" };
-            var du = new DelegateUseCounter();
-            var c = new Counter();
-            du.ArrayWalk(data, c.AddLength);
-            Console.WriteLine(c.Result);
-            Console.WriteLine("----------");
-            du.ArrayWalk(data, c.ShowLength);
-        }
-    }
 
-    internal class Counter
-    {
-        public int Result { get; private set; }
-
-        public void AddLength(string value)
+        private static async IAsyncEnumerable<string> fetchAsync()
         {
-            Result += value.Length;
-        }
+            var list = new[]
+            {
+                "https://www.berry.co.jp/",
+                "https://developer.mozilla.org/ja/docs/Web",
+                "https://weathernews.jp/?fm=header"
+            };
 
-        public void ShowLength(string value)
-        {
-            Console.WriteLine($"\"{value}\"の文字数は{value.Length.ToString().PadLeft(2, ' ')}");
+            var client = new HttpClient();
+            foreach (var url in list)
+            {
+                var result = await client.GetStringAsync(url);
+                yield return result;
+            }
         }
     }
 }

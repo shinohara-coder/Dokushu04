@@ -10,7 +10,7 @@ namespace Pro13
             Task<TimeSpan> t = RunAsync();
             while (!t.IsCompleted)
             {
-                t.Wait(200);
+                t.Wait(1);
                 Console.Write(".");
             }
             Console.WriteLine(t.Result);
