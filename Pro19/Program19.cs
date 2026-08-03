@@ -1,23 +1,22 @@
-﻿namespace Pro19
+﻿using System.Runtime.CompilerServices;
+
+namespace Pro19
 {
     
     internal class DelegateAnonymous
     {
-        void ArrayWalk(string[] data, Func<string, string> output)
+        public static void ShowCaller(
+            string msg,
+            [CallerFilePath] string file = "",
+            [CallerMemberName] string member = "",
+            [CallerLineNumber] int line = 0,
+            [CallerArgumentExpression("msg")] string arg = "")
         {
-            foreach (var value in data)
-            {
-                Console.WriteLine(output(value));
-            }
+            Console.WriteLine($"Form: {file}/{member} {line}行目 Args: {arg}");
         }
         static void Main(string[] args)
         {
-            var data = new[] { "あいうえお", "かきくけこ", "さしすせそ", "たちつてと" };
-            var dm = new DelegateAnonymous();
-            dm.ArrayWalk(data, delegate (string d)
-            {
-                return $" [{d}] ";
-            });
+            ShowCaller("TEST");
         }
 
     }
