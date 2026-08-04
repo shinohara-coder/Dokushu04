@@ -1,24 +1,24 @@
 ﻿namespace Pro21
 {
-    internal class LambdaCapture
+    internal class EventBasic
     {
-        static Action CreateAction(int init)
-        {
-            int value = init;
-            return () =>
-            {
-                value++;
-                Console.WriteLine(value);
-            };
-        }
         static void Main(string[] args)
         {
-            var show = CreateAction(10);
-            show();
-            show();
-            show();
-            show();
-            show();
+            
+        }
+
+        static void OnKeyCommand(string data)
+        {
+            switch (data.ToLower())
+            {
+                case "c":
+                    Console.WriteLine($"現在の時刻は{DateTime.Now}");
+                    break;
+                case "x":
+                    var r = new Random();
+                    Console.WriteLine($"乱数は{r.Next()}");
+                    break;
+            }
         }
     }
 }
