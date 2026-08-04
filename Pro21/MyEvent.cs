@@ -12,7 +12,7 @@
             Console.WriteLine("c：現在時刻を表示、x：乱数表示、h：ヘルプ");
             while (true)
             {
-                Console.Write("コマンド");
+                Console.Write("コマンド：");
                 var input = Console.ReadLine();
                 if (input == null || input == "")
                 {

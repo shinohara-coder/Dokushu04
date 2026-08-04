@@ -1,10 +1,14 @@
-﻿namespace Pro21
+﻿using System.Buffers.Text;
+
+namespace Pro21
 {
     internal class EventBasic
     {
         static void Main(string[] args)
         {
-            
+            var ev = new MyEvent();
+            ev.KeyCommand += OnKeyCommand;
+            ev.Run();
         }
 
         static void OnKeyCommand(string data)
@@ -17,6 +21,12 @@
                 case "x":
                     var r = new Random();
                     Console.WriteLine($"乱数は{r.Next()}");
+                    break;
+                case "h":
+                    Console.WriteLine("何も入力させずに確定で終了します。");
+                    break;
+                default:
+                    Console.WriteLine("認識できないコマンドです。");
                     break;
             }
         }
