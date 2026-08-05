@@ -1,6 +1,4 @@
-﻿using System.Buffers.Text;
-
-namespace Pro21
+﻿namespace Pro21
 {
     internal class EventBasic
     {
