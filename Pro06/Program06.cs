@@ -6,10 +6,29 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            foreach (var value in args)
-            {
-                Console.WriteLine($"こんにちは、{value}さん！");
-            }
+            var rank = "甲";
+            #region
+            //switch (rank)
+            //{
+            //    case "甲":
+            //        Console.WriteLine("Excellent!!");
+            //        goto case "丙";
+            //    case "乙":
+            //        Console.WriteLine("Good!");
+            //        goto case "丙";
+            //    case "丙":
+            //        Console.WriteLine("Passed");
+            //        break;
+            //    case "丁":
+            //        Console.WriteLine("Fight!");
+            //        break;
+            //    default:
+            //        Console.WriteLine("????");
+            //        break;
+            //}
+            #endregion
+
+
         }
     }   
 }
