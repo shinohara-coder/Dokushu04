@@ -6,16 +6,9 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            foreach (var book in AppTables.Books)
+            foreach (var value in args)
             {
-                Console.WriteLine(book);
-            }
-
-            Console.WriteLine("---------------------------------");
-
-            foreach (var review in AppTables.Reviews)
-            {
-                Console.WriteLine(review);
+                Console.WriteLine($"こんにちは、{value}さん！");
             }
         }
     }   

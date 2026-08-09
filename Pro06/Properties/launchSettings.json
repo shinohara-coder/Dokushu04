@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Pro06": {
+      "commandName": "Project",
+      "commandLineArgs": "太郎 史郎 大老 新次郎 幸太郎"
+    }
+  }
+}

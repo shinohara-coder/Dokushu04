@@ -4,9 +4,25 @@
     {
         static void Main(string[] args)
         {
-            var list = new List<string> { "からすなぜ鳴くの", "からすは山に",
-                 "可愛い七つの", "子があるからよ"};
-            Console.WriteLine(list.TrueForAll(str => str.Length >= 7));
+            object obj = "栃木県下都賀郡";
+            switch (obj)
+            {
+                case int i when i >= 15:
+                    Console.WriteLine("15以上の数値です。");
+                    break;
+                case int i:
+                    Console.WriteLine("数値です。");
+                    break;
+                case string str when str.Length < 10:
+                    Console.WriteLine("10文字未満の文字列です。");
+                    break;
+                case string str:
+                    Console.WriteLine("文字列です。");
+                    break;
+                default:
+                    Console.WriteLine("意図しない型です。");
+                    break;
+            }
         }
     }
 }

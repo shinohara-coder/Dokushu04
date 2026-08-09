@@ -1,14 +1,31 @@
-﻿namespace SelfCSharp.Chap09.Priority1
+﻿using System.ComponentModel;
+
+namespace SelfCSharp.Chap09.Priority1
 {
+    internal class MyStruct
+    {
+
+    }
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var list = new List<int> { 1, -15, 30, 60, -50, 40 };
-
-            //Console.WriteLine(list.FindIndex(v => v < 0));
-            //Console.WriteLine(list.FindLastIndex(v => v < 0));
-            Console.WriteLine(list.FindIndex(1, 3, v => v < 0));
+            object obj = true;
+            switch (obj)
+            {
+                case int i:
+                    Console.WriteLine(Math.Abs(i));
+                    break;
+                case string str:
+                    Console.WriteLine(str[0]);
+                    break;
+                case bool b:
+                    Console.WriteLine(b ? "trueです。" : "falseです。");
+                    break;
+                default:
+                    Console.WriteLine("意図しない型です。");
+                    break;
+            }
         }
     }
 }

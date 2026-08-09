@@ -1,14 +1,18 @@
-﻿namespace SelfCSharp.Chap09.Priority1
+﻿using System.Text;
+
+namespace SelfCSharp.Chap09.Priority1
 {
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var list = new List<string> { "からすなぜ鳴くの", "からすは山に",
-                 "可愛い七つの", "子があるからよ"};
-            var result = list.FindAll(str => str.StartsWith("からす"));
-
-            result.ForEach(s => Console.WriteLine(s));
+            //string str1 = "あいう";
+            //string str2 = "あいう";
+            var str1 = new StringBuilder("あいう");
+            var str2 = new StringBuilder("あいう");
+            Console.WriteLine(str1.Equals(str2));
+            Console.WriteLine(str1 == str2);
+            Console.WriteLine(object.ReferenceEquals(str1, str1));
         }
     }
 }
