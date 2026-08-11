@@ -7,7 +7,7 @@ namespace Pro06
         static void Main(string[] args)
         {
             var rank = "甲";
-            #region
+            #region 一時コメントオフ
             //switch (rank)
             //{
             //    case "甲":

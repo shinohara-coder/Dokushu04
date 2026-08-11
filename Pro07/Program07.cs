@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using System.Reflection.Metadata;
+﻿//#define DEBUG
+using System.Globalization;
 
 namespace Pro07
 {
@@ -7,39 +7,10 @@ namespace Pro07
     {
         static void Main(string[] args)
         {
-            //var bs = from b in AppTables.Books
-            //         join r in AppTables.Reviews on b.Isbn equals r.Isbn into reviews
-            //         from r in reviews.DefaultIfEmpty()
-            //         select new
-            //         {
-            //             Title = b.Title,
-            //             Reviwer = r != null ? r.Name : "レビューなし",
-            //             Body = r != null ? r.Body : ""
-            //         };
-
-            var bs = AppTables.Books
-                    .GroupJoin(
-                    AppTables.Reviews,
-                    b => b.Isbn,
-                    r => r.Isbn,
-                    (b, reviews) => new { b, reviews }
-                    )
-                    .SelectMany(
-                        x => x.reviews.DefaultIfEmpty(),
-                        (x, r) => new
-                        {
-                            Title = x.b.Title,
-                            Reviwer = r != null ? r.Name : "レビューなし",
-                            Body = r != null ? r.Name : ""
-                        }
-                    );
-
-            foreach (var b in bs)
-            {
-                Console.WriteLine($"「{b.Title}」({b.Reviwer})");
-                Console.WriteLine($"{b.Body}");
-                Console.Write('\n');
-            }
+            //Console.WriteLine(string.Format("名前は{0,-10}です。", "サクラ"));
+            Console.WriteLine(string.Format("カスタム(0補完):{0:0,000.0000}", 1234.56));
+            Console.WriteLine(string.Format("カスタム(補完無):{0:#,###.####}", 1234.56));
+            Console.WriteLine(string.Format("カスタム(複合):{0,20:0,000.000000}", 1234.56));
         }
     }
 }
