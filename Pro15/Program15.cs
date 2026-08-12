@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.RegularExpressions;
 
 namespace Pro15
 {
@@ -6,14 +7,17 @@ namespace Pro15
     {
         static void Main(string[] args)
         {
-            var client = new WebClient();
-            client.DownloadStringCompleted += (sender, e) =>
-            {
-                Console.WriteLine(e.Result);
-            };
+            var str = "サポートサイトはhttps://wings.msn.to/です。";
+            var rgx = new Regex(@"http(s)?://([\w-]+\.)+[\w-]+(/[a-z_0-9-./?%&=]*)?", RegexOptions.IgnoreCase);
 
-            client.DownloadStringAsync(new Uri("https://www.berry.co.jp/"));
-            Console.ReadLine();
+            var match = rgx.Match(str);
+            if (match.Success)
+            {
+                foreach (Group gp in match.Groups)
+                {
+                    Console.WriteLine(gp.Value);
+                }
+            }
         }
     }
 }
