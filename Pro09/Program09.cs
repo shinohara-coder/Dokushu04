@@ -1,24 +1,21 @@
-﻿namespace Pro08
+﻿using System.Text.RegularExpressions;
+
+namespace Pro08
 {
     internal class MySingleton
     {   
         static void Main(string[] args)
         {
-            Task t1 = Task.Run(() => Count(1));
-            Task t2 = Task.Run(() => Count(2));
-            Task t3 = Task.Run(() => Count(3));
-
-            Task.WaitAny(t1, t2, t3);
-            //Task.WaitAll(t1, t2, t3);
-
-            Console.WriteLine("すべての処理が終了しました。");
-        }
-
-        static void Count(int n)
-        {
-            for (int i = 0; i < 10000; i++)
+            var str = "自宅の電話番号は、084-000-0000です。携帯は、080-0000-0000です。";
+            var rgx = new Regex(@"(\d{2,4})-(\d{2,4})-(\d{4})");
+            var match = rgx.Match(str);
+            if (match.Success)
             {
-                Console.WriteLine($"Thread{n}: {i}");
+                Console.WriteLine($"位置：{match.Index} マッチ文字列：{match.Value}");
+                foreach (Group m in match.Groups)
+                {
+                    Console.WriteLine($"インデックス：{m.Index,2} マッチ文字列：{m.Value}");
+                }
             }
         }
     }
