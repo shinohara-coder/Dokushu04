@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Pro15
 {
@@ -7,17 +6,15 @@ namespace Pro15
     {
         static void Main(string[] args)
         {
-            var str = "サポートサイトはhttps://wings.msn.to/です。";
-            var rgx = new Regex(@"http(s)?://([\w-]+\.)+[\w-]+(/[a-z_0-9-./?%&=]*)?", RegexOptions.IgnoreCase);
-
-            var match = rgx.Match(str);
-            if (match.Success)
+            var str = "にわに3わうらにわに51わにわとりがいる";
+            var rgx = new Regex(@"\d{1,}わ");
+            var result = rgx.Split(str);
+            foreach (var s in result)
             {
-                foreach (Group gp in match.Groups)
-                {
-                    Console.WriteLine(gp.Value);
-                }
+                Console.Write($"{s} ");
             }
+            Console.WriteLine();
+            Console.WriteLine(string.Join(" ", result));
         }
     }
 }

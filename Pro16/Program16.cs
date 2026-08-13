@@ -1,30 +1,17 @@
-﻿namespace Pro16
+﻿using System.Text.RegularExpressions;
+
+namespace Pro16
 {
     internal class AsyncStream
     {
         static async Task Main(string[] args)
         {
-            await foreach (var result in fetchAsync())
+            var str = "住所は〒184-0000 鎌ヶ谷市小野町0-0-0です。\nあなたの住所は〒273-0000 嬬恋市大野町0-9-9ですね。";
+            var rgx = new Regex(@"\d{3}-\d{4}");
+            var result = rgx.Matches(str);
+            foreach (Match m in result)
             {
-                Console.WriteLine(result.Substring(0, 500));
-                Console.WriteLine("\n----------------------------------------------------------------------------\n");
-            }
-        }
-
-        private static async IAsyncEnumerable<string> fetchAsync()
-        {
-            var list = new[]
-            {
-                "https://www.berry.co.jp/",
-                "https://developer.mozilla.org/ja/docs/Web",
-                "https://weathernews.jp/?fm=header"
-            };
-
-            var client = new HttpClient();
-            foreach (var url in list)
-            {
-                var result = await client.GetStringAsync(url);
-                yield return result;
+                Console.WriteLine(m.Value);
             }
         }
     }

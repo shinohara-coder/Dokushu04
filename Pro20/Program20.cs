@@ -4,9 +4,10 @@
     {
         static void Main(string[] args)
         {
-            object d = 10;
-            d = "ほげ";
-            //d.Hoge();
+            using (var writer = new StreamWriter(@"C:\Users\hirok\OneDrive\デスクトップ\hoge.log"))
+            {
+                writer.WriteLine(DateTime.Now.ToString());
+            }
         }
     }
 }
