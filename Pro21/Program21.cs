@@ -4,28 +4,13 @@
     {
         static void Main(string[] args)
         {
-            var ev = new MyEvent();
-            ev.KeyCommand += OnKeyCommand;
-            ev.Run();
-        }
-
-        static void OnKeyCommand(string data)
-        {
-            switch (data.ToLower())
+            using (var reader = new StreamReader(@"C:\Users\hirok\OneDrive\デスクトップ\hoge.txt"))
             {
-                case "c":
-                    Console.WriteLine($"現在の時刻は{DateTime.Now}");
-                    break;
-                case "x":
-                    var r = new Random();
-                    Console.WriteLine($"乱数は{r.Next()}");
-                    break;
-                case "h":
-                    Console.WriteLine("何も入力させずに確定で終了します。");
-                    break;
-                default:
-                    Console.WriteLine("認識できないコマンドです。");
-                    break;
+                //Console.WriteLine(reader.ReadToEnd());
+                while (!reader.EndOfStream)
+                {
+                    Console.WriteLine(reader.ReadLine());
+                }
             }
         }
     }
