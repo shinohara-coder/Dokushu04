@@ -1,12 +1,20 @@
-﻿namespace Pro23
+﻿using System.Numerics;
+
+namespace Pro23
 {
     internal class LambdaMember
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Int32.Parse("12346"));
-            Console.WriteLine(Single.Parse("3.1417"));
-            Console.WriteLine(Convert.ToInt32("101010110", 2));
+           var flower = new Dictionary<string, string>()
+           {
+               {"Rose", "バラ" },
+               {"Sunflower", "ひまわり" },
+               {"Morning Glory", "あさがお" },
+               //{"Rose", "薔薇" }
+           };
+
+            Console.WriteLine(flower["Rose"]);
         }
     }
 }
