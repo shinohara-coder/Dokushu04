@@ -4,21 +4,18 @@
     {   
         static void Main(string[] args)
         {
-            int[][] data = new int[3][];
-            data[0] = new int[] { 11, 12};
-            data[1] = new int[] { 21, 22, 23, 24};
-            data[2] = new int[] { 31, 32, 33};
-
-            for (var i = 0; i < data.Length; i++)
+            var dic = new SortedDictionary<string, string>()
             {
-                for (var j = 0; j < data[i].Length; j++)
-                {
-                    Console.WriteLine($"data[{i}][{j}] = {data[i][j]}");
-                }
-                Console.WriteLine("--------------------");
-            }
+                ["Rose"] = "バラ",
+                ["Sunflower"] = "ひまわり",
+                ["Morning Glory"] = "あさがお",
+                ["Tulip"] = "チューリップ"
+            };
 
-            Console.WriteLine(data.Rank);
+            foreach (var m in dic)
+            {
+                Console.WriteLine($"{m.Key} : {m.Value}");
+            }
         }
     }
 }

@@ -1,20 +1,22 @@
-﻿using System.Numerics;
-
-namespace Pro23
+﻿namespace Pro23
 {
     internal class LambdaMember
     {
         static void Main(string[] args)
         {
-           var flower = new Dictionary<string, string>()
-           {
-               {"Rose", "バラ" },
-               {"Sunflower", "ひまわり" },
-               {"Morning Glory", "あさがお" },
-               //{"Rose", "薔薇" }
-           };
+            var flower = new Dictionary<string, string>()
+            {
+                ["Rose"] = "バラ",
+                ["Sunflower"] = "ひまわり",
+                ["Morning Glory"] = "あさがお",
+                ["Turip"] = "チューリップ",
+            };
 
-            Console.WriteLine(flower["Rose"]);
+            var enu = flower.GetEnumerator();
+            while (enu.MoveNext())
+            {
+                Console.WriteLine(enu.Current.ToString());
+            }
         }
     }
 }

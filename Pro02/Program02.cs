@@ -4,15 +4,29 @@ namespace SelfCSharp.Chap09.Priority1
 {
     internal class LambdaCapture
     {
+        internal class StringLengthComparer : IComparer<string>
+        {
+            public int Compare(string? x, string? y)
+            {
+                return x.Length - y.Length;
+                //return y.Length - x.Length;
+            }
+        }
         static void Main(string[] args)
         {
-            //string str1 = "あいう";
-            //string str2 = "あいう";
-            var str1 = new StringBuilder("あいう");
-            var str2 = new StringBuilder("あいう");
-            Console.WriteLine(str1.Equals(str2));
-            Console.WriteLine(str1 == str2);
-            Console.WriteLine(object.ReferenceEquals(str1, str1));
+            var list = new List<string>()
+            {
+                "バラ",
+                "ひまわり",
+                "あざみ",
+                "チューリップ"
+            };
+
+            list.Sort(new StringLengthComparer());
+            foreach (var s in list)
+            {
+                Console.WriteLine(s);
+            }
         }
     }
 }

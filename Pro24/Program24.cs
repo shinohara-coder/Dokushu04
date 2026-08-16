@@ -4,21 +4,18 @@ namespace Pro24
 {
     internal class IteratorBasic
     {
+        static void Printset<T>(HashSet<T> set)
+        {
+            Console.WriteLine(String.Join(",", set.ToArray()));
+        }
         static void Main(string[] args)
         {
-            int? num = 108;
-            string varName = nameof(num);
-            //Console.WriteLine(num.HasValue);
-            //Console.WriteLine(num.Value);
-            if (num.HasValue)
-            {
-                int i = num.Value;
-                Console.WriteLine($"変数：{varName}の値は{i}です。");
-            }
-            else
-            {
-                Console.WriteLine($"変数：{varName}は値を持ちません。");
-            }
+            var hs = new HashSet<int> { 1, 10, 15, 20, 30 };
+            hs.IntersectWith(new HashSet<int>() { 1, 10, 20, 30, 60 });
+            Printset(hs);
+
+            hs.ExceptWith(new HashSet<int> { 15, 30 });
+            Printset(hs);
         }
     }
 }
