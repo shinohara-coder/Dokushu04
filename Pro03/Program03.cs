@@ -13,7 +13,7 @@ namespace SelfCSharp.Chap09.Priority1
             Beep(660, 200);
             Beep(880, 200);
             Beep(1200, 200);
-            Beep(1600, 200);
+            //Beep(1600, 200);
         }
     }
 }
