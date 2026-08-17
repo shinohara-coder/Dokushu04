@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Formats.Asn1;
+using System.Runtime.InteropServices;
 
 namespace SelfCSharp.Chap09.Priority1
-{
-    internal class Person
-    {
-        private string firstName = "";
-        private string lastName = "";
-    }
-    
+{   
     internal class LambdaCapture
     {
+        [DllImport("kernel32.dll")]
+        private extern static bool Beep(uint dwFreq, uint dwDuration);
         static void Main(string[] args)
         {
-            var p1 = new Person();
+            Beep(440, 200);
+            Beep(660, 200);
+            Beep(880, 200);
+            Beep(1200, 200);
+            Beep(1600, 200);
         }
     }
 }
