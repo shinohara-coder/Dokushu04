@@ -2,20 +2,30 @@
 
 namespace Pro11
 {
+    internal class Message
+    {
+        private int _number;
+        static Message()
+        {
+            Console.WriteLine("静的コンストラクター");
+        }
+
+        public Message(int number)
+        {
+            this._number = number;
+            Console.WriteLine($"通常のコンストラクター{this._number}");
+        }
+    }
+    
     internal class LockBasicBad
     {
-
         static void Main(string[] args)
         {
-            var tags = "<p><strong>WINGS</strong>サイト<a href='index.html'><img src='wings.jpg'></img></a></p>";
-            //var rgx = new Regex(@"<.+>");
-            var rgx = new Regex(@"<.+?>");
-
-            var result = rgx.Matches(tags);
-            foreach (Match m in result)
-            {
-                Console.WriteLine(m.Value);
-            }
+            var m1 = new Message(1);
+            var m2 = new Message(2);
+            var m3 = new Message(3);
+            var m4 = new Message(4);
+            var m5 = new Message(5);
         }
     }
 }
