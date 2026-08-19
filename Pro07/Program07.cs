@@ -1,16 +1,28 @@
 ﻿//#define DEBUG
-using System.Globalization;
-
 namespace Pro07
 {
+    internal class Figure
+    {
+        //public static double Pi = 3.14;
+        private static double Pi = 3.14;
+        public static void GetCircleArea(double r)
+        {
+            Console.WriteLine($"円の面積は{r * r * Pi}");
+        }
+
+        public static void GetTriangleArea(double width, double height)
+        {
+            Console.WriteLine($"三角形の面積は{width * height / 2}");
+        }
+    }
+    
     internal class AsyncBasic
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(string.Format("名前は{0,-10}です。", "サクラ"));
-            Console.WriteLine(string.Format("カスタム(0補完):{0:0,000.0000}", 1234.56));
-            Console.WriteLine(string.Format("カスタム(補完無):{0:#,###.####}", 1234.56));
-            Console.WriteLine(string.Format("カスタム(複合):{0,20:0,000.000000}", 1234.56));
+            //Console.WriteLine(Figure.Pi);
+            Figure.GetCircleArea(3);
+            Figure.GetTriangleArea(5, 15);
         }
     }
 }

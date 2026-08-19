@@ -1,17 +1,25 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.CompilerServices;
 
 namespace Pro08
 {   
     internal class MySingleton
     {
+        private static MySingleton instance = new MySingleton();
+        //private MySingleton() { }
+        public MySingleton() { }
+
+        public static MySingleton Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         static void Main(string[] args)
         {
-            var tel = new[] { "080-0000-0000", "084-000-0000", "184-0000" };
-            var rgx = new Regex(@"^\d{2,4}-\d{2,4}-\d{4}$");
-            foreach (var t in tel)
-            {
-                Console.WriteLine(rgx.IsMatch(t) ? t : "アンマッチ");
-            }
+            var ms1 = MySingleton.Instance;
+            var ms2 = MySingleton.Instance;
+            Console.WriteLine(ms1 == ms2);
         }
     }
 }
