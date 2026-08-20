@@ -2,19 +2,27 @@
 
 namespace Pro15
 {
+    internal class Person
+    {
+        public string firstName = "";
+        public string lastName = "";
+
+        public void Show(string greeting = "こんにちは", string title = "さん")
+        {
+            Console.WriteLine($"{greeting}、{this.lastName}{this.firstName}{title}！");
+        }
+    }
     internal class DelegeteUse
     {
         static void Main(string[] args)
         {
-            var str = "にわに3わうらにわに51わにわとりがいる";
-            var rgx = new Regex(@"\d{1,}わ");
-            var result = rgx.Split(str);
-            foreach (var s in result)
+            var p = new Person()
             {
-                Console.Write($"{s} ");
-            }
-            Console.WriteLine();
-            Console.WriteLine(string.Join(" ", result));
+                lastName = "田中",
+                firstName = "一郎"
+            };
+            p.Show();
+            p.Show("初めまして", "様");
         }
     }
 }
