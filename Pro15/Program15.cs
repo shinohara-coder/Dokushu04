@@ -22,7 +22,9 @@ namespace Pro15
                 firstName = "一郎"
             };
             p.Show();
-            p.Show("初めまして", "様");
+            p.Show("殿");
+            p.Show("様");
+            //p.Show("初めまして", "様");
         }
     }
 }

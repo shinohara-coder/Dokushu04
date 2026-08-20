@@ -2,17 +2,23 @@
 
 namespace Pro16
 {
-    internal class AsyncStream
+    internal class ArgsParams
     {
+        public int TotalProducts(params int[] values)
+        {
+            int result = 1;
+            foreach (var value in values)
+            {
+                result *= value;
+            }
+            return result;
+        }
         static async Task Main(string[] args)
         {
-            var str = "住所は〒184-0000 鎌ヶ谷市小野町0-0-0です。\nあなたの住所は〒273-0000 嬬恋市大野町0-9-9ですね。";
-            var rgx = new Regex(@"\d{3}-\d{4}");
-            var result = rgx.Matches(str);
-            foreach (Match m in result)
-            {
-                Console.WriteLine(m.Value);
-            }
+            var v = new ArgsParams();
+            Console.WriteLine(v.TotalProducts(12, 15, -1));
+            Console.WriteLine(v.TotalProducts(5, 7, 8, 2));
+            Console.WriteLine();
         }
     }
 }
