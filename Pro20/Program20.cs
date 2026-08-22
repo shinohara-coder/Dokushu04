@@ -2,19 +2,19 @@
 
 namespace Pro20
 {
-    internal class DelegateLamda
+    internal class PassRefArray
     {
+        internal int[] Update(ref int[] data)
+        {
+            data[0] = 5;
+            return data;
+        }
         static void Main(string[] args)
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            const string filename = @"C:\Users\hirok\OneDrive\デスクトップ\hoge.log";
-            var lines = new[] {"hoge", "fuga", "foo", "piyo" };
-            using (var writer = new StreamWriter(filename, true, encoding:Encoding.GetEncoding("Shift-JIS")))
-            {
-                writer.WriteLine(DateTime.Now.ToString());
-            }
-
-            File.WriteAllLines(filename, lines);
+            var data = new[] { 2, 4, 6 };
+            var p = new PassRefArray();
+            Console.WriteLine(p.Update(ref data)[0]);
+            Console.WriteLine(data[0]);
         }
     }
 }

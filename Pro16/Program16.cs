@@ -4,9 +4,9 @@ namespace Pro16
 {
     internal class ArgsParams
     {
-        public int TotalProducts(params int[] values)
+        public int TotalProducts(int initial, params int[] values)
         {
-            int result = 1;
+            int result = initial;
             foreach (var value in values)
             {
                 result *= value;

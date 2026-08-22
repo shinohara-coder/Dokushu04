@@ -2,21 +2,21 @@
 
 namespace Pro19
 {
-    
-    internal class DelegateAnonymous
+    internal class PassRefBasic
     {
-        public static void ShowCaller(
-            string msg,
-            [CallerFilePath] string file = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0,
-            [CallerArgumentExpression("msg")] string arg = "")
+        internal int CountUp(ref int data)
         {
-            Console.WriteLine($"Form: {file}/{member} {line}行目 Args: {arg}");
+            data++;
+            return data;
         }
+        
+        
         static void Main(string[] args)
         {
-            ShowCaller("TEST");
+            var data = 1;
+            var p = new PassRefBasic();
+            Console.WriteLine(p.CountUp(ref data));
+            Console.WriteLine(data);
         }
 
     }

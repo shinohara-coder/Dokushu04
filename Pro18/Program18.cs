@@ -1,30 +1,18 @@
-﻿using System.Globalization;
-
-namespace Pro18
+﻿namespace Pro18
 {
-    internal class DelegateMultiResult
+    internal class PassArray
     {
+        public int[] Update(int[] data)
+        {
+            data = new[] { 10, 20, 30 };
+            return data;
+        }
         static void Main(string[] args)
         {
-            #region 練習01
-            //DateTime dt = default;
-            //Console.WriteLine(dt);
-            //if (DateTime.TryParse("2026/8/13 19:31:54", out dt))
-            //{
-            //    Console.WriteLine(dt);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("日付に変換出来ませんでした。");
-            //}
-            #endregion
-
-            var dt1 = DateTime.Now;
-            //var dt2 = new DateTime(2017, 5, 18, 15, 28, 23);
-            var dt2 = new DateTime(1974, 6, 2, 7, 28, 23);
-            var sub = dt1.Subtract(dt2);
-            Console.WriteLine(sub.ToString("c"));
-            Console.WriteLine(sub.ToString(@"d\.hh\:mm\:ss"));
+            var data = new[] { 2, 4, 6 };
+            var p = new PassArray();
+            Console.WriteLine(p.Update(data)[0]);
+            Console.WriteLine(data[0]);
         }
     }
 }

@@ -1,17 +1,18 @@
 ﻿namespace Pro21
 {
-    internal class EventBasic
+    internal class PassRefArray
     {
+        public int[] Update(ref int[] data)
+        {
+            data = new[] { 10, 20, 30 };
+            return data;
+        }
         static void Main(string[] args)
         {
-            using (var reader = new StreamReader(@"C:\Users\hirok\OneDrive\デスクトップ\hoge.txt"))
-            {
-                //Console.WriteLine(reader.ReadToEnd());
-                while (!reader.EndOfStream)
-                {
-                    Console.WriteLine(reader.ReadLine());
-                }
-            }
+            var data = new[] { 2, 4, 6 };
+            var p = new PassRefArray();
+            Console.WriteLine(p.Update(ref data)[0]);
+            Console.WriteLine(data[0]);
         }
     }
 }
