@@ -2,20 +2,29 @@
 
 namespace Pro24
 {
-    internal class IteratorBasic
+    internal class PassOut
     {
-        static void Printset<T>(HashSet<T> set)
+        public void GetMaxMin(int x, int y, out int max, out int min)
         {
-            Console.WriteLine(String.Join(",", set.ToArray()));
+            if (x >= y)
+            {
+                max = x;
+                min = y;
+            }
+            else
+            {
+                max = y;
+                min = x;
+            }
         }
         static void Main(string[] args)
         {
-            var hs = new HashSet<int> { 1, 10, 15, 20, 30 };
-            hs.IntersectWith(new HashSet<int>() { 1, 10, 20, 30, 60 });
-            Printset(hs);
-
-            hs.ExceptWith(new HashSet<int> { 15, 30 });
-            Printset(hs);
+            var a = new PassOut();
+            int resultMax = 0;
+            int resultMin = 0;
+            a.GetMaxMin(5, 3, out resultMax, out resultMin);
+            Console.WriteLine($"max:{resultMax}\nmin:{resultMin}");
         }
+       
     }
 }

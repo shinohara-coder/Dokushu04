@@ -1,21 +1,19 @@
 ﻿namespace Pro25.hoge
 {
-    internal partial class MyPartialMethod
+    internal partial class TupleBasic
     {   
+        public (int max, int min) GetMaxMin(int x, int y)
+        {
+            return x >= y ? (x, y) : (y, x);
+        }
         static void Main(string[] args)
         {
-            var dic = new SortedDictionary<string, string>()
-            {
-                ["Rose"] = "バラ",
-                ["Sunflower"] = "ひまわり",
-                ["Morning Glory"] = "あさがお",
-                ["Tulip"] = "チューリップ"
-            };
+            var a = new TupleBasic();
+            var t = a.GetMaxMin(100, 250);
+            Console.WriteLine($"{nameof(t.max)}:{t.max}\n{nameof(t.min)}:{t.min}");
 
-            foreach (var m in dic)
-            {
-                Console.WriteLine($"{m.Key} : {m.Value}");
-            }
-        }
+            var (outMax, outMin) = a.GetMaxMin(58, 26);
+            Console.WriteLine($"{nameof(outMax)}:{outMax}\n{nameof(outMin)}:{outMin}");
+        } 
     }
 }
