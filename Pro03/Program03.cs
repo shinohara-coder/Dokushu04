@@ -1,7 +1,4 @@
-﻿using System.Formats.Asn1;
-using System.Runtime.InteropServices;
-
-namespace SelfCSharp.Chap09.Priority1
+﻿namespace SelfCSharp.Chap09.Priority1
 {   
     internal class PrimeNumber
     {
@@ -27,13 +24,27 @@ namespace SelfCSharp.Chap09.Priority1
                 Console.WriteLine("引数maxは2以上の値を指定してください。");
                 yield break;
             }
+
+            for (var num = Min; num <= max; num++)
+            {
+                if (IsPrime(num))
+                {
+                    yield return num;
+                }
+            }
         }
     }
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            
+            var p = new PrimeNumber();
+
+            var itr = p.GetPrimes(100);
+            foreach (var value in itr)
+            {
+                Console.WriteLine(value);
+            }
         }
     }
 }
