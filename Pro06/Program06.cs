@@ -1,28 +1,18 @@
 ﻿namespace Pro06
-{
-    internal class Circle
+{   
+    internal class Practice4
     {
-        private double _radius;
-
-        public Circle(double radius)
+        static int Increment(int value)
         {
-            this._radius = radius;
+            value += 5;
+            return value;
         }
-
-        public Circle() : this(1) {}
-
-        public double GetArea()
-        {
-            return Math.PI * this._radius * this._radius;
-        }
-    }
-    
-    internal class LockBasic
-    {
         static void Main(string[] args)
         {
-            var c = new Circle();
-            Console.WriteLine(c.GetArea());
+            int value = 10;
+            //Console.WriteLine(Increment(ref value));
+            Console.WriteLine(Increment(value));
+            Console.WriteLine(value);
         }
     }   
 }
