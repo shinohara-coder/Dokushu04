@@ -1,18 +1,39 @@
-﻿//#define DEBUG
-namespace Pro07
+﻿namespace Pro07
 {
-    internal class Figure
+    internal class Triangle
     {
-        //public static double Pi = 3.14;
-        private static double Pi = 3.14;
-        public static void GetCircleArea(double r)
+        private double _width;
+        private double _height;
+
+        public double Width
         {
-            Console.WriteLine($"円の面積は{r * r * Pi}");
+            set 
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("正数で指定してください。");
+                }
+                this._width = value;
+            }
+            get { return this._width; }
         }
 
-        public static void GetTriangleArea(double width, double height)
+        public double Height
         {
-            Console.WriteLine($"三角形の面積は{width * height / 2}");
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("正数で指定してください。");
+                }
+                this._height = value;
+            }
+            get { return this._height; }
+        }
+
+        public double GetArea()
+        {
+            return Width * Height / 2;
         }
     }
     
@@ -20,9 +41,11 @@ namespace Pro07
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(Figure.Pi);
-            Figure.GetCircleArea(3);
-            Figure.GetTriangleArea(5, 15);
+            var t = new Triangle();
+            t.Width = 10;
+            t.Height = 5;
+            Console.WriteLine($"三角形の面積は{t.GetArea()}です。");
+            t.Width = -5;
         }
     }
 }
