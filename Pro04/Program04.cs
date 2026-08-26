@@ -55,7 +55,8 @@ namespace SelfCSharp.Chap09.Priority1
         static void Main(string[] args)
         {
             var list = new PrimeList(100);
-            foreach (var value in list)
+            IEnumerable oldList = list;
+            foreach (var value in oldList)
             {
                 Console.WriteLine(value);
             }
