@@ -2,24 +2,27 @@
 
 namespace Pro08
 {   
+    internal class Person
+    {
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+
+        public string Show()
+        {
+            return $"名前は{this.LastName}{this.FirstName}です。";
+        }
+    }
     internal class MySingleton
     {
-        private static MySingleton instance = new MySingleton();
-        //private MySingleton() { }
-        public MySingleton() { }
-
-        public static MySingleton Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
         static void Main(string[] args)
         {
-            var ms1 = MySingleton.Instance;
-            var ms2 = MySingleton.Instance;
-            Console.WriteLine(ms1 == ms2);
+            var p = new Person
+            {
+                FirstName = "一郎",
+                LastName = "田中"
+            };
+
+            Console.WriteLine(p.Show());
         }
     }
 }

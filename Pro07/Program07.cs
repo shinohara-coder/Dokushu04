@@ -1,4 +1,4 @@
-﻿namespace Pro07
+﻿            namespace Pro07
 {
     internal class Triangle
     {

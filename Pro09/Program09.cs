@@ -2,16 +2,29 @@
 
 namespace Pro08
 {
-    internal class MyApp
+    internal class Pet
     {
-        public static readonly string Title = "独習C#";
+        public string Name { get; init; }
+        public Pet(string name = "")
+        {
+            this.Name = name;
+        }
     }
+
     internal class MySingleton
     {   
         static void Main(string[] args)
         {
-            Console.WriteLine(MyApp.Title);
-            //MyApp.Title = "独習C++";
+            var p1 = new Pet("タロウ");
+            Console.WriteLine(p1.Name);
+
+            var p2 = new Pet
+            {
+                Name = "花子"
+            };
+            Console.WriteLine(p2.Name);
+
+            //p2.Name = "タロウ";
         }
     }
 }
