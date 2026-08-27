@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.CodeDom;
+using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 
 namespace Pro11
 {
@@ -17,7 +19,12 @@ namespace Pro11
         {
             set
             {
-                
+                this._list[this.GetIndex(index1, 0), this.GetIndex(index2, 1)] = value;
+            }
+
+            get
+            {
+                return this._list[this.GetIndex(index1, 0), this.GetIndex(index2, 1)];
             }
         }
 
@@ -27,7 +34,7 @@ namespace Pro11
             {
                 return 0;
             }
-            return index % this._size[dimension];
+            return index % this._size[dimension];   //0次元か、1次元か
         }
     }
     
@@ -35,7 +42,25 @@ namespace Pro11
     {
         static void Main(string[] args)
         {
-            
+            var dim1_size = 3;
+            var dim2_size = 2;
+            var array = new TwoFreeArray(dim1_size, dim2_size);
+            var k = 1;
+            for (var i = 0; i < dim1_size; i++)
+            {
+                for (var j = 0; j < dim2_size; j++)
+                {
+                    array[i, j] = k++;
+                }
+            }
+
+            for (var i = 0; i < 10; i++)
+            {
+                for (var j = 0; j < 10; j++)
+                {
+                    Console.WriteLine($"array[{i},{j}] = {array[i, j]}");
+                }
+            }
         }
     }
 }
