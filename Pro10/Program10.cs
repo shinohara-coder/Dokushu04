@@ -2,12 +2,56 @@
 
 namespace Pro10
 {
+    internal class FreeArray
+    {
+        private int _size;
+        private int[] _list;
+
+        public FreeArray(int size)
+        {
+            this._size = size;
+            this._list = new int[size];
+        }
+
+        public int this[int index]
+        {
+            set
+            {
+                this._list[this.GetIndex(index)] = value;
+            }
+
+            get
+            {
+                return this._list[this.GetIndex(index)];
+            }
+        }
+
+        private int GetIndex(int index)
+        {
+            if (index < 0)
+            {
+                return 0;
+            }
+            return index % this._size;
+        }
+
+        
+    }
     internal class LockBasicBad
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(MyConfig.Title);
-            
+            var array = new FreeArray(5);
+            array[0] = 1;
+            array[1] = 10;
+            array[2] = 15;
+            array[3] = 30;
+            array[4] = 60;
+
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine($"array[{i}] = {array[i]}");
+            }
         }
     }
 }

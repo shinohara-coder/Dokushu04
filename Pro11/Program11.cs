@@ -2,18 +2,32 @@
 
 namespace Pro11
 {
-    internal class Message
+    internal class TwoFreeArray
     {
-        private int _number;
-        static Message()
+        private int[] _size;
+        private int[,] _list;
+
+        public TwoFreeArray(int size1, int size2)
         {
-            Console.WriteLine("静的コンストラクター");
+            this._size = new[] { size1, size2 };
+            this._list = new int[size1, size2];
         }
 
-        public Message(int number)
+        public int this[int index1, int index2]
         {
-            this._number = number;
-            Console.WriteLine($"通常のコンストラクター{this._number}");
+            set
+            {
+                
+            }
+        }
+
+        private int GetIndex(int index, int dimension)
+        {
+            if (index < 0)
+            {
+                return 0;
+            }
+            return index % this._size[dimension];
         }
     }
     
@@ -21,11 +35,7 @@ namespace Pro11
     {
         static void Main(string[] args)
         {
-            var m1 = new Message(1);
-            var m2 = new Message(2);
-            var m3 = new Message(3);
-            var m4 = new Message(4);
-            var m5 = new Message(5);
+            
         }
     }
 }
