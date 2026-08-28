@@ -54,9 +54,9 @@ namespace Pro11
                 }
             }
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < dim1_size; i++)
             {
-                for (var j = 0; j < 10; j++)
+                for (var j = 0; j < dim2_size; j++)
                 {
                     Console.WriteLine($"array[{i},{j}] = {array[i, j]}");
                 }

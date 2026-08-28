@@ -2,25 +2,36 @@
 
 namespace Pro10
 {
-    internal class MyInitializer
+    internal class JapaneseMonth
     {
-        [ModuleInitializer]
-        public static void init()
+        private string[] _month = { "睦月", "如月", "弥生", "卯月", "皐月",
+          "水無月", "文月", "葉月", "長月", "神無月", "霜月", "師走" };
+
+        public int this[string name]
         {
-            Console.WriteLine("Init is called!!");
+            get
+            {
+                return Array.IndexOf(this._month, name) + 1;
+            }
         }
 
-        [ModuleInitializer]
-        public static void Init2()
+        public string this[int index]
         {
-            Console.WriteLine("Init2 is called!!");
+            get
+            {
+                return this._month[index - 1];
+            }
         }
     }
     internal class AsuncBasic
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Main is called!!");
+            var mon = new JapaneseMonth();
+            for (int i = 1; i <= 12; i++)
+            {
+                Console.WriteLine($"{mon[mon[i]]}月は{mon[i]}です。");
+            }
         }
     }
 
