@@ -1,30 +1,28 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Pro15
 {
-    internal class Person
+    internal class MyParent
     {
-        public string firstName = "";
-        public string lastName = "";
-
-        public void Show(string greeting = "こんにちは", string title = "さん")
+        public MyParent()
         {
-            Console.WriteLine($"{greeting}、{this.lastName}{this.firstName}{title}！");
+            Console.WriteLine("親です。");
         }
     }
+
+    internal class MyChild : MyParent
+    {
+        public MyChild()
+        {
+            Console.WriteLine("子です。");
+        }
+    }
+
     internal class DelegeteUse
     {
         static void Main(string[] args)
         {
-            var p = new Person()
-            {
-                lastName = "田中",
-                firstName = "一郎"
-            };
-            p.Show();
-            p.Show("殿");
-            p.Show("様");
-            //p.Show("初めまして", "様");
+            var c = new MyChild();
         }
     }
 }

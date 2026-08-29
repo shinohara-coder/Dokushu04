@@ -1,25 +1,42 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
 
 namespace Pro14
 {
+    internal class Person
+    {
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+
+        public virtual string Show()
+        {
+            return $"名前は{this.LastName}{this.FirstName}です。";
+        }
+    }
+
+    internal class BusinessPerson : Person
+    {
+        public override string Show()
+        {
+            return $"会社員の{this.LastName}{this.FirstName}です。";
+        }
+        
+        public string Work()
+        {
+            return $"{this.LastName}{this.FirstName}は働きます。";
+        }
+    }
+    
     internal class DelegeteNoUse
     {
-        int myfield = 0;
-        static int myfield2 = 0;
-        static async Task Main(string[] args)
+       static void Main(string[] args)
         {
-            var mylocal = 1;
-            const int MY_CONST = 2;
-
-            static void Hoge()
+            var bp = new BusinessPerson
             {
-                //Console.WriteLine(myfield);
-                //Console.WriteLine(mylocal);
-                Console.WriteLine(myfield2);
-                Console.WriteLine(MY_CONST);
-                Console.WriteLine(nameof(myfield));
-            }
-            Hoge();
+                FirstName = "幸太郎",
+                LastName = "杉山"
+            };
+            Console.WriteLine(bp.Work());
+            Console.WriteLine(bp.Show());
         }
     }
 }
