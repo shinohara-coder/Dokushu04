@@ -1,18 +1,44 @@
 ﻿namespace Pro18
 {
+    internal class Person
+    {
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+
+        public virtual string Show()
+        {
+            return $"名前は{this.LastName}{this.FirstName}です。";
+
+        }
+    }
+
+    internal class BusinessPerson : Person
+    {
+        public override string Show()
+        {
+            return $"会社員の{this.LastName}{this.FirstName}です。";
+        }
+
+        public string Work()
+        {
+            return $"{this.LastName}{this.FirstName}は、働きます。";
+        }
+    }
     internal class PassArray
     {
-        public int[] Update(int[] data)
-        {
-            data = new[] { 10, 20, 30 };
-            return data;
-        }
+        
         static void Main(string[] args)
         {
-            var data = new[] { 2, 4, 6 };
-            var p = new PassArray();
-            Console.WriteLine(p.Update(data)[0]);
-            Console.WriteLine(data[0]);
+            Person p = new BusinessPerson
+            {
+                FirstName = "一郎",
+                LastName = "里中"
+            };
+            //Console.WriteLine((BusinessPerson)p.Work());
+            Console.WriteLine(p.Show());
+            Console.WriteLine(p.GetType());
+            Console.WriteLine(typeof(Person));
+            Console.WriteLine(typeof(BusinessPerson));
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Pro15
+﻿namespace Pro15
 {
     internal class MyParent
     {
