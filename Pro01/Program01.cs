@@ -1,21 +1,49 @@
-﻿using System.Diagnostics;
-using System.Text;
-
-namespace SelfCSharp.Chap09.Priority1
+﻿namespace SelfCSharp.Chap09.Priority1
 {
-    internal class LambdaCapture
+    internal class Figure
     {
-        public static (double addition, double subtraction) AddSubtract(double x, double y)
+        public double Width { get; set; }
+        public double Height { get; set; }
+
+        public Figure(double width, double height)
         {
-            return (x + y, x - y);
+            this.Width = width;
+            this.Height = height;
         }
+
+        public virtual double GetArea()
+        {
+            return 0.0;
+        }
+    }
+
+    internal class Triangle : Figure
+    {
+        public Triangle(double width, double height) : base(width, height) { }
+
+        public new double GetArea()
+        {
+            return this.Width * this.Height / 2;
+        }
+    }
+
+    internal class Square : Figure
+    {
+        public Square(double width, double height) : base(width, height) { }
+
+        public new double GetArea()
+        {
+            return this.Width * this.Height;
+        }
+    }
+    internal partial class TupleBasic
+    {
         static void Main(string[] args)
         {
-            double d1 = 3.14;
-            double d2 = 1.73;
-            //var t = AddSubtract(d1, d2);
-            var (add, sub) = AddSubtract(d1, d2);
-            Console.WriteLine($"{d1}と{d2}の和は[{add}]、差は[{sub}]です");
+            Figure t = new Triangle(10, 30);
+            Console.WriteLine(t.GetArea());
+            Figure s = new Square(10, 30);
+            Console.WriteLine(s.GetArea());
         }
     }
 }

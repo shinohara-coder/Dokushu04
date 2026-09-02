@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Security.AccessControl;
-
-namespace Pro24.StringExtensions
+﻿namespace Pro24.StringExtensions
 {
     internal static class StringExtensions
     {

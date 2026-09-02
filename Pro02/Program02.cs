@@ -1,21 +1,48 @@
 ﻿namespace SelfCSharp.Chap09.Priority1
 {
-    internal class IteratorBasic
+    internal abstract class Figure
     {
-        public IEnumerable<string> GetStrings()
+        public double Width { get; set; }
+        public double Height { get; set; }
+
+        public Figure(double width, double height)
         {
-            yield return "あいうえお";
-            yield return "かきくけこ";
-            yield return "さしすせそ";
+            this.Width = width;
+            this.Height = height;
         }
+
+        public abstract double GetArea();
+    }
+
+    internal class Triangle : Figure
+    {
+        public Triangle(double width, double height) : base(width, height) { }
+
+        public override double GetArea()
+        {
+            return this.Width * this.Height / 2;
+        }
+    }
+
+    internal class Square : Figure
+    {
+        public Square(double width, double height) : base(width, height) { }
+
+        public override double GetArea()
+        {
+            return this.Width * this.Height;
+        }
+    }
+    internal partial class TupleBasic
+    {
         static void Main(string[] args)
         {
-            var ite = new IteratorBasic();
-            foreach (var str in ite.GetStrings())
-            {
-                Console.WriteLine(str);
-            }
+            Figure t = new Triangle(10, 30);
+            Console.WriteLine(t.GetArea());
+            Figure s = new Square(10, 30);
+            Console.WriteLine(s.GetArea());
         }
     }
 }
+
 
