@@ -1,50 +1,32 @@
 ﻿namespace SelfCSharp.Chap09.Priority1
 {   
-    internal class PrimeNumber
+    internal interface IFigure
     {
-        public IEnumerable<int> GetPrimes(int max)
+        double GetArea();
+    }
+
+    internal class Triangle : IFigure
+    {
+        public double Width { get; set; }
+        public double Height { get; set; }
+
+        public Triangle(double width, double height)
         {
-            bool IsPrime(int value)
-            {
-                var prime = true;
-                for (var i = 2; i <= Math.Floor(Math.Sqrt(value)); i++)
-                {
-                    if (value % i == 0)
-                    {
-                        prime = false;
-                        break;
-                    }
-                }
-                return prime;
-            }
+            this.Width = width;
+            this.Height = height;
+        }
 
-            const int Min = 2;
-            if (max < Min)
-            {
-                Console.WriteLine("引数maxは2以上の値を指定してください。");
-                yield break;
-            }
-
-            for (var num = Min; num <= max; num++)
-            {
-                if (IsPrime(num))
-                {
-                    yield return num;
-                }
-            }
+        public double GetArea()
+        {
+            return this.Width * this.Height / 2;
         }
     }
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var p = new PrimeNumber();
-
-            var itr = p.GetPrimes(100);
-            foreach (var value in itr)
-            {
-                Console.WriteLine(value);
-            }
+            var t = new Triangle(10, 30);
+            Console.WriteLine(t.GetArea());
         }
     }
 }
