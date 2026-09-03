@@ -1,27 +1,21 @@
 ﻿namespace SelfCSharp.Chap09.Priority1
 {
-    interface IHoge
+    public interface IHoge
     {
-        void Foo(string str);
-    }
-
-    interface IHoge2
-    {
-        void Foo(string str2);
-    }
-
-    public class MyClass : IHoge, IHoge2
-    {
-        public void Foo(string str)
+        void Log(string msg)
         {
-            Console.WriteLine($"暗黙的={str}");
+            Console.WriteLine($"Log: {msg}");
         }
     }
+
+    public class Hoge : IHoge { }
+
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-           
+            var h = new Hoge();
+            ((IHoge)h).Log("任意のメッセージ");
         }
     }
 }

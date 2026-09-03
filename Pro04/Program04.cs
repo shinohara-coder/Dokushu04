@@ -2,64 +2,45 @@
 
 namespace SelfCSharp.Chap09.Priority1
 {
-    internal class PrimeList : IEnumerable<int>
+    interface IHoge
     {
-        int _max = 2;
+        void Foo(string str);
+    }
 
-        public PrimeList(int max)
+    interface IHoge2
+    {
+        void Foo(string str2);
+    }
+
+    public class MyClass : IHoge, IHoge2
+    {
+        public void Foo(string str)
         {
-            this._max = max;
+            Console.WriteLine($"暗黙的={str}");
         }
 
-        public IEnumerator<int> GetEnumerator()
+        void IHoge.Foo(string str)
         {
-            bool IsPrime(int value)
-            {
-                var prime = true;
-                var mid = (int)Math.Floor(Math.Sqrt(value));
-                for (var i = 2; i <= mid; i++)
-                {
-                    if (value % i == 0)
-                    {
-                        prime = false;
-                        break;
-                    }
-                }
-                return prime;
-            }
-
-            const int Min = 2;
-
-            if (this._max < Min)
-            {
-                Console.WriteLine("引数maxは2以上の値を指定してください。");
-                yield break;
-            }
-
-            for (var num = Min; num <= this._max; num++)
-            {
-                if (IsPrime(num))
-                {
-                    yield return num;
-                }
-            }
+            Console.WriteLine($"IHoge.Foo={str}");
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        void IHoge2.Foo(string str)
         {
-            return this.GetEnumerator();
+            Console.WriteLine($"IHoge2.Foo={str}");
         }
     }
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var list = new PrimeList(100);
-            IEnumerable oldList = list;
-            foreach (var value in oldList)
-            {
-                Console.WriteLine(value);
-            }
+            var mc = new MyClass();
+            mc.Foo("い");
+
+            var ih = (IHoge)mc;
+            ih.Foo("ろ");
+
+            var ih2 = (IHoge2)mc;
+            ih2.Foo("は");
         }
     }
 }
