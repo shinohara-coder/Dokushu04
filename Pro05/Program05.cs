@@ -8,7 +8,15 @@
         }
     }
 
-    public class Hoge : IHoge { }
+    //public class Hoge : IHoge { }
+    public class Hoge : IHoge
+    {
+        public void Log(string msg)
+        {
+            Console.WriteLine($"Hoge: {msg}");
+        }
+    }
+
 
     internal class LambdaCapture
     {
