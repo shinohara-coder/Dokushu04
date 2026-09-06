@@ -1,30 +1,24 @@
-﻿using System.Text.RegularExpressions;
+﻿using static System.Console;
 
 namespace Pro08
 {
-    internal class Pet
-    {
-        public string Name { get; init; }
-        public Pet(string name = "")
-        {
-            this.Name = name;
-        }
-    }
-
     internal class MySingleton
     {   
         static void Main(string[] args)
         {
-            var p1 = new Pet("タロウ");
-            Console.WriteLine(p1.Name);
-
-            var p2 = new Pet
+            try
             {
-                Name = "花子"
-            };
-            Console.WriteLine(p2.Name);
-
-            //p2.Name = "タロウ";
+                var f = new StreamReader(@"C:\nothing.dat");
+            }
+            catch (FileNotFoundException ex) when (ex.Message.Contains(".dat") || ex.Message.Contains(".txt"))
+            {
+                WriteLine("存在しないファイル.datまたは.txtが指定されました。");
+                WriteLine(ex.Message);
+            }
+            catch (FileNotFoundException)
+            {
+                WriteLine("存在しないファイルが指定されました。");
+            }
         }
     }
 }
