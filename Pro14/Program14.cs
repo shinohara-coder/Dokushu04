@@ -1,28 +1,21 @@
-﻿using System.Globalization;
+﻿using static System.Console;
 
 namespace Pro14
 {
-    internal class Person
+    struct Coordinates
     {
-        public string FirstName { get; set; } = "";
-        public string LastName { get; set; } = "";
+        public double Latitude;
+        public double Longitude;
 
-        public virtual string Show()
+        public Coordinates(double latitude, double longtitude)
         {
-            return $"名前は{this.LastName}{this.FirstName}です。";
+            this.Latitude = latitude;
+            //this.Longitude = longtitude;
         }
-    }
 
-    internal class BusinessPerson : Person
-    {
-        public override string Show()
+        public override string ToString()
         {
-            return $"会社員の{this.LastName}{this.FirstName}です。";
-        }
-        
-        public string Work()
-        {
-            return $"{this.LastName}{this.FirstName}は働きます。";
+            return $"緯度：{this.Latitude}／経度：{this.Longitude}";
         }
     }
     
@@ -30,13 +23,8 @@ namespace Pro14
     {
        static void Main(string[] args)
         {
-            var bp = new BusinessPerson
-            {
-                FirstName = "幸太郎",
-                LastName = "杉山"
-            };
-            Console.WriteLine(bp.Work());
-            Console.WriteLine(bp.Show());
+            var c = new Coordinates(35.681167, 139.767052);
+            WriteLine(c);
         }
     }
 }
