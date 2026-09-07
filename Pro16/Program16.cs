@@ -1,18 +1,14 @@
-﻿namespace Pro16
-{
-    internal class MyParent
-    {
-        public MyParent(string childName)
-        {
-            Console.WriteLine($"{childName}の親です。");
-        }
-    }
+﻿using static System.Console;
 
-    internal class MyChild : MyParent
+namespace Pro16
+{
+    internal struct MutableValue
     {
-        public MyChild(string childName) : base(childName)
+        public string Name { get; set; }
+
+        public MutableValue()
         {
-            Console.WriteLine($"子の{childName}です。");
+            this.Name = "名無権兵衛";
         }
     }
 
@@ -20,7 +16,7 @@
     {
         static void Main(string[] args)
         {
-            var c = new MyChild("花子");
+            
         }
     }
 }

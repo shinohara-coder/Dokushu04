@@ -1,26 +1,34 @@
-﻿namespace Pro15
+﻿using static System.Console;
+
+namespace Pro15
 {
-    internal class MyParent
+    readonly struct Coodinate
     {
-        public MyParent()
+        //public readonly double X;
+        //public readonly double Y;
+
+        public double X { get; }
+        public double Y { get; }
+
+        public Coodinate(double x, double y)
         {
-            Console.WriteLine("親です。");
+            this.X = x;
+            this.Y = y;
+        }
+
+        public void SetValue(double x, double y)
+        {
+            //this = new Coodinate(x, y);
         }
     }
-
-    internal class MyChild : MyParent
-    {
-        public MyChild()
-        {
-            Console.WriteLine("子です。");
-        }
-    }
-
     internal class DelegeteUse
     {
         static void Main(string[] args)
         {
-            var c = new MyChild();
+            var c = new Coodinate(10, 20);
+            c.SetValue(1, 2);
+            //c.X = 10;
+            WriteLine($"X:{c.X} Y:{c.Y}");
         }
     }
 }
