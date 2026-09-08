@@ -1,27 +1,20 @@
-﻿namespace Pro17
-{
-    internal class MyParent
-    {
-        ~MyParent()
-        {
-            Console.WriteLine("親です。");
-        }
-    }
+﻿using static System.Console;
 
-    internal class MyChild : MyParent
-    {
-        ~MyChild()
-        {
-            Console.WriteLine("子です。");
-        }
-    }
+namespace Pro17
+{
+    public record Person(string FirstName, string LastName, int Age);
 
     internal class PassArray
     {
-        
         static void Main(string[] args)
         {
-            var c = new MyChild();
+            var p1 = new Person("一郎", "田中", 22);
+            var p2 = new Person("一郎", "田中", 22);
+            WriteLine(p1);
+            WriteLine(p1 == p2);
+            WriteLine(Object.Equals(p1, p2));
+            (string fname, string lname, int age) = p1;
+            WriteLine($"{lname} {fname} {age}歳");
         }
     }
 }
