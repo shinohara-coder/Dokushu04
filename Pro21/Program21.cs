@@ -1,29 +1,17 @@
-﻿namespace Pro21
+﻿using static System.Console;
+
+namespace Pro21
 {
-    internal class Man
-    {
-
-    }
-
-    internal class BusinessMan : Man
-    {
-
-    }
-
-    internal class StudentMan : Man
-    {
-
-    }
+    public record Animal(string Name);
+    public record Hamster(string Name, string Type) : Animal(Name);
     
     internal class PassRefArray
     {
-        
         static void Main(string[] args)
         {
-            Man m = new BusinessMan();
-            BusinessMan bm = (BusinessMan)m;
-            StudentMan s = (StudentMan)m;
-            //StudentMan s2 = (StudentMan)bm;
+            Animal a = new Hamster("まめ", "ブルーサファイア");
+            Animal a2 = (Hamster)a with { Type = "スノーホワイト" };
+            WriteLine(a2);
         }
     }
 }
