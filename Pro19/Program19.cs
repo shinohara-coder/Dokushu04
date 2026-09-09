@@ -1,30 +1,23 @@
-﻿namespace Pro19
+﻿using static System.Console;
+
+namespace Pro19
 {
-    internal class PassRefBasic
-    {           
+    //public record struct Person(string FirstName, string LastName, int Age);
+    public record Person(string FirstName, string LastName, int Age);
+
+    internal class PassArray
+    {
         static void Main(string[] args)
         {
-            //object obj = 1234;
-            //object obj = "abc";
-            //Console.WriteLine(obj switch
-            //{
-            //    123 => "123です。",
-            //    int i => $"数値: {i}",
-            //    string s => $"文字列: {s}",
-            //    _ => "意図しない値"
-            //});
-
-            //var t = ("C#", "Java", "Visual Basic");
-            //var t = ("Python", "Ruby", "JavaScript");
-            //var t = ("Kotlin", "TypeScript", "");
-            var t = ("Kotlin", "VBA", "C++");
-            Console.WriteLine(t switch {
-                ("C#", "Java", "Visual Basic") => "コンパイル言語",
-                ("Python","Ruby", var lang) => $"インタプリター言語{lang}",
-                ("Kotlin","TypeScript",_) => "トランスコンパイル言語",
-                _ => "その他"
-            });
+            var p1 = new Person("一郎", "田中", 22);
+            var p2 = new Person("一郎", "田中", 22);
+            //p1.FirstName = "幸太郎";
+            WriteLine(p1);
+            WriteLine(p1 == p2);
+            WriteLine(Object.ReferenceEquals(p1, p2));
+            (string fname, string lname, int age) = p1;
+            WriteLine($"{lname} {fname} {age}歳");
         }
-
     }
+
 }
