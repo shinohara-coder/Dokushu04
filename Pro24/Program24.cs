@@ -1,5 +1,4 @@
-﻿using Pro24.StringExtensions;
-using System.Globalization;
+﻿using static System.Console;
 
 namespace Pro24
 {
@@ -7,9 +6,14 @@ namespace Pro24
     {
         static void Main(string[] args)
         {
-            //string longTitle = "C#の拡張メソッドについての超分かり易い解説記事";
-            string longTitle = "";
-            Console.WriteLine(longTitle.Truncate(10));
+            var mc = new MyPartial
+            {
+                FirstName = "一郎",
+                LastName = "田中"
+            };
+
+            WriteLine(mc.Show());
+            WriteLine(mc.Greet());
         }
        
     }

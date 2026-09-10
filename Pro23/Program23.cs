@@ -11,14 +11,14 @@ namespace Pro23
         {
             var h = new MyHelper();
             h.Show();
-            //Console.WriteLine(h.str1);
-            //Console.WriteLine(MyHelper.str2);
+            Console.WriteLine(h.str1);
+            Console.WriteLine(MyHelper.str2);
         }
 
         class MyHelper
         {
-            string str1 = "入れ子・インスタンス";
-            static string str2 = "入れ子・静的";
+            internal string str1 = "入れ子・インスタンス";
+            internal static string str2 = "入れ子・静的";
 
             public void Show()
             {
