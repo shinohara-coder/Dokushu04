@@ -1,40 +1,21 @@
-﻿using Pro23.DateTimeExtension;
-
-namespace Pro23
+﻿internal class Util
 {
-    internal class MyClass
+    public static void Run()
     {
-        string str1 = "包含・インスタンス";
-        static string str2 = "包含・静的";
-
-        public void Show()
-        {
-            var h = new MyHelper();
-            h.Show();
-            Console.WriteLine(h.str1);
-            Console.WriteLine(MyHelper.str2);
-        }
-
-        class MyHelper
-        {
-            internal string str1 = "入れ子・インスタンス";
-            internal static string str2 = "入れ子・静的";
-
-            public void Show()
-            {
-                var c = new MyClass();
-                Console.WriteLine(c.str1);
-                Console.WriteLine(MyClass.str2);
-            }
-        }
+        Console.WriteLine("Util is running.");
     }
+}
 
-    internal class NestedAccess
+namespace SelfCSharp.Chap09.Util
+//namespace SelfCSharp.Chap09
+{
+    internal class NamespaceGlobal
     {
         static void Main(string[] args)
         {
-            var mc = new MyClass();
-            mc.Show();
+            //Util.Run();
+            global::Util.Run();
         }
     }
 }
+
