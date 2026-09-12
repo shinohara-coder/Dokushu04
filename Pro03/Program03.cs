@@ -1,32 +1,21 @@
-﻿namespace SelfCSharp.Chap09.Priority1
+﻿using static System.Console;
+
+namespace SelfCSharp.Chap09.Priority1
 {   
-    internal interface IFigure
-    {
-        double GetArea();
-    }
-
-    internal class Triangle : IFigure
-    {
-        public double Width { get; set; }
-        public double Height { get; set; }
-
-        public Triangle(double width, double height)
+    internal class MyGenerics<T> where T : new()
+    { 
+        public void Hoge()
         {
-            this.Width = width;
-            this.Height = height;
-        }
-
-        public double GetArea()
-        {
-            return this.Width * this.Height / 2;
+            var value = new T();
         }
     }
+    
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var t = new Triangle(10, 30);
-            Console.WriteLine(t.GetArea());
+            var m = new MyGenerics<int>();
+            m.Hoge();
         }
     }
 }

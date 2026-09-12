@@ -4,9 +4,9 @@ namespace Pro25
 {
     internal partial class MyPartialMethod
     {
-        static partial void Log()
-        {
-            WriteLine("ログを記録しました。");
-        }
+        //static partial void Log()
+        //{
+        //    WriteLine("ログを記録しました。");
+        //}
     }
 }

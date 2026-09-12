@@ -1,46 +1,20 @@
-﻿namespace SelfCSharp.Chap09.Priority1
+﻿using static System.Console;
+
+namespace SelfCSharp.Chap09.Priority1
 {
-    internal abstract class Figure
+    internal class MyGenerics<T> where T : IComparable<T>
     {
-        public double Width { get; set; }
-        public double Height { get; set; }
-
-        public Figure(double width, double height)
+        public int Hoge(T x, T y)
         {
-            this.Width = width;
-            this.Height = height;
-        }
-
-        public abstract double GetArea();
-    }
-
-    internal class Triangle : Figure
-    {
-        public Triangle(double width, double height) : base(width, height) { }
-
-        public override double GetArea()
-        {
-            return this.Width * this.Height / 2;
-        }
-    }
-
-    internal class Square : Figure
-    {
-        public Square(double width, double height) : base(width, height) { }
-
-        public override double GetArea()
-        {
-            return this.Width * this.Height;
+            return x.CompareTo(y);
         }
     }
     internal partial class TupleBasic
     {
         static void Main(string[] args)
         {
-            Figure t = new Triangle(10, 30);
-            Console.WriteLine(t.GetArea());
-            Figure s = new Square(10, 30);
-            Console.WriteLine(s.GetArea());
+            var m = new MyGenerics<double>();
+            WriteLine(m.Hoge(3.1417, 3.1419));
         }
     }
 }
