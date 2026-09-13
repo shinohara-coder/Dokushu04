@@ -1,46 +1,52 @@
-﻿using System.Collections;
+﻿using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
-    interface IHoge
+    internal class Person
     {
-        void Foo(string str);
-    }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
 
-    interface IHoge2
-    {
-        void Foo(string str2);
-    }
-
-    public class MyClass : IHoge, IHoge2
-    {
-        public void Foo(string str)
+        public Person(string firstName, string lastName)
         {
-            Console.WriteLine($"暗黙的={str}");
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
-        void IHoge.Foo(string str)
+        public override bool Equals(object? obj)
         {
-            Console.WriteLine($"IHoge.Foo={str}");
+            //同一性の判定
+            if (Object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            //型の判定
+            if (obj == null || this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            //同値性の判定
+            return obj is Person p &&
+                    this.FirstName == p.FirstName &&
+                    this.LastName == p.LastName;
         }
 
-        void IHoge2.Foo(string str)
+        public override int GetHashCode()
         {
-            Console.WriteLine($"IHoge2.Foo={str}");
+            return this.FirstName.GetHashCode() ^ this.LastName.GetHashCode();
         }
     }
     internal class LambdaCapture
     {
         static void Main(string[] args)
         {
-            var mc = new MyClass();
-            mc.Foo("い");
-
-            var ih = (IHoge)mc;
-            ih.Foo("ろ");
-
-            var ih2 = (IHoge2)mc;
-            ih2.Foo("は");
+            var p = new Person("一郎", "田中");
+            var p2 = new Person("一郎", "田中");
+            WriteLine(p.Equals(p2));
+            WriteLine(p.GetHashCode() == p2.GetHashCode());
+            //WriteLine(p2.GetHashCode());
         }
     }
 }
