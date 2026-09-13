@@ -44,12 +44,15 @@ namespace SelfCSharp.Chap09.Priority1
         static void Main(string[] args)
         {
             var p = new Person("一郎", "田中");
+            var q = new Person("一郎", "田中");
             WriteLine(p.GetHashCode());
+            WriteLine(q.GetHashCode());
             var d = new Dictionary<Person, int>();
             d.Add(p, 10);
-            p.LastName = "篠原";
+            p.LastName = "小平";
             WriteLine(p.GetHashCode());
-            WriteLine(d[p]);
+            //WriteLine(d[p]);
+            WriteLine(d[q]);
         }
     }
 }
