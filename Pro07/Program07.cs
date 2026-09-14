@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using static System.Console;
+﻿using static System.Console;
 
 namespace Pro07
 {    
