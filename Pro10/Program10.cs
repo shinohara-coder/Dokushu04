@@ -3,24 +3,19 @@ using static System.Console;
 
 namespace Pro10
 {
-    internal class MyAppException : Exception
+    internal class Coordinate
     {
-        public MyAppException()
+        public int X { get; set; }
+        public int Y { get; set; }
+        
+        public static bool operator true(Coordinate c)
         {
+            return c.X >= 0 && c.Y >= 0;
         }
 
-        public MyAppException(string message) : base(message)
+        public static bool operator false(Coordinate c)
         {
-        }
-
-        public MyAppException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
-
-        public MyAppException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
+            return c.X < 0 || c.Y < 0;
         }
     }
 
@@ -28,7 +23,15 @@ namespace Pro10
     {
         static void Main(string[] args)
         {
-            throw new MyAppException("例外発生！");
+            var c = new Coordinate() { X = 10, Y = -20 };
+            if (c)
+            {
+                WriteLine($"変数{nameof(c)}は真です。");
+            }
+            else
+            {
+                WriteLine($"変数{nameof(c)}は偽です。");
+            }
         }
     }
 }

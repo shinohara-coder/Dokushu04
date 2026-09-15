@@ -14,6 +14,10 @@ namespace Pro08
                 X = c.X + 1,
                 Y = c.Y + 1
             };
+
+            //c.X++;
+            //c.Y++;
+            //return c;
         }
 
         public override string ToString()
@@ -22,13 +26,14 @@ namespace Pro08
         }
     }
     internal class MySingleton
-    {   
+    {
         static void Main(string[] args)
         {
             var a = new Coordinate() { X = 10, Y = 20 };
             var b = ++a;
             WriteLine(a);
             WriteLine(b);
+            WriteLine(Object.ReferenceEquals(a, b));
 
             WriteLine("\n----------------\n");
 
@@ -36,6 +41,7 @@ namespace Pro08
             var n = m++;
             WriteLine(m);
             WriteLine(n);
+            WriteLine(Object.ReferenceEquals(m, n));
         }
     }
 }
