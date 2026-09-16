@@ -1,31 +1,23 @@
 ﻿using static System.Console;
 
-namespace Pro11
+namespace Pro12
 {    
-    internal enum Season
+    internal class Coordinate
     {
-        Spring,
-        Summer,
-        Autumn,
-        Winter
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public static explicit operator int(Coordinate c)
+        {
+            return c.X * c.X + c.Y * c.Y;
+        }
     }
     internal class LockBasicBad
     {
         static void Main(string[] args)
         {
-            //var str = (Season)Enum.Parse(typeof(Season), "Summer");
-            //var num = (Season)Enum.Parse(typeof(Season), "1");
-            //WriteLine($"{str} - {str.GetType()}");
-            //WriteLine($"{num} - {num.GetType()}");
-
-            //var success = Enum.TryParse("Winter", out Season s);
-            //WriteLine(success ? $"{s}" : "変換失敗");
-
-            var aryEnum = Enum.GetValues(typeof(Season));
-            foreach (var name in aryEnum)
-            {
-                WriteLine($"{(int)name} : {name}");
-            }
+            var c = new Coordinate() { X = 10, Y = 20 };
+            WriteLine((int)c);
         }
     }
 }

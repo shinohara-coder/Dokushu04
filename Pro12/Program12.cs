@@ -1,45 +1,33 @@
 ﻿using static System.Console;
 
-namespace Pro10
+namespace Pro12
 {
-    [Flags]
-    enum FontStyle
+    internal class Coordinate
     {
-        Bold=1,
-        Italic=2,
-        Underline=4,
-        NonBold = (Italic | Underline),
-        All=(Bold|Italic|Underline)
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public static explicit operator Coordinate(int num)
+        {
+            return new Coordinate
+            {
+                X = num,
+                Y = num
+            };
+        }
+
+        public override string ToString()
+        {
+            return $"({this.X}, {this.Y})";
+        }
     }
-    internal class AsuncBasic
+    internal class LockBasicBad
     {
         static void Main(string[] args)
         {
-            //var styles = FontStyle.Bold | FontStyle.Italic;
-            //var styles = FontStyle.All;
-            var styles = FontStyle.NonBold;
-            if(styles.HasFlag(FontStyle.Bold))
-            {
-                WriteLine("太字で指定されています。");
-            }
-
-            if (styles.HasFlag(FontStyle.Bold | FontStyle.Italic))
-            {
-                WriteLine("太字&斜体で指定されています。");
-            }
-
-            if (styles.HasFlag(FontStyle.Bold | FontStyle.Italic | FontStyle.Underline))
-            {
-                WriteLine("全てのフラグが立っています。");
-            }
-
-            if (styles.HasFlag(FontStyle.NonBold))
-            {
-                WriteLine("太字ではありません。");
-            }
-
-            WriteLine(styles);
+            var c = (Coordinate)10;
+            WriteLine(c);
         }
     }
-
 }
+
