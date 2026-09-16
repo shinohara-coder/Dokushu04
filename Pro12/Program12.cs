@@ -2,31 +2,22 @@
 
 namespace Pro12
 {
-    internal class Coordinate
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public static explicit operator Coordinate(int num)
-        {
-            return new Coordinate
-            {
-                X = num,
-                Y = num
-            };
-        }
-
-        public override string ToString()
-        {
-            return $"({this.X}, {this.Y})";
-        }
-    }
+    delegate void Process(string str);
     internal class LockBasicBad
     {
+        static void Run(string s)
+        {
+            WriteLine($"{s}走ります。");
+        }
         static void Main(string[] args)
         {
-            var c = (Coordinate)10;
-            WriteLine(c);
+            //var p = new Process(Run);
+            Process p = WriteLine;
+            var strArray = new string[] { "はあはあ", "ちょこちょこ", "すたすた" };
+            foreach (var s in strArray)
+            {
+                p(s);
+            }
         }
     }
 }

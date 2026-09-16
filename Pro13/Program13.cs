@@ -2,25 +2,28 @@
 
 namespace Pro13
 {
-    struct Coordinates
-    {
-        public double Latitude;
-        public double Longitude;
-
-        public override string ToString()
-        {
-            return $"緯度：{this.Latitude}／経度：{this.Longitude}";
-        }
-    }
+    internal delegate void OutputProcess(string str);
     
-    internal class AsyncReurn
-    {   
+    internal class DelegateUse
+    {
+        void ArrayWalk(string[] data, OutputProcess output)
+        {
+            foreach (var value in data)
+            {
+                output(value);
+            }
+        }
+
+        static void AddQuote(string data)
+        {
+            WriteLine($" [{data}] ");
+        }
+
         static void Main(string[] args)
         {
-            var c = new Coordinates();
-            c.Latitude = 36.41703;
-            c.Longitude = 139.81664;
-            WriteLine(c);
+            var data = new[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
+            var du = new DelegateUse();
+            du.ArrayWalk(data, AddQuote);
         }
     }
 }
