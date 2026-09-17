@@ -1,34 +1,42 @@
-﻿using static System.Console;
+﻿using System.Net.Http.Headers;
+using static System.Console;
 
 namespace Pro15
 {
-    readonly struct Coodinate
+    internal delegate void OutputProcess(string str);
+    internal class DelegeteMulti
     {
-        //public readonly double X;
-        //public readonly double Y;
-
-        public double X { get; }
-        public double Y { get; }
-
-        public Coodinate(double x, double y)
+        void ArrayWalk(string[] data, OutputProcess output)
         {
-            this.X = x;
-            this.Y = y;
+            foreach (var value in data)
+            {
+                output(value);
+            }
         }
 
-        public void SetValue(double x, double y)
+        static void AddQuote(string data)
         {
-            //this = new Coodinate(x, y);
+            WriteLine($"［{data}］");
         }
-    }
-    internal class DelegeteUse
-    {
+
+        static void Front4(string data)
+        {
+            WriteLine(data.Substring(0, 4));
+        }
+
         static void Main(string[] args)
         {
-            var c = new Coodinate(10, 20);
-            c.SetValue(1, 2);
-            //c.X = 10;
-            WriteLine($"X:{c.X} Y:{c.Y}");
+            var data = new[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
+            var dm = new DelegeteMulti();
+            OutputProcess? proc = AddQuote;
+            proc += Front4;
+            dm.ArrayWalk(data, proc!);
+
+            WriteLine("---------------------");
+
+            //proc -= Front4;
+            proc -= AddQuote;
+            dm.ArrayWalk(data, proc!);
         }
     }
 }

@@ -2,29 +2,35 @@
 
 namespace Pro14
 {
-    struct Coordinates
-    {
-        public double Latitude;
-        public double Longitude;
+    internal delegate void OutputProcess(string str);
 
-        public Coordinates(double latitude, double longtitude)
+    internal class DelegeteUseCounter
+    {
+        void ArrayWalk(string[] data, OutputProcess output)
         {
-            this.Latitude = latitude;
-            //this.Longitude = longtitude;
+            foreach (var value in data)
+            {
+                output(value);
+            }
         }
 
-        public override string ToString()
+        static void Main(string[] args)
         {
-            return $"緯度：{this.Latitude}／経度：{this.Longitude}";
+            var data = new[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
+            var du = new DelegeteUseCounter();
+            var c = new Counter();
+            du.ArrayWalk(data, c.AddLength);
+            WriteLine(c.Result);
         }
     }
-    
-    internal class DelegeteNoUse
+
+    internal class Counter
     {
-       static void Main(string[] args)
+        public int Result { get; private set; }
+        
+        public void AddLength(string value)
         {
-            var c = new Coordinates(35.681167, 139.767052);
-            WriteLine(c);
+            Result += value.Length;
         }
     }
 }
