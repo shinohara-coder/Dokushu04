@@ -2,30 +2,33 @@
 
 namespace Pro16
 {
-    internal struct MutableValue
-    {
-        public string Name { get; set; }
+    internal delegate string OutputProcess(string str);
 
-        public MutableValue()
+    internal class DelegeteMultiResult
+    {
+        void ArrayWalk(string[] data, OutputProcess output)
         {
-            this.Name = "名無権兵衛";
+            foreach (var value in data)
+            {
+                WriteLine(output(value));
+            }
+        }
+        static string AddQuote(string data)
+        {
+            return $"［{data}］";
         }
 
-        public void Update(string name)
+        static string Front4(string data)
         {
-            this.Name = name;
-            WriteLine("Update method is finished!!");
+            return data.Substring(0, 4);
         }
-    }
-
-    internal class DelegeteUse
-    {
-        static readonly MutableValue mv = new();
         static void Main(string[] args)
         {
-            //mv.Name = "佐藤リオ";
-            mv.Update("松本大洋");
-            WriteLine(mv.Name);
+            var data = new string[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
+            var dr = new DelegeteMultiResult();
+            OutputProcess proc = AddQuote;
+            proc += Front4;
+            dr.ArrayWalk(data, proc);
         }
     }
 }

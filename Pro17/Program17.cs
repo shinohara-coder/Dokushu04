@@ -2,19 +2,23 @@
 
 namespace Pro17
 {
-    public record Person(string FirstName, string LastName, int Age);
-
-    internal class PassArray
+    internal class DelegateAnonymous
     {
+        void ArrayWalk(string[] data, Func<string, string> output)
+        {
+            foreach (var value in data)
+            {
+                WriteLine(output(value));
+            }
+        }
         static void Main(string[] args)
         {
-            var p1 = new Person("一郎", "田中", 22);
-            var p2 = new Person("一郎", "田中", 22);
-            WriteLine(p1);
-            WriteLine(p1 == p2);
-            WriteLine(Object.Equals(p1, p2));
-            (string fname, string lname, int age) = p1;
-            WriteLine($"{lname} {fname} {age}歳");
+            var data = new string[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
+            var dm = new DelegateAnonymous();
+            dm.ArrayWalk(data, delegate (string d)
+            {
+                return $" [{d}] ";
+            });
         }
     }
 }

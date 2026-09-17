@@ -30,11 +30,21 @@ namespace Pro15
             var dm = new DelegeteMulti();
             OutputProcess? proc = AddQuote;
             proc += Front4;
-            dm.ArrayWalk(data, proc!);
+            dm.ArrayWalk(data, proc);
 
             WriteLine("---------------------");
 
             //proc -= Front4;
+            proc -= AddQuote;
+            dm.ArrayWalk(data, proc!);
+
+            WriteLine("---------------------");
+
+            proc += AddQuote;
+            dm.ArrayWalk(data, proc);
+
+            WriteLine("---------------------");
+
             proc -= AddQuote;
             dm.ArrayWalk(data, proc!);
         }
