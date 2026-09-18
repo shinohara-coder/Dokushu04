@@ -2,7 +2,7 @@
 
 namespace Pro18
 {
-    internal class DelegateLambda
+    internal class DelegateAnonymous
     {
         void ArrayWalk(string[] data, Func<string, string> output)
         {
@@ -14,11 +14,8 @@ namespace Pro18
         static void Main(string[] args)
         {
             var data = new string[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
-            var dl = new DelegateLambda();
-            dl.ArrayWalk(data, (string d) =>
-                {
-                    return $" [{d}] ";
-                });
+            var dm = new DelegateAnonymous();
+            dm.ArrayWalk(data, d => $" [{d}] ");
         }
     }
 }

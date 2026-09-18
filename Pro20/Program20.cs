@@ -2,24 +2,23 @@
 
 namespace Pro20
 {
-    public record Person(string FirstName, string LastName);
-    public record BusinessPerson(string FirstName, string LastName) : Person(FirstName, LastName);
-    public record Student(string FirstName, string LastName) : Person(FirstName, LastName);
-
     internal class PassRefArray
     {
+        static Action CreateAction(int init)
+        {
+            int value = init;
+            return () =>
+            {
+                value++;
+                WriteLine(value);
+            };
+        }
         static void Main(string[] args)
         {
-            Person p = new Person("一郎", "田中");
-            Person bp = new BusinessPerson("一郎", "田中");
-            BusinessPerson bp2 = new BusinessPerson("一郎", "田中");
-            Person st = new Student("一郎", "田中");
-
-            //WriteLine(bp);
-
-            WriteLine(bp == st);
-            WriteLine(p == bp);
-            WriteLine(bp == bp2);
+            var show = CreateAction(10);
+            show();
+            show();
+            show();
         }
     }
 }
