@@ -1,33 +1,13 @@
-﻿using Pro22.IntExtension;
-using System.Diagnostics.CodeAnalysis;
+﻿using static System.Console;
 
 namespace Pro22
 {
-    internal class MyClass
-    {
-        //class MyHelper
-        internal class MyHelper
-        {
-            public void Show()
-            {
-                Console.WriteLine("Nested Class is running!");
-            }
-        }
-
-        public void Run()
-        {
-            var helper = new MyHelper();
-            helper.Show();
-        }
-    }
     internal class IteratorBasic
     {
         static void Main(string[] args)
         {
-            var c = new MyClass();
-            c.Run();
-
-            var h = new MyClass.MyHelper();
-;        }
+            var list = new List<int> { 1, 3, 6, 9 };
+            list.ForEach(v => WriteLine(v * v));
+        }
     }
 }
