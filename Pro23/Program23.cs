@@ -1,20 +1,21 @@
-﻿internal class Util
-{
-    public static void Run()
-    {
-        Console.WriteLine("Util is running.");
-    }
-}
+﻿using Pro23.DateTimeExtension;
+using static System.Console;
 
-namespace SelfCSharp.Chap09.Util
-//namespace SelfCSharp.Chap09
+namespace Pro23
 {
     internal class NamespaceGlobal
     {
         static void Main(string[] args)
         {
-            //Util.Run();
-            global::Util.Run();
+            var bs = from b in AppTables.Books
+                     where b.Price < 3000
+                     //select b;
+                     select new { Title = b.Title, Price = b.Price };
+
+            foreach(var b in bs)
+            {
+                WriteLine(b);
+            }
         }
     }
 }
