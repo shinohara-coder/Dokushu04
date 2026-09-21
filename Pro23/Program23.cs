@@ -7,14 +7,22 @@ namespace Pro23
     {
         static void Main(string[] args)
         {
-            var bs = from b in AppTables.Books
-                     where b.Price < 3000
-                     //select b;
-                     select new { Title = b.Title, Price = b.Price };
+            //var bs = from b in AppTables.Books
+            //         where new int[] { 3, 6 }.Contains(b.Published.Month)
+            //         select b;
 
-            foreach(var b in bs)
+            var bs = AppTables.Books
+                    .GroupBy(b => b.Publisher,
+                            b => new { Title = b.Title, Price = b.Price, Published = b.Published.ToShortDateString() });
+
+            foreach (var b in bs)
             {
-                WriteLine(b);
+                WriteLine($" [{b.Key}] ");
+                foreach (var t in b)
+                {
+                    //WriteLine($"{t.Title} ({t.Price}円)");
+                    WriteLine(t);
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ namespace Pro23.DateTimeExtension
 
         public override string ToString()
         {
-            return $"{Title} ({Publisher}) {Price}円 {Publisher:d}刊行";
+            return $"{Title} ({Publisher}) {Price}円 {Published:d}刊行";
         }
     }
 
