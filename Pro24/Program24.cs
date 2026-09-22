@@ -6,14 +6,26 @@ namespace Pro24
     {
         static void Main(string[] args)
         {
-            var mc = new MyPartial
-            {
-                FirstName = "一郎",
-                LastName = "田中"
-            };
+            var t1 = new Thread(Count);
+            var t2 = new Thread(Count);
+            var t3 = new Thread(Count);
 
-            WriteLine(mc.Show());
-            WriteLine(mc.Greet());
+            t1.Start(1);
+            t2.Start(2);
+            t3.Start(3);
+
+            t1.Join();
+            t2.Join();
+            t3.Join();
+            WriteLine("All process finished!!");
+        }
+
+        static void Count(object? n)
+        {
+            for(int i=0;i<50;i++)
+            {
+                WriteLine($"Thread{n}: {i}");
+            }
         }
        
     }

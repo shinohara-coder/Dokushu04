@@ -8,21 +8,33 @@ namespace Pro23
         static void Main(string[] args)
         {
             //var bs = from b in AppTables.Books
-            //         where new int[] { 3, 6 }.Contains(b.Published.Month)
-            //         select b;
+            //         join r in AppTables.Reviews on b.Isbn equals r.Isbn
+            //         select new
+            //         {
+            //             Title = b.Title,
+            //             Reviewer = r.Name,
+            //             Body = r.Body
+            //         };
 
             var bs = AppTables.Books
-                    .GroupBy(b => b.Publisher,
-                            b => new { Title = b.Title, Price = b.Price, Published = b.Published.ToShortDateString() });
+                    .Join(
+                    AppTables.Reviews,
+                    b => b.Isbn,
+                    r => r.Isbn,
+                    (b, r) => new
+                    {
+                        Title = b.Title,
+                        Reviewer = r.Name,
+                        Body = r.Body
+                    }
+                );
+
 
             foreach (var b in bs)
             {
-                WriteLine($" [{b.Key}] ");
-                foreach (var t in b)
-                {
-                    //WriteLine($"{t.Title} ({t.Price}円)");
-                    WriteLine(t);
-                }
+                WriteLine($"「{b.Title}」({b.Reviewer})");
+                WriteLine($"{b.Body}");
+                WriteLine("\n--------------\n");
             }
         }
     }
