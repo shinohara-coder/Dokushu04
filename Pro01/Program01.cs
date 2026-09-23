@@ -1,20 +1,33 @@
-﻿namespace SelfCSharp.Chap09.Priority1
+﻿using static System.Console;
+
+namespace SelfCSharp.Chap09.Priority1
 {
-    internal partial class MyNewPartial
+    internal class LockBasicBad
     {
-        public partial string LongText()
-        {
-            return "特定のルールで自動生成された、冗長な文字列の例";
-        }
-    }
-    internal partial class MyNewPartial
-    {
-        public partial string LongText();
+        public int Count { get; set; } = 0;
 
         static void Main(string[] args)
         {
-            var np = new MyNewPartial();
-            Console.WriteLine(np.LongText());
+            const int TaskNum = 500000;
+            var ts = new Task[TaskNum];
+            var tb = new LockBasicBad();
+
+            for (var i = 0; i < TaskNum; i++)
+            {
+                ts[i] = Task.Run(() => tb.Increment());
+            }
+
+            for (var i = 0; i < TaskNum; i++)
+            {
+                ts[i].Wait();
+            }
+
+            WriteLine(tb.Count);
+        }
+
+        void Increment()
+        {
+            this.Count++;
         }
     }
 }
