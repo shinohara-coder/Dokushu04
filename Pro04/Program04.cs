@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
@@ -11,7 +10,7 @@ namespace SelfCSharp.Chap09.Priority1
             Task<TimeSpan> t = RunAsync();
             while (!t.IsCompleted)
             {
-                t.Wait(200);
+                t.Wait(100);
                 Write(".");
             }
             WriteLine(t.Result);

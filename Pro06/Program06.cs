@@ -3,42 +3,33 @@ using static System.Math;
 
 namespace Pro06
 {   
-    internal class Person
+    internal class AsyncStream
     {
-        public string FirstName { get; private set; }
-        public string LasstName { get; private set; }
-        public int Age { get; private set; }
-
-        public Person(string firstName, string lastName, int age)
+        static async Task Main(string[] args)
         {
-            this.FirstName = firstName;
-            this.LasstName = lastName;
-            this.Age = age;
+            var results = fetchAsync();
+            await foreach(var result in results)
+            {
+                WriteLine(result.Substring(0, 500));
+                WriteLine("\n--------------------------------------------------------------------------------\n");
+            }
         }
 
-        public void Deconstruct(out string firstName, out string lastName)
+        private static async IAsyncEnumerable<string> fetchAsync()
         {
-            firstName = this.FirstName;
-            lastName = this.LasstName;
-        }
+            var list = new[]
+            {
+                "https://www.berry.co.jp/",
+                "https://wings.msn.to/",
+                "https://www.fromsoftware.jp/jp/"
+            };
 
-        public void Deconstruct(out string firstName, out string lastName, out int age)
-        {
-            firstName = this.FirstName;
-            lastName = this.LasstName;
-            age = this.Age;
-        }
-    }
-    internal class Practice4
-    {
-        static void Main(string[] args)
-        {
-            var p = new Person("一郎", "田中", 25);
-            var (fn, ln, age) = p;
-            WriteLine($"名：{fn}　姓：{ln} 年齢：{age}");
-            var p2 = new Person("太郎", "山田", 35);
-            var (fn2, ln2) = p2;
-            WriteLine($"名：{fn2}　姓：{ln2}");
+            var client = new HttpClient();
+            foreach(var url in list)
+            {
+                var result = await client.GetStringAsync(url);
+                yield return result;
+            }
         }
     }   
 }
