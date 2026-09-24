@@ -7,7 +7,7 @@ namespace Pro07
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";
 
-        [Obsolete("代替としてToStringメソッドを利用してください。")]
+        [method:Obsolete("代替としてToStringメソッドを利用してください。")]
         public string Show()
         {
             return $"名前は{this.LastName}{this.FirstName}です。";
