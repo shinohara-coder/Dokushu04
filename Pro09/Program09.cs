@@ -13,11 +13,11 @@ namespace Pro08
             [CallerArgumentExpression("msg")] string arg = ""
             )
         {
-            WriteLine($"From: {file}/{member} {line}行目 Args: {arg}");
+            WriteLine($"From: {file}\n{member} \n{line}行目 \nArgs: {arg}");
         }
         static void Main(string[] args)
         {
-
+            ShowCaller("TEST", "file_00", "member_00", 100, "arg00");
         }
     }
 }
