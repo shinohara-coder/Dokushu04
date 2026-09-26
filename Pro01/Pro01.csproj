@@ -11,4 +11,8 @@
     <Compile Remove="NamespacePriority.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="IronPython" Version="3.4.2" />
+  </ItemGroup>
+
 </Project>

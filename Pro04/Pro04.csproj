@@ -15,4 +15,8 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="IronPython" Version="3.4.2" />
+  </ItemGroup>
+
 </Project>
