@@ -1,23 +1,16 @@
-﻿using static System.Console;
+﻿using IronPython.Hosting;
+using static System.Console;
 
 namespace Pro12
 {    
-    internal class Coordinate
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public static explicit operator int(Coordinate c)
-        {
-            return c.X * c.X + c.Y * c.Y;
-        }
-    }
     internal class LockBasicBad
     {
         static void Main(string[] args)
         {
-            var c = new Coordinate() { X = 10, Y = 20 };
-            WriteLine((int)c);
+            var py = Python.CreateRuntime();
+            dynamic script = py.UseFile(@"C:\Users\hirok\source\repos\Dokushu04\Pro11\myClass.py");
+            dynamic clazz = script.MyClass();
+            WriteLine(clazz.greet("田中"));
         }
     }
 }
