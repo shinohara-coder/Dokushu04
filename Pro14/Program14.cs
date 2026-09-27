@@ -1,36 +1,33 @@
-﻿using static System.Console;
+﻿using System.Diagnostics;
+using System.Text;
+using static System.Console;
 
 namespace Pro14
 {
-    internal delegate void OutputProcess(string str);
-
     internal class DelegeteUseCounter
     {
-        void ArrayWalk(string[] data, OutputProcess output)
-        {
-            foreach (var value in data)
-            {
-                output(value);
-            }
-        }
-
         static void Main(string[] args)
         {
-            var data = new[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
-            var du = new DelegeteUseCounter();
-            var c = new Counter();
-            du.ArrayWalk(data, c.AddLength);
-            WriteLine(c.Result);
-        }
-    }
+            const long LIMIT = 5000000000;
+            //var sw1 = Stopwatch.StartNew();
 
-    internal class Counter
-    {
-        public int Result { get; private set; }
-        
-        public void AddLength(string value)
-        {
-            Result += value.Length;
+            //var result = "";
+            //for (int i =0;i<LIMIT;i++)
+            //{
+            //    result += "いろは";
+            //}
+            //sw1.Stop();
+
+            var sw2 = Stopwatch.StartNew();
+            var builder = new StringBuilder();
+            for (long i = 0; i < LIMIT; i++)
+            {
+                builder.Append("いろは");
+            }
+            sw2.Stop();
+
+            //WriteLine($"経過時間1: {sw1.ElapsedMilliseconds} ms");
+            WriteLine($"経過時間2: {sw2.ElapsedMilliseconds} ms");
         }
     }
 }
