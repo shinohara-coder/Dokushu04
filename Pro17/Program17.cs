@@ -1,24 +1,37 @@
-﻿using static System.Console;
+﻿using System.Runtime.InteropServices;
+using static System.Console;
 
 namespace Pro17
 {
     internal class DelegateAnonymous
     {
-        void ArrayWalk(string[] data, Func<string, string> output)
+        internal struct MyStruct()
         {
-            foreach (var value in data)
+            public string FirstName { get; set; } = "";
+            public string LastName { get; set; } = "";
+
+            public int Age { get; set; } = 0;
+
+            public override string ToString()
             {
-                WriteLine(output(value));
+                return $"{this.LastName}{this.FirstName}";
             }
         }
         static void Main(string[] args)
         {
-            var data = new string[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
-            var dm = new DelegateAnonymous();
-            dm.ArrayWalk(data, delegate (string d)
+            //int i = int.MinValue;
+            //WriteLine($"{Convert.ToString(i, 2)}");
+            //WriteLine($"{Convert.ToString(i >> 5, 2)}");
+
+            //uint m = (uint)i;
+            //WriteLine($"{Convert.ToString(m, 2)}");
+            //WriteLine($"{Convert.ToString(m >> 5, 2),32}");
+
+            WriteLine(sizeof(decimal));
+            unsafe
             {
-                return $" [{d}] ";
-            });
+                WriteLine(sizeof(MyStruct));
+            }
         }
     }
 }

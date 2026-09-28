@@ -2,20 +2,19 @@
 
 namespace Pro18
 {
-    internal class DelegateAnonymous
+    internal class NameOfNull
     {
-        void ArrayWalk(string[] data, Func<string, string> output)
+        public void Hoge(string? sss)
         {
-            foreach (var value in data)
+            if (sss == null)
             {
-                WriteLine(output(value));
+                throw new ArgumentNullException(nameof(sss));
             }
         }
         static void Main(string[] args)
         {
-            var data = new string[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
-            var dm = new DelegateAnonymous();
-            dm.ArrayWalk(data, d => $" [{d}] ");
+            var mc = new NameOfNull();
+            mc.Hoge(null);
         }
     }
 }
