@@ -6,12 +6,10 @@ namespace Pro16
     {
         static void Main(string[] args)
         {
-            string? value = null;
-            if (value == null)
-            {
-                value = default;
-            }
-            WriteLine(value);
+            string? value = "こんにちは";
+            WriteLine(value == null ? "規定値" : value);
+            value = null;
+            WriteLine(value ?? "規定値");
         }
     }
 }
