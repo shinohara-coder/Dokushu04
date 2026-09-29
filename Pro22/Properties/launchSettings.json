@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Pro22": {
+      "commandName": "Project",
+      "commandLineArgs": "太郎 次郎 三郎 シロー"
+    }
+  }
+}
