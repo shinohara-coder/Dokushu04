@@ -6,9 +6,27 @@ namespace Pro19
     {
         static void Main(string[] args)
         {
-            var name = "大友克洋";
-            var show = () => WriteLine(name);
-            show();
+            //object obj = 123;
+            object obj = "123456789";
+            //object obj = new string[] { };
+            switch (obj)
+            {
+                case int i when i >= 15:
+                    WriteLine("15以上の数値です。");
+                    break;
+                case int i:
+                    WriteLine("数値です。");
+                    break;
+                case string str when str.Length < 10:
+                    WriteLine("10文字未満の文字列です。");
+                    break;
+                case string str:
+                    WriteLine("文字列です。");
+                    break;
+                default:
+                    WriteLine("意図しない値です。");
+                    break;
+            }
         }
     }
 
