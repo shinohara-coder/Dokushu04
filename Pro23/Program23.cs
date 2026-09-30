@@ -1,5 +1,4 @@
-﻿using Pro23.DateTimeExtension;
-using static System.Console;
+﻿using static System.Console;
 
 namespace Pro23
 {
@@ -7,34 +6,25 @@ namespace Pro23
     {
         static void Main(string[] args)
         {
-            //var bs = from b in AppTables.Books
-            //         join r in AppTables.Reviews on b.Isbn equals r.Isbn
-            //         select new
-            //         {
-            //             Title = b.Title,
-            //             Reviewer = r.Name,
-            //             Body = r.Body
-            //         };
+            var rank = "乙";
 
-            var bs = AppTables.Books
-                    .Join(
-                    AppTables.Reviews,
-                    b => b.Isbn,
-                    r => r.Isbn,
-                    (b, r) => new
-                    {
-                        Title = b.Title,
-                        Reviewer = r.Name,
-                        Body = r.Body
-                    }
-                );
-
-
-            foreach (var b in bs)
+            switch (rank)
             {
-                WriteLine($"「{b.Title}」({b.Reviewer})");
-                WriteLine($"{b.Body}");
-                WriteLine("\n--------------\n");
+                case "甲":
+                    WriteLine("大変良いです。");
+                    goto case "丙";
+                case "乙":
+                    WriteLine("良いです。");
+                    goto case "丙";
+                case "丙":
+                    WriteLine("合格です。");
+                    break;
+                case "丁":
+                    WriteLine("がんばりましょう。");
+                    break;
+                default:
+                    WriteLine("？？？");
+                    break;
             }
         }
     }
