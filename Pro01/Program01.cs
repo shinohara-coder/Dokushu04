@@ -1,33 +1,25 @@
-﻿using static System.Console;
+﻿using System.Globalization;
+using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
     internal class LockBasicBad
     {
-        public int Count { get; set; } = 0;
-
         static void Main(string[] args)
         {
-            const int TaskNum = 500000;
-            var ts = new Task[TaskNum];
-            var tb = new LockBasicBad();
+            var full = "ＷＩＮＧＳ";
+            var half = "WINGS";
 
-            for (var i = 0; i < TaskNum; i++)
-            {
-                ts[i] = Task.Run(() => tb.Increment());
-            }
+            var ci = CultureInfo.CurrentCulture.CompareInfo;
+            WriteLine(ci.Compare(full, half, CompareOptions.Ordinal));
+            WriteLine(ci.Compare(full, half, CompareOptions.IgnoreWidth));
 
-            for (var i = 0; i < TaskNum; i++)
-            {
-                ts[i].Wait();
-            }
+            WriteLine("-------------------------");
 
-            WriteLine(tb.Count);
-        }
-
-        void Increment()
-        {
-            this.Count++;
+            var hiragana = "ぷろじぇくと";
+            var katakana = "プロジェクト";
+            WriteLine(ci.Compare(hiragana, katakana, CompareOptions.Ordinal));
+            WriteLine(ci.Compare(hiragana, katakana, CompareOptions.IgnoreKanaType));
         }
     }
 }

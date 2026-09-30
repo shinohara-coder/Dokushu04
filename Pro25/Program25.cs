@@ -1,33 +1,23 @@
-﻿using static System.Console;
+﻿using System.Globalization;
+using static System.Console;
 
 
 namespace Pro25
 {
     internal partial class MyPartialMethod
-    {        
+    {
         static void Main(string[] args)
         {
-            Task t1 = Task.Run(() => Count(1));
-            Task t2 = Task.Run(() => Count(2));
-            Task t3 = Task.Run(() => Count(3));
+            //var str = "叱る";
+            //var strInfo = new StringInfo(str);
+            //WriteLine($"文字列\"{str}\"の長さは{strInfo.LengthInTextElements}");
 
-            //for (int i = 0; i < 1000; i++)
-            //{
-            //    WriteLine($"途中の処理：{i}");
-            //}
+            var str1 = "wings";
+            var str2 = "WINGS";
 
-            //Task.WaitAny(t1, t2, t3);
-            Task.WaitAll(t1, t2, t3);
-
-            WriteLine("All tasks finished!!");
-        }
-
-        static void Count(int n)
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                WriteLine($"Task{n}: {i}");
-            }
+            WriteLine(str1.Equals(str2, StringComparison.OrdinalIgnoreCase));
+            WriteLine(string.Compare(str1, str2));
+            WriteLine(string.Compare(str1, str2, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
