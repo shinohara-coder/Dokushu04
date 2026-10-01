@@ -4,33 +4,19 @@ namespace SelfCSharp.Chap02
 {
     internal class LockBasicBad
     {
-        private object lockobj = new object();
-        public int Count { get; set; } = 0;
-
         static void Main(string[] args)
         {
-            const int TaskNum = 500000;
-            var ts = new Task[TaskNum];
-            var tb = new LockBasicBad();
+            //var str = "WINGS2号";
+            //WriteLine(str.Any(ch => Char.IsDigit(ch)));
 
-            for (var i = 0; i < TaskNum; i++)
+            //var path = @"C:\Learning_Programming\Oracle_study\Docker_Oracle.sql";
+            //WriteLine(path.Substring(path.LastIndexOf(".") + 1));
+
+            var str4 = "うめ,もも,さくら,あんず";
+            var result4 = str4.Split(',', 2);
+            foreach(var s in result4)
             {
-                ts[i] = Task.Run(() => tb.Increment());
-            }
-
-            for (var i = 0; i < TaskNum; i++)
-            {
-                ts[i].Wait();
-            }
-
-            WriteLine(tb.Count);
-        }
-
-        void Increment()
-        {
-            lock(lockobj)
-            {
-                this.Count++;
+                WriteLine(s);
             }
         }
     }
