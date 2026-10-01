@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using System.Globalization;
+using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
@@ -6,26 +7,23 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            Task t = RunAsync();
-            //WriteLine("...他の処理...");
-            for (var i = 0; i < 50; i++)
-            {
-                WriteLine($"同期処理: {i}");
-            }
-            //t.Wait();
-        }
+            //WriteLine(string.Format("{0:d8}", 12345));
+            //WriteLine(string.Format("{0:e7}", 12345));
+            //WriteLine(string.Format("{0:E7}", 12345));
+            //WriteLine(string.Format(new CultureInfo("da-DK"), "{0:C}", 12345));
+            //WriteLine(string.Format("{0:0,000.00000}", 1234.56));
+            //WriteLine(string.Format("{0:#,###.####}", 1234.56789));
+            //WriteLine(string.Format("{0,100:0,000.00000000}", 1234.56789));
+            //WriteLine(string.Format("日付：{0:F}", DateTime.Now));
+            //var price = 9980;
+            //WriteLine($"{price:c}");
 
-        static async Task RunAsync()
-        {
-            await Task.Run(() => Count(1));
-            WriteLine("処理が終了しました。");
-        }
-
-        static void Count(int n)
-        {
-            for (int i = 0; i < 5000; i++)
+            WriteLine("プログラミング".Substring(4,3));
+            var str = "鈴木\t太郎\t男\t50歳\t広島県";
+            var strArray = str.Split('\t');
+            foreach(var s in strArray)
             {
-                WriteLine($"Task{n}: {i}");
+                WriteLine(s);
             }
         }
     }
