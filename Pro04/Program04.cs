@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
@@ -7,29 +7,13 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            Task<TimeSpan> t = RunAsync();
-            while (!t.IsCompleted)
+            var tel = new[] { "080-0000-0000", "084-000-0000", "184-0000" };
+            //var rgx = new Regex(@"\d{2,4}-\d{2,4}-\d{4}");
+            var rgx = new Regex("84-");
+            foreach (var t in tel)
             {
-                t.Wait(100);
-                Write(".");
+                WriteLine(rgx.IsMatch(t) ? t : "アンマッチ");
             }
-            WriteLine(t.Result);
-        }
-
-        static async Task<TimeSpan> RunAsync()
-        {
-            var watch = Stopwatch.StartNew();
-            await Task.Run(() =>
-            {
-                var result = "";
-                for (int i = 0; i < 100000; i++)
-                {
-                    result += "いろは";
-                }
-            });
-
-            watch.Stop();
-            return watch.Elapsed;
         }
     }
 }
