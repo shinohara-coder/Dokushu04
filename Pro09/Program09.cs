@@ -1,23 +1,23 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace Pro08
 {
     internal class MySingleton
     {
-        public static void ShowCaller(
-            string msg,
-            [CallerFilePath] string file = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0,
-            [CallerArgumentExpression("msg")] string arg = ""
-            )
-        {
-            WriteLine($"From: {file}\n{member} \n{line}行目 \nArgs: {arg}");
-        }
         static void Main(string[] args)
         {
-            ShowCaller("TEST", "file_00", "member_00", 100, "arg00");
+            var str = "電話番号は、084-000-0000です。";
+            var rgx = new Regex(@"(?<area>\d{2,4})-(?<city>\d{2,4})-(?<local>\d{4})");
+            var match = rgx.Match(str);
+            if (match.Success)
+            {
+                var gp = match.Groups;
+                Console.WriteLine($"市外局番：{gp["area"]}");
+                Console.WriteLine($"市内局番：{gp["city"]}");
+                Console.WriteLine($"加入者番号：{gp["local"]}");
+            }
         }
     }
 }

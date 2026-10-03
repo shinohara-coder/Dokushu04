@@ -1,34 +1,27 @@
-﻿using static System.Console;
+﻿using System.Text.RegularExpressions;
+using static System.Console;
 using static System.Math;
 
 namespace Pro06
 {   
     internal class AsyncStream
     {
-        static async Task Main(string[] args)
+        static  void Main(string[] args)
         {
-            var results = fetchAsync();
-            await foreach(var result in results)
-            {
-                WriteLine(result.Substring(0, 500));
-                WriteLine("\n--------------------------------------------------------------------------------\n");
-            }
-        }
+            var str = "仕事用はwings@example.comです。プライベート用はYAMA@example.comです。";
+            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
+            //var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)");
+            var result = rgx.Matches(str);
 
-        private static async IAsyncEnumerable<string> fetchAsync()
-        {
-            var list = new[]
+            foreach(Match m in result)
             {
-                "https://www.berry.co.jp/",
-                "https://wings.msn.to/",
-                "https://www.fromsoftware.jp/jp/"
-            };
+                //WriteLine(m.Value);
+                foreach(Group g in m.Groups)
+                {
+                    WriteLine(g.Value);
+                }
 
-            var client = new HttpClient();
-            foreach(var url in list)
-            {
-                var result = await client.GetStringAsync(url);
-                yield return result;
+                WriteLine("----------------");
             }
         }
     }   

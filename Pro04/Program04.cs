@@ -7,12 +7,16 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var tel = new[] { "080-0000-0000", "084-000-0000", "184-0000" };
-            //var rgx = new Regex(@"\d{2,4}-\d{2,4}-\d{4}");
-            var rgx = new Regex("84-");
-            foreach (var t in tel)
+            var str = "自宅の電話番号は、084-000-0000です。携帯は、080-0000-0000です。";
+            var rgx = new Regex(@"(\d{2,4})-(\d{2,4})-(\d{4})");
+            var match = rgx.Match(str);
+            if(match.Success)
             {
-                WriteLine(rgx.IsMatch(t) ? t : "アンマッチ");
+                WriteLine($"位置:{match.Index} マッチ文字列:{match.Value}");
+                foreach(Group m in match.Groups)
+                {
+                    WriteLine(m.Value);
+                }
             }
         }
     }

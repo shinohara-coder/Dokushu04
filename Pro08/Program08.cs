@@ -1,21 +1,25 @@
 ﻿//#define DEBUG
 //#undef DEBUG
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace Pro08
 {
     internal class TryCatchOrder
     {
-        [Conditional("DEBUG")]
-        static void Message()
-        {
-            WriteLine("デバッグ時にだけ表示します。");
-        }
         static void Main(string[] args)
         {
-            Message();
-            WriteLine("終了しました。");
+            var tags = "<p><strong>WINGS</strong>サイト<a href='index.html'><img src='wings.jpg'></img></a></p>";
+            //var rgx = new Regex(@"<.+>");
+            var rgx = new Regex(@"<.+?>");
+
+            var result = rgx.Matches(tags);
+
+            foreach (Match m in result)
+            {
+                Console.WriteLine(m.Value);
+            }
         }
     }
 }

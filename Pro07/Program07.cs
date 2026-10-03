@@ -1,29 +1,30 @@
-﻿using static System.Console;
+﻿using System.Text.RegularExpressions;
+using static System.Console;
 
 namespace Pro07
 {
-    internal class Person
-    {
-        public string FirstName { get; set; } = "";
-        public string LastName { get; set; } = "";
-
-        [method:Obsolete("代替としてToStringメソッドを利用してください。")]
-        public string Show()
-        {
-            return $"名前は{this.LastName}{this.FirstName}です。";
-        }
-    }
-
     internal class AsyncBasic
     {
         static void Main(string[] args)
         {
-            Person p = new Person
+            var str = "自宅の電話番号は、084-000-0000です。携帯は、080-0000-0000です。";
+            var result = @"
+                (\d{2,4})  # 市外局番
+                -(\d{2,4}) # 市内局番
+                -(\d{4})   # 加入者番号
+                ";
+
+            //var rgx = new Regex(result, RegexOptions.IgnorePatternWhitespace | RegexOptions.RightToLeft);
+            var rgx = new Regex(result, RegexOptions.RightToLeft);
+            var match = rgx.Match(str);
+            if (match.Success)
             {
-                FirstName = "一郎",
-                LastName = "田中"
-            };
-            WriteLine(p.Show());
+                Console.WriteLine($"位置:{match.Index} マッチ文字列：{match.Value}");
+                foreach (Group m in match.Groups)
+                {
+                    Console.WriteLine(m.Value);
+                }
+            }
         }
     }
 }
