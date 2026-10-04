@@ -1,20 +1,16 @@
-﻿using static System.Console;
+﻿using System.Text.RegularExpressions;
+using static System.Console;
 
 namespace Pro18
 {
     internal class NameOfNull
     {
-        public void Hoge(string? sss)
-        {
-            if (sss == null)
-            {
-                throw new ArgumentNullException(nameof(sss));
-            }
-        }
         static void Main(string[] args)
         {
-            var mc = new NameOfNull();
-            mc.Hoge(null);
+            var str = "にわに3わうらにわに51わにわとりがいる";
+            var rgx = new Regex(@"\d{1,}わ");
+            var result = rgx.Split(str);
+            WriteLine(string.Join("", result));
         }
     }
 }

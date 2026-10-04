@@ -1,37 +1,24 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace Pro17
 {
     internal class DelegateAnonymous
     {
-        internal struct MyStruct()
-        {
-            public string FirstName { get; set; } = "";
-            public string LastName { get; set; } = "";
-
-            public int Age { get; set; } = 0;
-
-            public override string ToString()
-            {
-                return $"{this.LastName}{this.FirstName}";
-            }
-        }
         static void Main(string[] args)
         {
-            //int i = int.MinValue;
-            //WriteLine($"{Convert.ToString(i, 2)}");
-            //WriteLine($"{Convert.ToString(i >> 5, 2)}");
-
-            //uint m = (uint)i;
-            //WriteLine($"{Convert.ToString(m, 2)}");
-            //WriteLine($"{Convert.ToString(m >> 5, 2),32}");
-
-            WriteLine(sizeof(decimal));
-            unsafe
+            var str = "メールアドレスはwings@example.comです。";
+            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)");
+            var match = rgx.Match(str);
+            if(match.Success)
             {
-                WriteLine(sizeof(MyStruct));
+                foreach(Group sub in match.Groups)
+                {
+                    WriteLine(sub.Value);
+                }
             }
+
+            WriteLine(rgx.Replace(str, m => m.Value.ToUpper()));
         }
     }
 }
