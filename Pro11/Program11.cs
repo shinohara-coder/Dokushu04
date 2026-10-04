@@ -1,4 +1,5 @@
 ﻿using IronPython.Hosting;
+using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace Pro12
@@ -7,10 +8,20 @@ namespace Pro12
     {
         static void Main(string[] args)
         {
-            var py = Python.CreateRuntime();
-            dynamic script = py.UseFile(@"C:\Users\hirok\source\repos\Dokushu04\Pro11\myClass.py");
-            dynamic clazz = script.MyClass();
-            WriteLine(clazz.greet("田中"));
+            var msg = "仕事用はwings@example.comです。プライベート用はYAMA@example.comです。";
+            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(?:\.[a-z0-9-]+)*)",
+                RegexOptions.IgnoreCase);
+            //var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(?:\.[a-z0-9-]+)*)",
+            //    RegexOptions.IgnoreCase);
+            var result = rgx.Matches(msg);
+            foreach(Match m in result)
+            {
+                foreach(Group sub in m.Groups)
+                {
+                    WriteLine(sub.Value);
+                }
+                WriteLine("------------------------------");
+            }
         }
     }
 }

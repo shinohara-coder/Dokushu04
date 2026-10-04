@@ -1,41 +1,35 @@
-﻿using System.Threading.Tasks.Dataflow;
+﻿using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace Pro13
 {
     internal class DelegateUse
     {
+        static void ShowMatch(string msg, Regex reg)
+        {
+            foreach (Match result in reg.Matches(msg))
+            {
+                WriteLine(result.Value);
+            }
+            WriteLine("------------------------------");
+        }
         static void Main(string[] args)
         {
-            //var multi = new[,]
-            //{
-            //    {10,11,12 },
-            //    {20,21,22 },
-            //    {30,31,32 }
-            //};
+            var reg1 = new Regex("いろ(?=はに)");
+            var reg2 = new Regex("いろ(?!はに)");
+            var reg3 = new Regex("(?<=。)いろ");
+            var reg4 = new Regex("(?<!。)いろ");
+            var msg1 = "いろはにほへと";
+            var msg2 = "いろものですね。いろいろと";
 
-            //for (int i = 0;i<multi.GetLength(0);i++)
-            //{
-            //    for (int j=0; j<multi.GetLength(1);j++)
-            //    {
-            //        WriteLine($"multi[{i},{j}] = {multi[i, j]}");
-            //    }
-            //    WriteLine("\n");
-            //}
-
-            var jagged = new int[3][];
-            jagged[0] = new[] { 10, 11, 12, 13 };
-            jagged[1] = new[] { 20, 21 };
-            jagged[2] = new[] { 30, 31, 32 };
-
-            for (int i = 0; i < jagged.GetLength(0); i++)
-            {
-                for (int j = 0; j < jagged[i].GetLength(0); j++)
-                {
-                    WriteLine($"jagged[{i}][{j}] = {jagged[i][j]}");
-                }
-                WriteLine("\n");
-            }
+            //ShowMatch(msg1, reg1);
+            //ShowMatch(msg2, reg1);
+            //ShowMatch(msg1, reg2);
+            //ShowMatch(msg2, reg2);
+            //ShowMatch(msg1, reg3);
+            //ShowMatch(msg2, reg3);
+            ShowMatch(msg1, reg4);
+            ShowMatch(msg2, reg4);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace Pro15
@@ -7,15 +7,23 @@ namespace Pro15
     {
         static void Main(string[] args)
         {
-            var data1 = new[] { "い", "ろ", "は" };
-            var data2 = new[] { "い", "ろ", "は" };
-            WriteLine(data1.Equals(data2));
-            WriteLine(data1.SequenceEqual(data2));
+            var str = "サポートサイトはhttps://wings.msn.to/です。";
+            var rgx = new Regex(@"http(s)?://([\w-]+\.)+[\w-]+(/[a-z_0-9-./?%&=]*)?",
+                RegexOptions.IgnoreCase);
 
-            string? str = null;
-            str ??= "権兵衛";
-            //str = str ?? "山田";
-            WriteLine(str);
+            var match = rgx.Match(str);
+            if (match.Success)
+            {
+                foreach (Group sub in match.Groups)
+                {
+                    foreach (Capture capture in sub.Captures)
+                    {
+                        WriteLine(capture.Value);
+                    }
+                }
+            }
+
+            //WriteLine(rgx.Replace(str, "<a href='$2'>$2/a>"));
         }
     }
 }

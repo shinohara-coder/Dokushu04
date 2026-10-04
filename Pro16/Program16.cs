@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using System.Text.RegularExpressions;
+using static System.Console;
 
 namespace Pro16
 {
@@ -6,10 +7,9 @@ namespace Pro16
     {
         static void Main(string[] args)
         {
-            string? value = "こんにちは";
-            WriteLine(value == null ? "規定値" : value);
-            value = null;
-            WriteLine(value ?? "規定値");
+            var str = "仕事用はwings@example.comです。";
+            var rgx = new Regex(@"(?<localName>[a-z0-9.!#$%&'*+/=?^_{|}~-]+)@(?<domain>[a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
+            WriteLine(rgx.Replace(str, "${domain}の${localName}"));
         }
     }
 }
