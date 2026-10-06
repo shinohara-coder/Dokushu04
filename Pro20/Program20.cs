@@ -14,13 +14,19 @@ namespace Pro20
             //var span = new TimeSpan(100, 15, 30, 52);
             //WriteLine(dt.Add(span));
 
-            var dt1 = new DateTime(2022, 02, 15, 13, 17, 23,123);
-            var dt2 = new DateTime(2013, 08, 05, 05, 15, 10,456);
-            var sub = dt1.Subtract(dt2);
-            WriteLine(sub);
-            WriteLine(sub.ToString("c"));
-            WriteLine(sub.ToString("G"));
-            WriteLine(sub.ToString(@"d\.h\.m\:s"));
+            //var dt1 = new DateTime(2022, 02, 15, 13, 17, 23, 123);
+            //var dt2 = new DateTime(2013, 08, 05, 05, 15, 10, 456);
+            //var span = new TimeSpan(3, 15, 30, 45, 789);
+            //WriteLine(dt1 + span);
+            //WriteLine(dt1 - span);
+            //WriteLine(dt1 == dt2);
+            //WriteLine(dt1 >= dt2);
+
+            DateTime dt = default;
+            DateTime.TryParse("2022/02/15 13:17:23", out dt);
+            WriteLine($"{dt.Hour}時{dt.Minute}分{dt.Second}秒");
+
+            WriteLine(DateTime.Now.AddDays(15));
         }
     }
 }

@@ -8,10 +8,11 @@ namespace Pro21
     {
         static void Main(string[] args)
         {
-            int count = 0;
-            for (var i = 0.1f; i <= 10.0; i += 0.1f)
+            var filePath = @"C:\softcreate\独習C#\sample\SelfCSharp\data.log";
+
+            using(var reader=new StreamReader(filePath))
             {
-                WriteLine($"値：{i} {++count}回目");
+                WriteLine(reader.ReadToEnd());
             }
         }
     }
