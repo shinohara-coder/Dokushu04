@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using System.Globalization;
+using static System.Console;
 
 namespace Pro20
 {
@@ -6,17 +7,20 @@ namespace Pro20
     {
         static void Main(string[] args)
         {
-            //object obj = 123;
-            //object obj = "123456789";
-            object obj = new string[] { };
-            WriteLine(obj switch
-            {
-                int i when i >= 15 => "15以上の数値です。",
-                int i => "数値です。",
-                string str when str.Length < 10 => "10文字未満の文字列です。",
-                string str => "文字列です。",
-                _ => "意図しない値です。"
-            });
+            //var dt = new DateTime(2026, 10, 06, 21, 49, 40);
+            //var cul = new CultureInfo("ja-JP");
+            //cul.DateTimeFormat.Calendar = new JapaneseCalendar();
+            //WriteLine(dt.ToString("ggyy年MM月dd日 (dddd) HH:mm:ss", cul));
+            //var span = new TimeSpan(100, 15, 30, 52);
+            //WriteLine(dt.Add(span));
+
+            var dt1 = new DateTime(2022, 02, 15, 13, 17, 23,123);
+            var dt2 = new DateTime(2013, 08, 05, 05, 15, 10,456);
+            var sub = dt1.Subtract(dt2);
+            WriteLine(sub);
+            WriteLine(sub.ToString("c"));
+            WriteLine(sub.ToString("G"));
+            WriteLine(sub.ToString(@"d\.h\.m\:s"));
         }
     }
 }
