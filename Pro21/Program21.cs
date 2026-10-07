@@ -8,11 +8,15 @@ namespace Pro21
     {
         static void Main(string[] args)
         {
-            var filePath = @"C:\softcreate\独習C#\sample\SelfCSharp\data.log";
+            var filePath = @"C:\Learning_Programming\独習C#\sample\SelfCSharp\data.log";
 
-            using(var reader=new StreamReader(filePath))
+            using (var reader = new StreamReader(filePath))
             {
-                WriteLine(reader.ReadToEnd());
+                //WriteLine(reader.ReadToEnd());
+                while (!reader.EndOfStream)
+                {
+                    WriteLine(reader.ReadLine());
+                }
             }
         }
     }
