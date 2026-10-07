@@ -7,19 +7,22 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var full = "ＷＩＮＧＳ";
-            var half = "WINGS";
+            //WriteLine(Math.Round(1234.56, MidpointRounding.AwayFromZero));
+            //WriteLine(Math.Sign(100));
 
-            var ci = CultureInfo.CurrentCulture.CompareInfo;
-            WriteLine(ci.Compare(full, half, CompareOptions.Ordinal));
-            WriteLine(ci.Compare(full, half, CompareOptions.IgnoreWidth));
-
-            WriteLine("-------------------------");
-
-            var hiragana = "ぷろじぇくと";
-            var katakana = "プロジェクト";
-            WriteLine(ci.Compare(hiragana, katakana, CompareOptions.Ordinal));
-            WriteLine(ci.Compare(hiragana, katakana, CompareOptions.IgnoreKanaType));
+            var rn = new Random();
+            //WriteLine(rn.Next());
+            //WriteLine(rn.Next(100));
+            //WriteLine(rn.Next(100, 200));
+            //WriteLine(rn.NextInt64());
+            //WriteLine(rn.NextSingle());
+            //WriteLine(rn.NextDouble());
+            var data = new byte[8];
+            rn.NextBytes(data);
+            foreach(var b in data)
+            {
+                WriteLine(b);
+            }
         }
     }
 }

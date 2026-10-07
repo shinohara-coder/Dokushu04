@@ -1,5 +1,4 @@
-﻿#define DEBUG
-using static System.Console;
+﻿using static System.Console;
 
 namespace Pro24
 {
@@ -7,9 +6,19 @@ namespace Pro24
     {
         static void Main(string[] args)
         {
-#if DEBUG
-            WriteLine("デバッグ時にだけ表示します。");
-#endif
+            var filePath = @"C:\data\sample.txt";
+            
+            WriteLine(File.Exists(filePath));
+            WriteLine(File.GetLastAccessTime(filePath));
+            WriteLine(File.GetLastWriteTime(filePath));
+
+            File.Copy(filePath, @"C:\data\sample_copy.txt", true);
+
+            File.Move(@"C:\data\sample_copy.txt", @"C:\data\SelfCSharp\sample_copy.txt");
+
+            File.Move(@"C:\data\SelfCSharp\sample_copy.txt", @"C:\data\SelfCSharp\sample_renamed.txt");
+
+            File.Delete(@"C:\data\SelfCSharp\sample_renamed.txt");
         }
        
     }

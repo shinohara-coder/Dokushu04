@@ -8,16 +8,27 @@ namespace Pro25
     {
         static void Main(string[] args)
         {
-            //var str = "叱る";
-            //var strInfo = new StringInfo(str);
-            //WriteLine($"文字列\"{str}\"の長さは{strInfo.LengthInTextElements}");
+            var folderPath = @"C:\data\SelfCSharp";
+            WriteLine(Directory.Exists(folderPath));
+            WriteLine(Directory.GetParent(folderPath));
+            WriteLine(Directory.GetDirectoryRoot(folderPath));
+            WriteLine(Directory.GetCreationTime(folderPath));
+            WriteLine(Directory.GetLastAccessTime(folderPath));
+            WriteLine(Directory.GetLastWriteTime(folderPath));
 
-            var str1 = "wings";
-            var str2 = "WINGS";
+            var dirs = Directory.GetFiles(folderPath);
+            foreach (var d in dirs)
+            {
+                WriteLine(d);
+            }
 
-            WriteLine(str1.Equals(str2, StringComparison.OrdinalIgnoreCase));
-            WriteLine(string.Compare(str1, str2));
-            WriteLine(string.Compare(str1, str2, StringComparison.OrdinalIgnoreCase));
+            Directory.CreateDirectory(@"C:\data\smp");
+
+            Directory.Move(@"C:\data\smp", @"C:\data\test");
+
+            Directory.Move(@"C:\data\test", @"C:\data\SelfCSharp\test");
+
+            Directory.Delete(@"C:\data\SelfCSharp\test");
         }
     }
 }
