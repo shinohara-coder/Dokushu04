@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using System.Numerics;
+using static System.Console;
 
 namespace SelfCSharp.Chap02
 {
@@ -6,17 +7,27 @@ namespace SelfCSharp.Chap02
     {
         static void Main(string[] args)
         {
-            //var str = "WINGS2号";
-            //WriteLine(str.Any(ch => Char.IsDigit(ch)));
+            //var array1 = new[] { "dog", "cat", "mouse", "fox", "lion" };
+            //Array.Sort(array1);
+            //WriteLine(string.Join(" & ", array1));
+            //WriteLine(Array.BinarySearch(array1, "mouse"));
 
-            //var path = @"C:\Learning_Programming\Oracle_study\Docker_Oracle.sql";
-            //WriteLine(path.Substring(path.LastIndexOf(".") + 1));
+            //var array2 = new[] { "あ", "い", "う", "え", "お" };
+            //var array3 = new string[5];
 
-            var str4 = "うめ,もも,さくら,あんず";
-            var result4 = str4.Split(',', 2);
-            foreach(var s in result4)
+            //Array.Resize(ref array1, array1.Length + 3);
+            //WriteLine(string.Join(" & ", array1));
+
+            var multi1 = new string[,] {
+                { "ハ","ニ","ホ","へ","ト" }, 
+                { "ど","れ","み","ふぁ","そ" } 
+
+            };
+            var multi2 = new string[2, 3];
+            Array.Copy(multi1, 4, multi2, 0, 5);
+            foreach(var v in multi2)
             {
-                WriteLine(s);
+                WriteLine(v);
             }
         }
     }

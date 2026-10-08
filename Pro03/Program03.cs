@@ -7,24 +7,15 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            //WriteLine(string.Format("{0:d8}", 12345));
-            //WriteLine(string.Format("{0:e7}", 12345));
-            //WriteLine(string.Format("{0:E7}", 12345));
-            //WriteLine(string.Format(new CultureInfo("da-DK"), "{0:C}", 12345));
-            //WriteLine(string.Format("{0:0,000.00000}", 1234.56));
-            //WriteLine(string.Format("{0:#,###.####}", 1234.56789));
-            //WriteLine(string.Format("{0,100:0,000.00000000}", 1234.56789));
-            //WriteLine(string.Format("日付：{0:F}", DateTime.Now));
-            //var price = 9980;
-            //WriteLine($"{price:c}");
+            var list = new[] { 10, 20, 30, 40, 50, 60 };
 
-            WriteLine("プログラミング".Substring(4,3));
-            var str = "鈴木\t太郎\t男\t50歳\t広島県";
-            var strArray = str.Split('\t');
-            foreach(var s in strArray)
+            var sp = new Span<int>(list, 2, 3);
+            foreach(var v in sp)
             {
-                WriteLine(s);
+                WriteLine(v);
             }
+
+            sp[1] = 999;
         }
     }
 }
