@@ -7,15 +7,18 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            var list = new[] { 10, 20, 30, 40, 50, 60 };
+            //var list = new[] { 10, 20, 30, 40, 50, 60 };
 
-            var sp = new Span<int>(list, 2, 3);
-            foreach(var v in sp)
-            {
-                WriteLine(v);
-            }
+            //var sp = new Span<int>(list, 2, 3);
+            //foreach(var v in sp)
+            //{
+            //    WriteLine(v);
+            //}
 
-            sp[1] = 999;
+            //sp[1] = 999;
+
+            Span<int> list = stackalloc[] { 10, 20, 30, 40, 50 };
+            list[99] = 100;
         }
     }
 }
