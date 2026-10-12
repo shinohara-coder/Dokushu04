@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using IronPython.Runtime;
+using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace Pro07
@@ -7,24 +8,17 @@ namespace Pro07
     {
         static void Main(string[] args)
         {
-            var str = "自宅の電話番号は、084-000-0000です。携帯は、080-0000-0000です。";
-            var result = @"
-                (\d{2,4})  # 市外局番
-                -(\d{2,4}) # 市内局番
-                -(\d{4})   # 加入者番号
-                ";
+            var hs = new HashSet<int> { 1, 20, 30, 60, 10, 15 };
+            hs.Add(10);
+            hs.Add(5);
+            hs.Remove(60);
 
-            //var rgx = new Regex(result, RegexOptions.IgnorePatternWhitespace | RegexOptions.RightToLeft);
-            var rgx = new Regex(result, RegexOptions.RightToLeft);
-            var match = rgx.Match(str);
-            if (match.Success)
+            foreach (var v in hs)
             {
-                Console.WriteLine($"位置:{match.Index} マッチ文字列：{match.Value}");
-                foreach (Group m in match.Groups)
-                {
-                    Console.WriteLine(m.Value);
-                }
+                WriteLine(v);
             }
+
+            WriteLine(hs.Count);
         }
     }
 }

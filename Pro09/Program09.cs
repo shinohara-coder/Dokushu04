@@ -4,19 +4,31 @@ using static System.Console;
 
 namespace Pro08
 {
+    internal class StringLengthComparer : IComparer<string>
+    {
+        public int Compare(string? x, string? y)
+        {
+            return y.Length - x.Length;
+        }
+    }
+
+
     internal class MySingleton
     {
         static void Main(string[] args)
         {
-            var str = "電話番号は、084-000-0000です。";
-            var rgx = new Regex(@"(?<area>\d{2,4})-(?<city>\d{2,4})-(?<local>\d{4})");
-            var match = rgx.Match(str);
-            if (match.Success)
+            var d = new SortedDictionary<string, string>(new StringLengthComparer())
             {
-                var gp = match.Groups;
-                Console.WriteLine($"市外局番：{gp["area"]}");
-                Console.WriteLine($"市内局番：{gp["city"]}");
-                Console.WriteLine($"加入者番号：{gp["local"]}");
+                ["Rose"] = "バラ",
+                ["Sunflower"] = "ひまわり",
+                ["Morning Glory"] = "あさがお",
+                ["Cherry Blossoms"] = "サクラ",
+                ["Tulip"] = "チューリップ"
+            };
+
+            foreach (var key in d.Keys)
+            {
+                WriteLine($"{key} : {d[key]}");
             }
         }
     }

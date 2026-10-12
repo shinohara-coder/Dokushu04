@@ -8,21 +8,19 @@ namespace Pro06
     {
         static  void Main(string[] args)
         {
-            var str = "仕事用はwings@example.comです。プライベート用はYAMA@example.comです。";
-            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
-            //var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(\.[a-z0-9-]+)*)");
-            var result = rgx.Matches(str);
+            var s = new Stack<int>();
+            s.Push(10);
+            s.Push(15);
+            s.Push(30);
+            s.Push(60);
 
-            foreach(Match m in result)
-            {
-                //WriteLine(m.Value);
-                foreach(Group g in m.Groups)
-                {
-                    WriteLine(g.Value);
-                }
+            WriteLine(s.Count());
+            WriteLine(s.Contains(30));
+            WriteLine(s.Pop());
+            WriteLine(s.Peek());
+            WriteLine(s.Pop());
 
-                WriteLine("----------------");
-            }
+            WriteLine(String.Join(",", s.ToArray()));
         }
     }   
 }
