@@ -4,17 +4,33 @@ using static System.Console;
 
 namespace Pro10
 {
+    internal class StringLengthComparer : IComparer<string>
+    {
+        public int Compare(string? x, string? y)
+        {
+            return x.Length - y.Length;
+        }
+    }
+
     internal class MyAppExceptionClient
     {
         static void Main(string[] args)
         {
-            var str = "<p>サポートサイト<a href='https://www.wings.msn.to/'>https://www.wings.msn.to/</a></p>";
-            //var rgx = new Regex(@"<a href='(.+?)'>\1</a>");
-            var rgx = new Regex(@"<a href='(?<link>.?)'>\k<link>></a>");
-            var match = rgx.Match(str);
-            if(match.Success)
+            var list = new List<string>
             {
-                WriteLine(match.Value);
+                "ばら",
+                "ひまわり",
+                "あざみ",
+                "チューリップ",
+                "きく"
+            };
+
+            //list.Sort(new StringLengthComparer());
+            list.Sort((x, y) => y.Length - x.Length);
+
+            foreach (var s in list)
+            {
+                WriteLine(s);
             }
         }
     }
