@@ -1,27 +1,25 @@
-﻿using IronPython.Hosting;
-using System.Text.RegularExpressions;
+﻿using System.Runtime.InteropServices;
 using static System.Console;
 
 namespace Pro12
 {    
-    internal class LockBasicBad
+    
+    internal class ScopeBasic
     {
+        public string data = "フィールド";
+
+        public string Show()
+        {
+            string data = "ローカル";
+            //隠ぺいされたフィールドにアクセス
+            return this.data;
+        }
+
         static void Main(string[] args)
         {
-            var msg = "仕事用はwings@example.comです。プライベート用はYAMA@example.comです。";
-            var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(?:\.[a-z0-9-]+)*)",
-                RegexOptions.IgnoreCase);
-            //var rgx = new Regex(@"([a-z0-9.!#$%&'*+/=?^_{|}~-]+)@([a-z0-9-]+(?:\.[a-z0-9-]+)*)",
-            //    RegexOptions.IgnoreCase);
-            var result = rgx.Matches(msg);
-            foreach(Match m in result)
-            {
-                foreach(Group sub in m.Groups)
-                {
-                    WriteLine(sub.Value);
-                }
-                WriteLine("------------------------------");
-            }
+            var s = new ScopeBasic();
+            WriteLine(s.Show());
+            WriteLine(s.data);
         }
     }
 }
