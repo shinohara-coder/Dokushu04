@@ -3,13 +3,24 @@ using static System.Console;
 
 namespace Pro16
 {
-    internal class DelegeteMultiResult
+    internal class MySingleton
     {
+        private static MySingleton instance = new MySingleton();
+
+        private MySingleton() { }
+        public static MySingleton Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         static void Main(string[] args)
         {
-            var str = "仕事用はwings@example.comです。";
-            var rgx = new Regex(@"(?<localName>[a-z0-9.!#$%&'*+/=?^_{|}~-]+)@(?<domain>[a-z0-9-]+(\.[a-z0-9-]+)*)", RegexOptions.IgnoreCase);
-            WriteLine(rgx.Replace(str, "${domain}の${localName}"));
+            var ms1 = MySingleton.instance;
+            var ms2 = MySingleton.instance;
+            WriteLine(ms1 == ms2);
         }
     }
 }

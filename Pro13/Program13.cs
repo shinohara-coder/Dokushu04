@@ -3,33 +3,36 @@ using static System.Console;
 
 namespace Pro13
 {
+    internal class Person
+    {
+        private string _firstName;
+        private string _lastName;
+
+        //public Person() { }
+        public Person() : this("firstName", "lastName") { }
+        public Person(string firstName, string lastName)
+        {
+            _firstName = firstName;
+            _lastName = lastName;
+        }
+
+        //public Person():this("firstName","lastName") { }
+
+        public string Show()
+        {
+            return $"名前は{_lastName} {_firstName}です。";
+        }
+    }
+
     internal class DelegateUse
     {
-        static void ShowMatch(string msg, Regex reg)
-        {
-            foreach (Match result in reg.Matches(msg))
-            {
-                WriteLine(result.Value);
-            }
-            WriteLine("------------------------------");
-        }
         static void Main(string[] args)
         {
-            var reg1 = new Regex("いろ(?=はに)");
-            var reg2 = new Regex("いろ(?!はに)");
-            var reg3 = new Regex("(?<=。)いろ");
-            var reg4 = new Regex("(?<!。)いろ");
-            var msg1 = "いろはにほへと";
-            var msg2 = "いろものですね。いろいろと";
+            var p1 = new Person();
+            WriteLine(p1.Show());
 
-            //ShowMatch(msg1, reg1);
-            //ShowMatch(msg2, reg1);
-            //ShowMatch(msg1, reg2);
-            //ShowMatch(msg2, reg2);
-            //ShowMatch(msg1, reg3);
-            //ShowMatch(msg2, reg3);
-            ShowMatch(msg1, reg4);
-            ShowMatch(msg2, reg4);
+            var p2 = new Person("孝雄", "堀内");
+            WriteLine(p2.Show());
         }
     }
 }
