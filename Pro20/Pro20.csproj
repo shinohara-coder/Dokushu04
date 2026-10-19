@@ -11,8 +11,4 @@
     <PackageReference Include="IronPython" Version="3.4.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Pro22\Pro22.csproj" />
-  </ItemGroup>
-
 </Project>

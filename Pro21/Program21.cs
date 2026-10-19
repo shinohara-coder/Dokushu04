@@ -3,21 +3,26 @@ using System.Runtime.InteropServices;
 using static System.Console;
 
 namespace Pro21
-{
+{ 
     internal class LambdaMember
     {
+        int myfield = 0;
+        static int myfield2 = 0;
         static void Main(string[] args)
         {
-            var filePath = @"C:\Learning_Programming\独習C#\sample\SelfCSharp\data.log";
+            var mylocal = 1;
+            const int MY_CONST = 2;
 
-            using (var reader = new StreamReader(filePath))
+            static void Hoge()
             {
-                //WriteLine(reader.ReadToEnd());
-                while (!reader.EndOfStream)
-                {
-                    WriteLine(reader.ReadLine());
-                }
+                //WriteLine(myfield);
+                //WriteLine(mylocal);
+                WriteLine(myfield2);
+                WriteLine(MY_CONST);
+                WriteLine(nameof(mylocal));
+                WriteLine(nameof(myfield));
             }
+            Hoge();
         }
     }
 }

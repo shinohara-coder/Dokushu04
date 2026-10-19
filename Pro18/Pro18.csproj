@@ -11,4 +11,14 @@
     <PackageReference Include="IronPython" Version="3.4.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pro17\Pro17.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Pro17">
+      <HintPath>..\Pro17\bin\Debug\net10.0\Pro17.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
