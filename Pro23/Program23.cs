@@ -2,38 +2,24 @@
 
 namespace Pro23
 {
-    internal class NamespaceGlobal
+
+    internal class ArgsParams
     {
+        public int TotalProducts(int initial, params int[] values)
+        {
+            int result = initial;
+            foreach (var value in values)
+            {
+                result *= value;
+            }
+            return result;
+        }
         static void Main(string[] args)
         {
-            var dir = new DirectoryInfo(@"C:\data\SelfCSharp");
-            WriteLine(dir.Exists);
-            WriteLine(dir.Parent);
-            WriteLine(dir.Root);
-            WriteLine(dir.CreationTime);
-            WriteLine(dir.LastAccessTime);
-            WriteLine(dir.LastWriteTime);
-
-            var dirs = dir.GetFiles();
-            //var dirs = dir.GetDirectories("Chap*");
-            //var dirs = dir.GetDirectories("*", SearchOption.AllDirectories);
-            //var dirs = dir.GetFiles();
-
-            foreach (var d in dirs)
-            {
-                WriteLine(d.FullName);
-            }
-
-            var dir2 = new DirectoryInfo(@"C:\data\smp");
-            dir2.Create();
-
-            dir2.MoveTo(@"C:\data\test");
-
-            dir2.MoveTo(@"C:\data\SelfCSharp\test");
-
-            dir2.CreateSubdirectory("sub");
-
-            dir2.Delete(true);
+            var v = new ArgsParams();
+            WriteLine(v.TotalProducts(3, -9, -6));
+            WriteLine(v.TotalProducts(2, 8, 5, 6, 8, 9));
+            WriteLine(v.TotalProducts(5, new[] { 2, -15, 3 }));
         }
     }
 }
