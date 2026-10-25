@@ -4,31 +4,21 @@ using static System.Console;
 
 namespace Pro08
 {
-    internal class StringLengthComparer : IComparer<string>
+    internal class IteratorBasic
     {
-        public int Compare(string? x, string? y)
+        public IEnumerable<string> GetStrings()
         {
-            return y.Length - x.Length;
+            yield return "あいうえお";
+            yield return "かきくけこ";
+            yield return "さしすせそ";
         }
-    }
-
-
-    internal class MySingleton
-    {
         static void Main(string[] args)
         {
-            var d = new SortedDictionary<string, string>(new StringLengthComparer())
+            var ite = new IteratorBasic();
+            var itrObj = ite.GetStrings();
+            foreach(var str in itrObj)
             {
-                ["Rose"] = "バラ",
-                ["Sunflower"] = "ひまわり",
-                ["Morning Glory"] = "あさがお",
-                ["Cherry Blossoms"] = "サクラ",
-                ["Tulip"] = "チューリップ"
-            };
-
-            foreach (var key in d.Keys)
-            {
-                WriteLine($"{key} : {d[key]}");
+                WriteLine(str);
             }
         }
     }

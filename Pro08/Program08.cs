@@ -1,6 +1,4 @@
-﻿//#define DEBUG
-//#undef DEBUG
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text.RegularExpressions;
 using static System.Console;
 
@@ -10,39 +8,26 @@ namespace Pro08
     {
         static void Main(string[] args)
         {
-            var dic = new Dictionary<string, string>()
-            {
-                ["Rose"] = "バラ",
-                ["Sunflower"] = "ひまわり",
-                ["Morning Glory"] = "あさがお"
-            };
+            //(double x, double y) t1 = (10, 30);
+            //(double a, double b) t2 = (10, 30);
+            //(double x, (double y, double z)) t3 = (10, (20, 30));
 
-            WriteLine(dic.Count);
-            WriteLine(dic.ContainsKey("Rose"));
-            WriteLine(dic.ContainsValue("バラ"));
+            //WriteLine(t1 == (10, 30));
+            //WriteLine(t1 != (10, 30));
+            //WriteLine(t1 == t2);
+            //WriteLine(t3 == (10, (20, 30)));
+            ////Console.WriteLine(t1 == t3);
 
-            dic.TryGetValue("Rose", out var name);
-            WriteLine(name);
+            //WriteLine(t1.x == 10 && t1.y == 30);
+            //WriteLine(t1.x != 10 || t1.y != 30);
 
-            dic.Add("Tulip", "チューリップ");
-            dic["Sunflower"] = "向日葵";
+            //var t = (13, 108);
+            //WriteLine(t.Item1);
+            //WriteLine(t.Item2);
 
-            foreach (var key in dic.Keys)
-            {
-                WriteLine($"{key}：{dic[key]}");
-            }
-
-            foreach (var d in dic.Values)
-            {
-                WriteLine(d);
-            }
-
-            dic.Remove("Rose");
-
-            foreach (var m in dic)
-            {
-                WriteLine($"{m.Key}：{m.Value}");
-            }
+            var info = new { Title = "独習C#", Price = 1000 };
+            WriteLine(info.Title);
+            WriteLine(info.Price);
         }
     }
 }

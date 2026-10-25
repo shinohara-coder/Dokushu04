@@ -4,21 +4,21 @@ using static System.Console;
 
 namespace Pro07
 {
-    internal class AsyncBasic
+    internal class TupleBasic
     {
+        public (int max, int min) GetMaxMin(int x, int y)
+        {
+            return x >= y ? (x, y) : (y, x);
+        }
         static void Main(string[] args)
         {
-            var hs = new HashSet<int> { 1, 20, 30, 60, 10, 15 };
-            hs.Add(10);
-            hs.Add(5);
-            hs.Remove(60);
+            var a = new TupleBasic();
+            //var t = a.GetMaxMin(23, 45);
+            //WriteLine(t.max);
+            //WriteLine(t.min);
 
-            foreach (var v in hs)
-            {
-                WriteLine(v);
-            }
-
-            WriteLine(hs.Count);
+            var (resultMax, resultMin) = a.GetMaxMin(12, 45);
+            Write($"最大値：{resultMax} 最小値：{resultMin}");
         }
     }
 }

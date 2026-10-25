@@ -3,24 +3,27 @@ using static System.Console;
 using static System.Math;
 
 namespace Pro06
-{   
+{
     internal class AsyncStream
     {
-        static  void Main(string[] args)
+        static void Main(string[] args)
         {
-            var s = new Stack<int>();
-            s.Push(10);
-            s.Push(15);
-            s.Push(30);
-            s.Push(60);
+            var list = new[] { 1, 2, 3, 4, 5 };
+            //foreach(ref var value in list.AsSpan())
+            //{
+            //    value *= value;
+            //}
 
-            WriteLine(s.Count());
-            WriteLine(s.Contains(30));
-            WriteLine(s.Pop());
-            WriteLine(s.Peek());
-            WriteLine(s.Pop());
+            //foreach (var value in list)
+            //{
+            //    value *= value;
+            //}
 
-            WriteLine(String.Join(",", s.ToArray()));
+            for (int i = 0; i < 5; i++)
+            {
+                list[i] *= list[i];
+            }
+            WriteLine(string.Join(", ", list));
         }
-    }   
+    }
 }
