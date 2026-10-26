@@ -4,11 +4,40 @@ using static System.Console;
 
 namespace Pro10
 {
-    internal class StringLengthComparer : IComparer<string>
+    internal class PrimeNumber
     {
-        public int Compare(string? x, string? y)
+        public IEnumerable<int> GetPrimes(int max)
         {
-            return x.Length - y.Length;
+            bool IsPrime(int value)
+            {
+                var prime = true;
+                var mid = Math.Floor(Math.Sqrt(value));
+                for (var i = 2; i <= mid; i++)
+                {
+                    if (value % i == 0)
+                    {
+                        prime = false;
+                        break;
+                    }
+                }
+                return prime;
+            }
+
+            const int Min = 2;
+
+            if (max < Min)
+            {
+                WriteLine($"引数{nameof(max)}は2以上の値を指定してください。");
+                yield break;
+            }
+
+            for (var num = Min; num <= max; num++)
+            {
+                if (IsPrime(num))
+                {
+                    yield return num;
+                }
+            }
         }
     }
 
@@ -16,21 +45,11 @@ namespace Pro10
     {
         static void Main(string[] args)
         {
-            var list = new List<string>
+            var p = new PrimeNumber();
+            var primeNums = p.GetPrimes(1);
+            foreach (var value in primeNums)
             {
-                "ばら",
-                "ひまわり",
-                "あざみ",
-                "チューリップ",
-                "きく"
-            };
-
-            //list.Sort(new StringLengthComparer());
-            list.Sort((x, y) => y.Length - x.Length);
-
-            foreach (var s in list)
-            {
-                WriteLine(s);
+                WriteLine(value);
             }
         }
     }
