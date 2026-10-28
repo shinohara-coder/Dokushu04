@@ -3,24 +3,44 @@ using static System.Console;
 
 namespace Pro13
 {
-    internal class Person
+    internal class Triangle
     {
-        private string _firstName;
-        private string _lastName;
+        private double _width = 0;
+        private double _height = 0;
 
-        //public Person() { }
-        public Person() : this("firstName", "lastName") { }
-        public Person(string firstName, string lastName)
+        public Triangle() { WriteLine("Constroctor!!"); }
+
+        public double Width
         {
-            _firstName = firstName;
-            _lastName = lastName;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("正数で指定してください。");
+                }
+                this._width = value;
+            }
+
+            get { return this._width; }
         }
 
-        //public Person():this("firstName","lastName") { }
-
-        public string Show()
+        public double Height
         {
-            return $"名前は{_lastName} {_firstName}です。";
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("正数で指定してください。");
+                }
+                this._height = value;
+            }
+
+            get { return this._height; }
+        }
+
+        public double GetArea()
+        {
+            return Width * Height / 2;
         }
     }
 
@@ -28,11 +48,11 @@ namespace Pro13
     {
         static void Main(string[] args)
         {
-            var p1 = new Person();
-            WriteLine(p1.Show());
-
-            var p2 = new Person("孝雄", "堀内");
-            WriteLine(p2.Show());
+            var t = new Triangle();
+            t.Width = 15;
+            t.Height = 8;
+            WriteLine($"三角形の面積は{t.GetArea()}です。");
+            t.Width = -12;
         }
     }
 }
