@@ -3,24 +3,55 @@ using static System.Console;
 
 namespace Pro16
 {
-    internal class MySingleton
+    internal class FreeArray
     {
-        private static MySingleton instance = new MySingleton();
+        private int _size = 0;
+        private int[] _list = { };
 
-        private MySingleton() { }
-        public static MySingleton Instance
+        public FreeArray(int size)
         {
+            this._size = size;
+            this._list = new int[size];
+        }
+
+        public int this[int index]
+        {
+            set
+            {
+                this._list[this.GetIndex(index)] = value;
+            }
+
             get
             {
-                return instance;
+                return this._list[this.GetIndex(index)];
             }
         }
 
+        private int GetIndex(int index)
+        {
+            if (index < 0)
+            {
+                return 0;
+            }
+            return index % this._size;
+        }
+    }
+
+    internal class MySingleton
+    {
         static void Main(string[] args)
         {
-            var ms1 = MySingleton.instance;
-            var ms2 = MySingleton.instance;
-            WriteLine(ms1 == ms2);
+            var array = new FreeArray(5);
+            array[0]=1;
+            array[1]=10;
+            array[2]=15;
+            array[3]=30;
+            array[4]=60;
+            array[5]=100;
+
+            WriteLine(array[2]);
+            WriteLine(array[-12]);
+            WriteLine(array[67]);
         }
     }
 }
