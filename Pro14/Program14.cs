@@ -5,25 +5,32 @@ using static System.Console;
 
 namespace Pro14
 {
-    internal class Hoge
+    internal class Person
     {
-        public string value = "field";
+        public string FirstName{ get; set; } = "";
+        public string LastName{ get; set; } = "";
 
-        public Hoge() { }
+        public Person() {
+            FirstName = "太郎";
+            LastName = "山田";
+        }
 
-        public Hoge(string value)
+        public string Show()
         {
-            this.value = value;
+            return $"名前は{this.LastName}{this.FirstName}です。";
         }
     }
     internal class DelegeteUseCounter
     {
         static void Main(string[] args)
         {
-            //var h = new Hoge("coustructor") { value = "initializer" };
-            //var h = new Hoge("coustructor");
-            var h = new Hoge();
-            WriteLine(h.value);
+            var p = new Person
+            {
+                FirstName = "一郎",
+                LastName = "吉田"
+            };
+
+            WriteLine(p.Show());
         }
     }
 }

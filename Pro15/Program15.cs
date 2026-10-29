@@ -3,16 +3,14 @@ using static System.Console;
 
 namespace Pro15
 {
-    internal class MyProcess
+    internal class Pet
     {
-        public MyProcess()
-        {
-            Console.WriteLine("constructor");
-        }
+        //public string Name { get; init; } = "";
+        public string Name { get; } = "";
 
-        ~MyProcess()
+        public Pet(string name = "")
         {
-            Console.WriteLine("finalizer");
+            this.Name = name;
         }
     }
 
@@ -20,7 +18,15 @@ namespace Pro15
     {
         static void Main(string[] args)
         {
-            var mp = new MyProcess();
+            var p1 = new Pet("タロウ");
+            WriteLine(p1.Name);
+
+            //var p2 = new Pet
+            //{
+            //    Name = "トラ"
+            //};
+            //WriteLine(p2.Name);
+            //p1.Name = "悪魔";
         }
     }
 }
