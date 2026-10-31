@@ -4,18 +4,28 @@ using static System.Console;
 
 namespace Pro20
 {
-    internal class MyInitializer
+    internal class Person
     {
-        [ModuleInitializer]
-        public static void Init()
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+
+        public virtual string Show()
         {
-            Console.WriteLine("Init is called!!");
+            return $"名前は{this.LastName}{this.FirstName}です。";
+
+        }
+    }
+
+    internal class BusinessPerson : Person
+    {
+        public override string Show()
+        {
+            return $"会社員の{this.LastName}{this.FirstName}です。";
         }
 
-        [ModuleInitializer]
-        public static void Init2()
+        public string Work()
         {
-            Console.WriteLine("Init2 is called!!");
+            return $"{this.LastName}{this.FirstName}は、働きます。";
         }
     }
 
@@ -23,7 +33,14 @@ namespace Pro20
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Main is called!!");
+            var bp = new BusinessPerson
+            {
+                FirstName = "丈太郎",
+                LastName = "空条"
+            };
+
+            WriteLine(bp.Work());
+            WriteLine(bp.Show());
         }
     }
 }

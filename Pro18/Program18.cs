@@ -33,10 +33,10 @@ namespace Pro18
         static void Main(string[] args)
         {
             var mon = new JapaneseMonth();
-            var mon_str = "無月";
-            var mon_num = 7;
-            WriteLine($"{mon_str}は{mon[mon_str]}月");
-            WriteLine($"{mon[mon_num]}は{mon_num}月");
+            var mon_str = "師走";
+            var mon_num = 10;
+            WriteLine($"{mon_str,3}は{mon[mon_str],2}月");
+            WriteLine($"{mon[mon_num],3}は{mon_num,2}月");
         }
     }
 }

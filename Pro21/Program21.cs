@@ -6,23 +6,25 @@ namespace Pro21
 { 
     internal class LambdaMember
     {
-        int myfield = 0;
-        static int myfield2 = 0;
+        internal class MyParent
+        {
+            public MyParent()
+            {
+                WriteLine("親です。");
+            }
+        }
+
+        internal class MyChild : MyParent
+        {
+            public MyChild()
+            {
+                WriteLine("子です。");
+            }
+        }
+
         static void Main(string[] args)
         {
-            var mylocal = 1;
-            const int MY_CONST = 2;
-
-            static void Hoge()
-            {
-                //WriteLine(myfield);
-                //WriteLine(mylocal);
-                WriteLine(myfield2);
-                WriteLine(MY_CONST);
-                WriteLine(nameof(mylocal));
-                WriteLine(nameof(myfield));
-            }
-            Hoge();
+            var c = new MyChild();
         }
     }
 }
