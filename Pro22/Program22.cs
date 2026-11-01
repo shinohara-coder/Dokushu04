@@ -1,15 +1,23 @@
-﻿using static System.Console;
+﻿using System.IO.Pipes;
+using static System.Console;
 
 namespace Pro22
 {
-    internal class Person
+    internal class MyParent
     {
-        public string firstName = "";
-        public string lastName = "";
-
-        public void Show(string greeting = "こんにちは", string title = "さん")
+        public MyParent(string childName)
         {
-            WriteLine($"{greeting}、{this.lastName}{this.firstName}{title}");
+            WriteLine($"{childName}の親です。");
+        }
+
+        public MyParent() { }
+    }
+
+    internal class MyChild : MyParent
+    {
+        public MyChild(string childName)
+        {
+            WriteLine($"子の{childName}です。");
         }
     }
 
@@ -17,11 +25,7 @@ namespace Pro22
     {
         static void Main(string[] args)
         {
-            var p = new Person
-            { lastName = "田中", firstName = "一郎" };
-            p.Show();
-            p.Show("はじめまして", "殿");
-            p.Show(title: "師", greeting:"やあ！");
+            var c = new MyChild("太郎");
         }
     }
 }

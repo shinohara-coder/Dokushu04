@@ -5,20 +5,19 @@ namespace Pro25
 {
     internal partial class PassArray
     {
-        public int[] Update(int[] data)
-        {
-            data[0] = 5;
-
-            //配列そのものを置き換えた場合
-            data = new[] { 10, 20, 30 };
-            return data;
-        }
         static void Main(string[] args)
         {
-            var data = new[] { 2, 4, 6 };
-            var p = new PassArray();
-            WriteLine(p.Update(data)[0]);
-            WriteLine(data[0]);
+            //object obj = 123;
+            //object obj = "123";
+            object obj = 458;
+
+            WriteLine(obj switch
+            {
+                123 => "123です。",
+                int i => "数値です。",
+                string s => "文字列型です。",
+                _ => "意図しない値です。"
+            });
         }
     }
 }

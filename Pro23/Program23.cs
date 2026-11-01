@@ -2,24 +2,44 @@
 
 namespace Pro23
 {
+    internal class Person
+    {
+        public string FistName { get; set; } = "";
+        public string LastName { get; set; } = "";
+
+        public Person() { }
+        public virtual string Show()
+        {
+            return $"名前は{this.LastName}{this.FistName}です。";
+        }
+    }
+
+    internal class BusinessPerson : Person
+    {
+        public override string Show()
+        {
+            return $"{base.Show()}会社員です。";
+        }
+    }
+
+    internal class EliteBusinessPerson : BusinessPerson
+    {
+        public override string Show()
+        {
+            return $"{base.Show()}その中でもエリートです。";
+        }
+    }
 
     internal class ArgsParams
     {
-        public int TotalProducts(int initial, params int[] values)
-        {
-            int result = initial;
-            foreach (var value in values)
-            {
-                result *= value;
-            }
-            return result;
-        }
         static void Main(string[] args)
         {
-            var v = new ArgsParams();
-            WriteLine(v.TotalProducts(3, -9, -6));
-            WriteLine(v.TotalProducts(2, 8, 5, 6, 8, 9));
-            WriteLine(v.TotalProducts(5, new[] { 2, -15, 3 }));
+            var ebp = new EliteBusinessPerson
+            {
+                FistName = "幸太郎",
+                LastName = "清宮"
+            };
+            WriteLine(ebp.Show());
         }
     }
 }
