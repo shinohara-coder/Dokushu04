@@ -5,19 +5,18 @@ namespace SelfCSharp.Chap09.Priority1
 {
     internal class PassRefReturn
     {
-        public ref int RetrunRef(int[] data)
-        {
-            return ref data[0];
-        }
         static void Main(string[] args)
         {
-            var data = new[] { 1, 2, 3 };
-            var p = new PassRefReturn();
-            ref int num = ref p.RetrunRef(data);
+            var x = 20;
+            var y = 10;
 
-            num = 10;
-            WriteLine(num);
-            WriteLine(data[0]);
+            WriteLine((x, y) switch
+            {
+                (10, 20) => "(10, 20)",
+                (20, 10) => "(20, 10)",
+                (10, _) => "x=10",
+                _ => "???"
+            });
         }
     }
 }

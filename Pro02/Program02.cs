@@ -5,20 +5,18 @@ namespace SelfCSharp.Chap02
 {
     internal class PassRefArray
     {
-        public int[] Update(ref int[] data)
-        {
-            data[0] = 5;
-
-            data = new[] { 10, 20, 30 };
-            return data;
-        }
         static void Main(string[] args)
         {
-            var data = new[] { 2, 4, 6 };
-            var p = new PassRefArray();
-            WriteLine(p.Update(ref data)[0]);
-            //WriteLine(p.Update(data)[0]);
-            WriteLine(data[0]);
+            //var t = ("C#", "Java", "Visual Basic");
+            //var t = ("Python", "Ruby", "C++");
+            var t = ("Kotlin", "TypeScript", "anh");
+            WriteLine(t switch
+            {
+                ("C#", "Java", "Visual Basic") => "コンパイル言語",
+                ("Python", "Ruby", var lang) => $"インタプリタ言語：{lang}",
+                ("Kotlin", "TypeScript", _) => "トランスコンパイル言語",
+                _ => "その他"
+            });
         }
     }
 }

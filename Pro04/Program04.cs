@@ -3,28 +3,31 @@ using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
+    internal class Person
+    {
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+
+        public virtual string Show()
+        {
+            return $"名前は{this.LastName}{this.FirstName}です。";
+
+        }
+    }
     internal class PassOut
     {
-        public void GetMaxMin(int x, int y, out int max, out int min)
-        {
-            if (x >= y)
-            {
-                max = x;
-                min = y;
-            }
-            else
-            {
-                max = y;
-                min = x;
-            }
-        }
-
         static void Main(string[] args)
         {
-            var a = new PassOut();
-            a.GetMaxMin(5, 3, out int resultMax, out int resutlMin);
-            WriteLine(resultMax);
-            WriteLine(resutlMin);
+            var p = new Person
+            {
+                FirstName="一郎",
+                LastName="山本"
+            };
+
+            WriteLine(p switch
+            {
+                { FirstName:"",LastName:var ln}=>$"{ln}タロくん、こんにちは"
+            });
         }
     }
 }

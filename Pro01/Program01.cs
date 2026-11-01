@@ -4,18 +4,17 @@ namespace SelfCSharp.Chap09.Priority1
 {
     internal class PassRefBasic
     {
-        internal int CountUp(ref int data)
-        {
-            data++;
-            return data;
-        }
         static void Main(string[] args)
         {
-            var data = 1;
-            var p = new PassRefBasic();
-            WriteLine(p.CountUp(ref data));
-            //WriteLine(p.CountUp(data));
-            WriteLine(data);
+            //object obj = 'a';
+            object obj = "abcdefg";
+
+            WriteLine(obj switch
+            {
+                int i => $"数値です：{i}",
+                string str => $"文字列です：{str}",
+                var data => $"その他の方でした：{data}"
+            });
         }
     }
 }
