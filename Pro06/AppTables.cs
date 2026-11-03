@@ -1,109 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Pro06
+namespace Pro06.Extension
 {
-    internal class Book
+    public static class IntExtensions
     {
-        public string Isbn { get; set; } = "";
-        public string Title { get; set; } = "";
-        public int Price { get; set; } = 0;
-        public string Publisher { get; set; } = "";
-        public DateTime Published { get; set; } = DateTime.Today;
-
-        public override string ToString()
+        public static void Times(this int count, Action action)
         {
-            return $"{Title}（{Publisher}）{Price}円 {Publisher:d}刊行";
-        }
-    }
-
-    internal class Review
-    {
-        public string Isbn { get; set; } = "";
-        public string Name { get; set; } = "";
-        public string Body { get; set; } = "";
-
-        public override string ToString()
-        {
-            return $"ISBN: {Isbn}\n名前: {Name}\nコメント: {Body}\n";
-        }
-    }
-    internal static class AppTables
-    {
-        public static IEnumerable<Book> Books { get; private set; }
-        public static IEnumerable<Review> Reviews { get; private set; }
-
-        static AppTables()
-        {
-            Books = new List<Book>
+            for (int i = 0; i < count; i++)
             {
-                new Book
-                {
-                    Isbn = "978-4-7981-6849-4",
-                    Title = "独習PHP",
-                    Price = 3740,
-                    Publisher = "翔泳社",
-                    Published = new DateTime(2021,6,14)
-                },
-                new Book {
-                    Isbn = "978-4-7981-6884-5",
-                    Title = "独習Ruby",
-                    Price = 3520,
-                    Publisher = "翔泳社",
-                    Published = new DateTime(2021,9,13)
-                },
-                new Book {
-                    Isbn = "978-4-2960-8009-0",
-                    Title = "Androidアプリ超入門",
-                    Price = 2200,
-                    Publisher = "日経BP",
-                    Published = new DateTime(2021,11,11)
-                },
-                new Book {
-                    Isbn = "978-4-2960-8014-4",
-                    Title = "基礎からしっかり学ぶC#の教科書",
-                    Price = 3190,
-                    Publisher = "日経BP",
-                    Published = new DateTime(2022,3,3)
-                },
-                new Book {
-                    Isbn = "978-4-7980-6510-6",
-                    Title = "はじめてのAndroidアプリ開発",
-                    Price = 3520,
-                    Publisher = "秀和システム",
-                    Published = new DateTime(2021,11,30)
-                }
-            };
+                action();
+            }
+        }
+    }
 
-            Reviews = new List<Review> {
-                new Review
-                {
-                    Isbn = "978-4-7981-6849-4",
-                    Name = "山田太郎",
-                    Body = "PHP開発に役立っています。"
-                },
-                new Review {
-                    Isbn = "978-4-7981-6849-4",
-                    Name = "鈴木花子",
-                    Body = "急に仕事で扱うことになり、慌てて読み始めたら、分かりやすくて良かったです。"
-                },
-                new Review {
-                    Isbn = "978-4-7981-6884-5",
-                    Name = "山田太郎",
-                    Body = "あやふやだったデータの操作が、この本でスッキリ分かるようになった。"
-                },
-                new Review {
-                    Isbn = "978-4-7981-6884-5",
-                    Name = "佐藤久美",
-                    Body = "サンプルが作りたいものとマッチしていて、とても参考になりました。"
-                },
-                new Review {
-                    Isbn = "978-4-7981-6884-5",
-                    Name = "加藤次郎",
-                    Body = "コンパクトにきちんと情報がまとまっていて、とても読みやすいと思う。"
-                }
-            };
+    public static class DateTimeExtensions
+    {
+        public static bool IsToday(this DateTime dt)
+        {
+            return dt.Date == DateTime.Today;
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static string Truncate(this string str, int maxLength)
+        {
+            if (string.IsNullOrEmpty(str)) return str;
+            if (str.Length <= maxLength) return str;
+
+            return str.Substring(0, maxLength) + "...";
         }
     }
 }

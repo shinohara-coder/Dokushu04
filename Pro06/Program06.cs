@@ -1,6 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Pro06.Extension;
 using static System.Console;
-using static System.Math;
 
 namespace Pro06
 {
@@ -8,22 +7,21 @@ namespace Pro06
     {
         static void Main(string[] args)
         {
-            var list = new[] { 1, 2, 3, 4, 5 };
-            //foreach(ref var value in list.AsSpan())
+            //10.Times(() => WriteLine("Hello! world!"));
+
+            //var targetDate = new DateTime(2026, 11, 2, 12, 45, 56);
+
+            //if (targetDate.IsToday())
             //{
-            //    value *= value;
+            //    WriteLine("今日届いたデータです。");
+            //}
+            //else
+            //{
+            //    WriteLine("今日届いたデータではありません。");
             //}
 
-            //foreach (var value in list)
-            //{
-            //    value *= value;
-            //}
-
-            for (int i = 0; i < 5; i++)
-            {
-                list[i] *= list[i];
-            }
-            WriteLine(string.Join(", ", list));
+            var longTitle = "C#の拡張メソッドについて分かり易い解説記事";
+            WriteLine(longTitle.Truncate(10));
         }
     }
 }
