@@ -4,22 +4,34 @@ using static System.Console;
 
 namespace Pro08
 {
+    interface IFigure
+    {
+        double GetArea();
+    }
+
+    internal class Triagle : IFigure
+    {
+        public double Width { get; set; }
+        public double Height { get; set; }
+
+        public Triagle(double width, double height)
+        {
+            this.Width = width;
+            this.Height = height;
+        }
+
+        public double GetArea()
+        {
+            return this.Width * this.Height / 2;
+        }
+    }
+
     internal class IteratorBasic
     {
-        public IEnumerable<string> GetStrings()
-        {
-            yield return "あいうえお";
-            yield return "かきくけこ";
-            yield return "さしすせそ";
-        }
         static void Main(string[] args)
         {
-            var ite = new IteratorBasic();
-            var itrObj = ite.GetStrings();
-            foreach(var str in itrObj)
-            {
-                WriteLine(str);
-            }
+            var t = new Triagle(10, 30);
+            WriteLine(t.GetArea());
         }
     }
 }

@@ -4,40 +4,33 @@ using static System.Console;
 
 namespace Pro10
 {
-    internal class PrimeNumber
+    interface IHoge
     {
-        public IEnumerable<int> GetPrimes(int max)
+        void Foo(string str);
+    }
+
+    interface IHoge2
+    {
+        void Foo(string str2);
+    }
+
+    internal class MyClass : IHoge, IHoge2
+    {
+        public MyClass() { }
+
+        public void Foo(string str)
         {
-            bool IsPrime(int value)
-            {
-                var prime = true;
-                var mid = Math.Floor(Math.Sqrt(value));
-                for (var i = 2; i <= mid; i++)
-                {
-                    if (value % i == 0)
-                    {
-                        prime = false;
-                        break;
-                    }
-                }
-                return prime;
-            }
+            WriteLine($"暗黙的 = {str}");
+        }
 
-            const int Min = 2;
+        void IHoge.Foo(string str)
+        {
+            WriteLine($"IHoge.Foo = {str}");
+        }
 
-            if (max < Min)
-            {
-                WriteLine($"引数{nameof(max)}は2以上の値を指定してください。");
-                yield break;
-            }
-
-            for (var num = Min; num <= max; num++)
-            {
-                if (IsPrime(num))
-                {
-                    yield return num;
-                }
-            }
+        void IHoge2.Foo(string str)
+        {
+            WriteLine($"IHoge2.Foo = {str}");
         }
     }
 
@@ -45,12 +38,14 @@ namespace Pro10
     {
         static void Main(string[] args)
         {
-            var p = new PrimeNumber();
-            var primeNums = p.GetPrimes(1);
-            foreach (var value in primeNums)
-            {
-                WriteLine(value);
-            }
+            var mc = new MyClass();
+            mc.Foo("い");
+
+            var ih = (IHoge)mc;
+            ih.Foo("ろ");
+
+            var ih2 = (IHoge2)mc;
+            ih2.Foo("は");
         }
     }
 }
