@@ -3,44 +3,32 @@ using static System.Console;
 
 namespace Pro13
 {
-    internal class Triangle
+    internal class Animal
     {
-        private double _width = 0;
-        private double _height = 0;
-
-        public Triangle() { WriteLine("Constroctor!!"); }
-
-        public double Width
+        private int _age;
+        public string Name { get; private set; } = "";
+        public int Age
         {
-            set
+            get { return _age; }
+            private set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
-                    throw new ArgumentException("正数で指定してください。");
+                    value = 0;
                 }
-                this._width = value;
+                _age = value;
             }
-
-            get { return this._width; }
         }
 
-        public double Height
+        public Animal(string name, int age)
         {
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("正数で指定してください。");
-                }
-                this._height = value;
-            }
-
-            get { return this._height; }
+            this.Name = name;
+            this.Age = age;
         }
 
-        public double GetArea()
+        public void Intro()
         {
-            return Width * Height / 2;
+            WriteLine($"ボクの名前は{this.Name}。{this.Age}歳だよ");
         }
     }
 
@@ -48,11 +36,8 @@ namespace Pro13
     {
         static void Main(string[] args)
         {
-            var t = new Triangle();
-            t.Width = 15;
-            t.Height = 8;
-            WriteLine($"三角形の面積は{t.GetArea()}です。");
-            t.Width = -12;
+            var ani = new Animal("タロウ", 15);
+            ani.Intro();
         }
     }
 }
