@@ -3,14 +3,19 @@ using static System.Console;
 
 namespace Pro15
 {
-    internal class Pet
+    interface IAnimal
     {
-        //public string Name { get; init; } = "";
-        public string Name { get; } = "";
+        string Name { get; set; }
+        void Move();
+    }
 
-        public Pet(string name = "")
+    internal class Hamster : IAnimal
+    {
+        public string Name { get; set; } = "";
+
+        public void Move()
         {
-            this.Name = name;
+            WriteLine($"{this.Name}は、トコトコ歩きます。");
         }
     }
 
@@ -18,15 +23,12 @@ namespace Pro15
     {
         static void Main(string[] args)
         {
-            var p1 = new Pet("タロウ");
-            WriteLine(p1.Name);
+            IAnimal i = new Hamster()
+            {
+                Name = "サクラ"
+            };
 
-            //var p2 = new Pet
-            //{
-            //    Name = "トラ"
-            //};
-            //WriteLine(p2.Name);
-            //p1.Name = "悪魔";
+            i.Move();
         }
     }
 }

@@ -1,36 +1,37 @@
-﻿using System.Diagnostics;
-using System.Text;
-using System.Text.RegularExpressions;
-using static System.Console;
+﻿using static System.Console;
 
 namespace Pro14
 {
-    internal class Person
+    internal class MyClass
     {
-        public string FirstName{ get; set; } = "";
-        public string LastName{ get; set; } = "";
+        protected double value;
 
-        public Person() {
-            FirstName = "太郎";
-            LastName = "山田";
+        public MyClass(double value)
+        {
+            this.value = value;
         }
 
-        public string Show()
+        public virtual string GetValue()
         {
-            return $"名前は{this.LastName}{this.FirstName}です。";
+            return this.value.ToString("F1");
+        }
+    }
+
+    internal class MySubClass : MyClass
+    {
+        public MySubClass(double value) : base(value) { }
+
+        public override string GetValue()
+        {
+            return $"[{base.GetValue()}]";
         }
     }
     internal class DelegeteUseCounter
     {
         static void Main(string[] args)
         {
-            var p = new Person
-            {
-                FirstName = "一郎",
-                LastName = "吉田"
-            };
-
-            WriteLine(p.Show());
+            var msc = new MySubClass(12.56);
+            WriteLine(msc.GetValue());
         }
     }
 }
