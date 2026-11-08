@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pro17
+namespace Pro17.Other
 {
-    public class MyConfig
+    public class CultureInfo
     {
-        //public const string Title = "独習C#";
-        public static readonly string Title = "独習C++";
+        public CultureInfo(string lang)
+        {
+
+        }
     }
 }
