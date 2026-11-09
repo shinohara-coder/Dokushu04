@@ -1,4 +1,4 @@
-﻿using static System.Console;
+﻿global using static System.Console;
 
 using SelfCSharp.Chap09.Priority1;
 //using MyUtil = SelfCSharp.Chap09.Priority2.MyUtil;
