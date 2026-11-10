@@ -1,31 +1,23 @@
-﻿using System.IO.Pipes;
-using static System.Console;
+﻿global using static System.Console;
 
 namespace Pro22
 {
-    internal class MyParent
-    {
-        public MyParent(string childName)
-        {
-            WriteLine($"{childName}の親です。");
-        }
-
-        public MyParent() { }
-    }
-
-    internal class MyChild : MyParent
-    {
-        public MyChild(string childName)
-        {
-            WriteLine($"子の{childName}です。");
-        }
-    }
-
     internal class IteratorBasic
     {
         static void Main(string[] args)
         {
-            var c = new MyChild("太郎");
+            try
+            {
+                var f = new StreamReader(@"C:\nothing.cs");
+            }
+            catch (FileNotFoundException ex) when (ex.Message.Contains(".dat"))
+            {
+                WriteLine("存在しない.datファイルが指定されました。");
+            }
+            catch (FileNotFoundException)
+            {
+                WriteLine("存在しないファイルが指定されました。");
+            }
         }
     }
 }
