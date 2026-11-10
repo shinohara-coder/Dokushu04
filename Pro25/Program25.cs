@@ -7,17 +7,9 @@ namespace Pro25
     {
         static void Main(string[] args)
         {
-            //object obj = 123;
-            //object obj = "123";
-            object obj = 458;
-
-            WriteLine(obj switch
-            {
-                123 => "123です。",
-                int i => "数値です。",
-                string s => "文字列型です。",
-                _ => "意図しない値です。"
-            });
+            int i = int.MaxValue;
+            WriteLine(i++);
+            WriteLine(i);
         }
     }
 }

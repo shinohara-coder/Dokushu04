@@ -1,37 +1,28 @@
-﻿using static System.Console;
+﻿global using static System.Console;
+using System.Runtime.Serialization;
 
 namespace Pro24
 {
-    internal class Person
+    internal class MyAppException : Exception
     {
-        public string FirstName { get; set; } = "";
-        public string LastName { get; set; } = "";
-
-        public virtual string Show()
+        public MyAppException()
         {
-            return $"名前は{this.LastName}{this.FirstName}です。";
 
         }
-    }
 
-    internal class BusinessPerson : Person
-    {
-        public override string Show()
+        public MyAppException(string message) : base(message)
         {
-            return $"会社員の{this.LastName}{this.FirstName}です。";
+
         }
 
-        public string Work()
+        public MyAppException(string message, Exception innerException) : base(message, innerException)
         {
-            return $"{this.LastName}{this.FirstName}は、働きます。";
-        }
-    }
 
-    internal class Student : Person
-    {
-        public override string Show()
+        }
+
+        public MyAppException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
-            return $"学生の{this.LastName}{this.FirstName}です。";
+
         }
     }
 
@@ -39,25 +30,19 @@ namespace Pro24
     {
         static void Main(string[] args)
         {
-            Person p = new BusinessPerson
+            try
             {
-                FirstName = "幸太郎",
-                LastName = "小泉"
-            };
-
-            BusinessPerson bp = (BusinessPerson)p;
-            WriteLine(p.GetType());
-            WriteLine(bp.GetType());
-            //Student st = (Student)p;
-
-            if(p is Student st)
-            {
-                st = (Student)p;
+                //throw new MyAppException("例外発生");
+                //throw new MyAppException("例外発生", new AggregateException());
+                throw new MyAppException("例外発生", new AggregateException());
             }
-
-            WriteLine(p.Show());
-            WriteLine(bp.Show());
-            WriteLine(bp.Work());
+            catch (MyAppException ex)
+            {
+                WriteLine(ex.Data);
+                WriteLine(ex.InnerException);
+                WriteLine(ex.HResult);
+                WriteLine(ex.Message);
+            }
         }
     }
 }
