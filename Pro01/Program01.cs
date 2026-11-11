@@ -1,4 +1,4 @@
-﻿using static System.Console;
+﻿global using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
@@ -6,15 +6,22 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            //object obj = 'a';
-            object obj = "abcdefg";
-
-            WriteLine(obj switch
+            try
             {
-                int i => $"数値です：{i}",
-                string str => $"文字列です：{str}",
-                var data => $"その他の方でした：{data}"
-            });
+                //checked
+                //{
+                //    var i = int.MaxValue;
+                //    WriteLine(++i);
+                //}
+
+                var i = int.MaxValue;
+                WriteLine(checked(++i));
+                //WriteLine(unchecked(++i));
+            }
+            catch (OverflowException ex)
+            {
+                WriteLine(ex.Message);
+            }
         }
     }
 }

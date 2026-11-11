@@ -3,20 +3,24 @@ using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
+    internal class Season
+    {
+        public const int Spring = 0;
+        public const int Summer = 1;
+        public const int Autumn = 2;
+        public const int Winter = 3;
+
+        public void ProcessSeason(int season)
+        {
+            WriteLine(season);
+        }
+    }
+    
     internal class PassRefReturn
     {
         static void Main(string[] args)
         {
-            var x = 20;
-            var y = 10;
-
-            WriteLine((x, y) switch
-            {
-                (10, 20) => "(10, 20)",
-                (20, 10) => "(20, 10)",
-                (10, _) => "x=10",
-                _ => "???"
-            });
+            
         }
     }
 }

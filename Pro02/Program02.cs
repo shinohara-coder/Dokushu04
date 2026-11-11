@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using static System.Console;
+﻿global using static System.Console;
 
 namespace SelfCSharp.Chap02
 {
@@ -7,16 +6,20 @@ namespace SelfCSharp.Chap02
     {
         static void Main(string[] args)
         {
-            //var t = ("C#", "Java", "Visual Basic");
-            //var t = ("Python", "Ruby", "C++");
-            var t = ("Kotlin", "TypeScript", "anh");
-            WriteLine(t switch
+            try
             {
-                ("C#", "Java", "Visual Basic") => "コンパイル言語",
-                ("Python", "Ruby", var lang) => $"インタプリタ言語：{lang}",
-                ("Kotlin", "TypeScript", _) => "トランスコンパイル言語",
-                _ => "その他"
-            });
+                checked
+                {
+                    var m = double.MaxValue;
+                    var n = double.Epsilon;
+                    WriteLine(m * m);
+                    WriteLine(n * n);
+                }
+            }
+            catch (OverflowException ex)
+            {
+                WriteLine(ex.Message);
+            }
         }
     }
 }
