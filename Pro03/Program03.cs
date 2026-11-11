@@ -3,24 +3,31 @@ using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
-    internal class Season
+    internal enum Season : byte
     {
-        public const int Spring = 0;
-        public const int Summer = 1;
-        public const int Autumn = 2;
-        public const int Winter = 3;
+        Spring,
+        Summer,
+        Autumn,
+        Winter,
+        All = Spring + Summer + Autumn + Winter
+    }
 
-        public void ProcessSeason(int season)
+    internal class SeasonEnum
+    {
+        public void ProcessSeason(Season season)
         {
             WriteLine(season);
         }
     }
-    
+
     internal class PassRefReturn
     {
         static void Main(string[] args)
         {
-            
+            var sc = new SeasonEnum();
+            sc.ProcessSeason((int)Season.Spring);
+            //sc.ProcessSeason((int)Season.Autumn);
+            //sc.ProcessSeason(4);
         }
     }
 }
