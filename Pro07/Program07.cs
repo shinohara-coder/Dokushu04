@@ -1,54 +1,30 @@
-﻿using static System.Console;
+﻿global using static System.Console;
 
 namespace Pro07
 {
-    internal class Figure
+    internal struct MutableValue
     {
-        public double Width { get; set; }
-        public double Height { get; set; }
+        public string Name { get; set; }
 
-        public Figure(double width, double height)
+        public MutableValue()
         {
-            this.Width = width;
-            this.Height = height;
+            this.Name = "名無権兵衛";
         }
 
-        public virtual double GetArea()
+        public void Update(string name)
         {
-            return 0.0;
-        }
-    }
-
-    internal class Triangle : Figure
-    {
-        public Triangle(double width, double height) : base(width, height) { }
-
-        //public override double GetArea()
-        public new double GetArea()
-        {
-            return this.Width * this.Height / 2;
-        }
-    }
-
-    internal class Square : Figure
-    {
-        public Square(double width, double height) : base(width, height) { }
-
-        //public override double GetArea()
-        public new double GetArea()
-        {
-            return this.Width * this.Height;
+            this.Name = name;
+            WriteLine("Update method is finished!!");
         }
     }
 
     internal class TupleBasic
     {
+        static readonly MutableValue mv = new MutableValue();
         static void Main(string[] args)
         {
-            Figure t = new Triangle(10, 30);
-            WriteLine(t.GetArea());
-            Figure s = new Square(10, 30);
-            WriteLine(s.GetArea());
+            mv.Update("田中武夫");
+            WriteLine(mv.Name);
         }
     }
 }
