@@ -1,21 +1,34 @@
-﻿using System.Text.RegularExpressions;
-using static System.Console;
+﻿global using static System.Console;
+using static Pro12.MyClass;
 
 namespace Pro12
 {
-    internal static class StringExtesions
+    internal class MyClass
     {
-        public static string ToTitleCase(this string str)
+        internal class MyHelper
         {
-            return str.Substring(0, 1).ToUpper() + str.Substring(1).ToLower();
+            public void Show()
+            {
+                WriteLine("Nested Class is running!");
+            }
+        }
+
+        public void Run()
+        {
+            var helper = new MyHelper();
+            helper.Show();
         }
     }
+
 
     internal class LockBasicBad
     {
         static void Main(string[] args)
         {
-            WriteLine("japan".ToTitleCase());
+            var c = new MyClass();
+            c.Run();
+
+            var h = new MyHelper();
         }
     }
 }
