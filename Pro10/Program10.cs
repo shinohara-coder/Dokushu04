@@ -1,51 +1,27 @@
-﻿using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
-using static System.Console;
+﻿global using static System.Console;
 
 namespace Pro10
 {
-    interface IHoge
-    {
-        void Foo(string str);
-    }
-
-    interface IHoge2
-    {
-        void Foo(string str2);
-    }
-
-    internal class MyClass : IHoge, IHoge2
-    {
-        public MyClass() { }
-
-        public void Foo(string str)
-        {
-            WriteLine($"暗黙的 = {str}");
-        }
-
-        void IHoge.Foo(string str)
-        {
-            WriteLine($"IHoge.Foo = {str}");
-        }
-
-        void IHoge2.Foo(string str)
-        {
-            WriteLine($"IHoge2.Foo = {str}");
-        }
-    }
+    public record Person(string FirstName, string LastName);
+    public record BusinessPerson(string FirstName, string LastName) : Person(FirstName, LastName);
+    public record Student(string FirstName, string LastName) : Person(FirstName, LastName);
 
     internal class MyAppExceptionClient
     {
         static void Main(string[] args)
         {
-            var mc = new MyClass();
-            mc.Foo("い");
+            const string FIRST_NAME= "一郎";
+            const string LAST_NAME= "田中";
 
-            var ih = (IHoge)mc;
-            ih.Foo("ろ");
+            Person p = new Person(FIRST_NAME, LAST_NAME);
+            Person bp = new BusinessPerson(FIRST_NAME, LAST_NAME);
+            BusinessPerson bp2 = new BusinessPerson(FIRST_NAME, LAST_NAME);
+            Person st = new Student(FIRST_NAME, LAST_NAME);
 
-            var ih2 = (IHoge2)mc;
-            ih2.Foo("は");
+            WriteLine(bp);
+            WriteLine(bp == st);
+            WriteLine(p == bp);
+            WriteLine(bp == bp2);
         }
     }
 }

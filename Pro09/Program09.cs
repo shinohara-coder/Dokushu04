@@ -1,37 +1,21 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-using static System.Console;
+﻿global using static System.Console;
 
 namespace Pro08
 {
-    interface IFigure
-    {
-        double GetArea();
-    }
-
-    internal class Triagle : IFigure
-    {
-        public double Width { get; set; }
-        public double Height { get; set; }
-
-        public Triagle(double width, double height)
-        {
-            this.Width = width;
-            this.Height = height;
-        }
-
-        public double GetArea()
-        {
-            return this.Width * this.Height / 2;
-        }
-    }
+    internal record Person(string FirstName, string LastName, int Age);
 
     internal class IteratorBasic
     {
         static void Main(string[] args)
         {
-            var t = new Triagle(10, 30);
-            WriteLine(t.GetArea());
+            var p = new Person("慎太郎", "小森田", 18);
+            var pc1 = p with { Age = 35 };
+            var pc2 = p with { };
+
+            WriteLine(pc1);
+            WriteLine(pc2);
+            WriteLine(p == pc2);
+            WriteLine(Object.ReferenceEquals(p, pc2));
         }
     }
 }
