@@ -1,21 +1,22 @@
-﻿using System.Text.RegularExpressions;
-using static System.Console;
-
-internal class Util
-{
-    public static void Run()
-    {
-        WriteLine("Util is running.");
-    }
-}
+﻿global using static System.Console;
 
 namespace Pro16.Util
 {
-    internal class MySingleton
+    internal partial class MyNewPatial
     {
+        public partial string LongText()
+        {
+            return "特定のルールで自動生成された、冗長な文字列の例";
+        }
+    }
+
+    internal partial class MyNewPatial
+    {
+        public partial string LongText();
         static void Main(string[] args)
         {
-            global::Util.Run();
+            var np = new MyNewPatial();
+            WriteLine(np.LongText());
         }
     }
 }

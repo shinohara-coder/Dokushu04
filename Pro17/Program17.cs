@@ -1,5 +1,4 @@
-﻿using static System.Console;
-using Chapter = Pro17.Other;
+﻿global using static System.Console;
 
 namespace Pro17.Ns
 { 
@@ -7,9 +6,8 @@ namespace Pro17.Ns
     {
         static void Main(string[] args)
         {
-            var ci = new Chapter::CultureInfo("ja-JP");
+            int value = default(int);
+            WriteLine(value);
         }
     }
-
-    internal class Chapter { }
 }

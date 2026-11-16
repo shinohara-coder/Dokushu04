@@ -3,32 +3,28 @@ using static System.Console;
 
 namespace Pro15
 {
-    interface IAnimal
+    internal partial class MyPartialMethod
     {
-        string Name { get; set; }
-        void Move();
-    }
-
-    internal class Hamster : IAnimal
-    {
-        public string Name { get; set; } = "";
-
-        public void Move()
-        {
-            WriteLine($"{this.Name}は、トコトコ歩きます。");
-        }
-    }
-
-    internal class DelegeteMulti
-    {
+        static partial void Log();
         static void Main(string[] args)
         {
-            IAnimal i = new Hamster()
-            {
-                Name = "サクラ"
-            };
-
-            i.Move();
+            Log();
         }
     }
+
+    //internal partial class MyPartialMethod
+    //{
+    //    static partial void Log()
+    //    {
+    //        WriteLine("ログを記録しました。");
+    //    }
+    //}
+
+    //internal class DelegeteMulti
+    //{
+    //    static void Main(string[] args)
+    //    {
+            
+    //    }
+    //}
 }
