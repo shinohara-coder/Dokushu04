@@ -1,43 +1,39 @@
-﻿using System.Text.RegularExpressions;
-using static System.Console;
+﻿global using static System.Console;
 
 namespace Pro13
 {
-    internal class Animal
+    internal class MyClass
     {
-        private int _age;
-        public string Name { get; private set; } = "";
-        public int Age
+        string str1 = "包含・インスタンス";
+        static string str2 = "包含・静的";
+
+        public void Show()
         {
-            get { return _age; }
-            private set
+            var h = new MyHelper();
+            h.Show();
+            WriteLine(h.str1);
+            WriteLine(MyHelper.str2);
+        }
+
+        class MyHelper
+        {
+            internal string str1 = "入れ子・インスタンス";
+            internal static string str2 = "入れ子・静的";
+
+            public void Show()
             {
-                if (value < 0)
-                {
-                    value = 0;
-                }
-                _age = value;
+                var c = new MyClass();
+                WriteLine(c.str1);
+                WriteLine(MyClass.str2);
             }
         }
-
-        public Animal(string name, int age)
-        {
-            this.Name = name;
-            this.Age = age;
-        }
-
-        public void Intro()
-        {
-            WriteLine($"ボクの名前は{this.Name}。{this.Age}歳だよ");
-        }
     }
-
     internal class DelegateUse
     {
         static void Main(string[] args)
         {
-            var ani = new Animal("タロウ", 15);
-            ani.Intro();
+            var mc = new MyClass();
+            mc.Show();
         }
     }
 }
