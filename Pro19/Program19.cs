@@ -1,16 +1,21 @@
 ﻿global using static System.Console;
-using static System.Math;
-using static System.String;
 
 namespace Pro19
 {
+    internal class MyGeneics<T> where T : new()
+    {
+        public void Hoge()
+        {
+            var value = new T();
+        }
+    }
+
     internal class PassArray
     {
         static void Main(string[] args)
         {
-            WriteLine(Abs(-452));
-            WriteLine(Round(1.732));
-            WriteLine(Join(", ", new[] { "Apple", "Banana", "Orange" }));
+            var m = new MyGeneics<int>();
+            WriteLine(m.Equals(100));
         }
     }
 }

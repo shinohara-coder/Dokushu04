@@ -17,6 +17,10 @@ namespace Pro18
             WriteLine(m.Hoge("あいう", "あいう"));
             WriteLine(m.Hoge("あいう", "あいお"));
             WriteLine(m.Hoge("あいう", "CVD"));
+
+            var i = new MyGeneics<int>();
+            WriteLine(i.Hoge(100, 101));
+            WriteLine(i.Hoge(100, 100));
         }
     }
 }
