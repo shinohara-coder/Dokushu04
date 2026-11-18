@@ -6,18 +6,18 @@ namespace Pro20
     {
         static void Main(string[] args)
         {
-            try
-            {
-                using (var sr = new StreamReader(@"C:\nothing.dat"))
-                {
-                    WriteLine(sr.ReadToEnd());
-                }
-            }
-            catch (FileNotFoundException ex)
-            {
-                WriteLine("ファイルが見つかりませんでした。");
-                WriteLine(ex.StackTrace);
-            }
+            //try
+            //{
+            //    object[] list = new string[10];
+            //    list[0] = 100;
+            //    WriteLine(list[0]);
+            //}
+            //catch (ArrayTypeMismatchException ex)
+            //{
+            //    WriteLine(ex.Message);
+            //}
+
+            //List<object> list = new List<string>();
         }
     }
 }
