@@ -1,6 +1,4 @@
-﻿using System.IO.Pipes;
-using System.Runtime.InteropServices;
-using static System.Console;
+﻿global using static System.Console;
 
 namespace Pro21
 {
@@ -9,18 +7,12 @@ namespace Pro21
         static void Main(string[] args)
         {
             var data = new[] { "C#", "Java", "Python" };
-            try
+            Array.Resize(ref data, 5);
+            data[3] = "C++";
+            data[4] = "Ruby";
+            foreach(var str in data)
             {
-                var i = 0;
-                while (true)
-                {
-                    WriteLine(data[i++]);
-                }
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                WriteLine(ex.Data);
-                WriteLine(ex.Message);
+                WriteLine(str);
             }
         }
     }

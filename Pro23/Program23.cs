@@ -2,22 +2,39 @@
 
 namespace Pro23
 {
-    internal class ArgsParams
+    internal class Person : IEquatable<Person>
     {
-        internal static void Hoge() => throw new NotSupportedException("未実装です");
-        
+        public string FirstName { get; private set; }
+        public string LastName { get; set; }
+
+        public Person(string firstName, string lastName)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (Object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj == null || this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            return obj is Person p &&
+                this.FirstName == p.FirstName &&
+                this.LastName == p.LastName;
+        }
+    }
+        internal class ArgsParams
+    {        
         static void Main(string[] args)
         {
-            //var i = -10;
-            //WriteLine(i > 0 ? i : throw new Exception($"{nameof(i)}は正数でなければなりません。"));
-
-            //var i = 0;
-            //var j = i > 0 ? null : throw new Exception("...");
-
-            Hoge();
             
-            string? str = null;
-            WriteLine(str ?? throw new Exception($"{nameof(str)}がnullです。"));
         }
     }
 }
