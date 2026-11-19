@@ -13,28 +13,45 @@ namespace Pro23
             this.LastName = lastName;
         }
 
-        public override bool Equals(object? obj)
+        public bool Equals(Person? other)
         {
-            if (Object.ReferenceEquals(this, obj))
+            if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
 
-            if (obj == null || this.GetType() != obj.GetType())
+            if (other == null || this.GetType() != other.GetType())
             {
                 return false;
             }
 
-            return obj is Person p &&
-                this.FirstName == p.FirstName &&
-                this.LastName == p.LastName;
+            return this.FirstName == other.FirstName && this.LastName == other.LastName;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return this.Equals(obj as Person);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.FirstName.GetHashCode() ^ this.LastName.GetHashCode();
         }
     }
-        internal class ArgsParams
-    {        
+
+    internal class ArgsParams
+    {
         static void Main(string[] args)
         {
-            
+            var p = new Person("慎太郎", "今泉");
+            var p2 = new Person("慎太郎", "今泉");
+            WriteLine(p.Equals(p2));
+            WriteLine(p.GetHashCode());
+            var d = new Dictionary<Person, int>();
+            d.Add(p, 10);
+            p.LastName = "佐藤";
+            WriteLine(p.GetHashCode());
+            WriteLine(d[p]);
         }
     }
 }
