@@ -45,7 +45,9 @@ namespace Pro23
         {
             var p = new Person("慎太郎", "今泉");
             var p2 = new Person("慎太郎", "今泉");
+            var obj = new Object();
             WriteLine(p.Equals(p2));
+            WriteLine(p.Equals(obj));
             WriteLine(p.GetHashCode());
             var d = new Dictionary<Person, int>();
             d.Add(p, 10);
