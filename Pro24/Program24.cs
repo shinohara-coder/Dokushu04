@@ -3,26 +3,35 @@ using System.Runtime.Serialization;
 
 namespace Pro24
 {
-    internal class MyAppException : Exception
+    internal class Person
     {
-        public MyAppException()
-        {
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public int Age { get; private set; }
 
+        public Person(string firstName, string lastname, int age)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastname;
+            this.Age = age;
         }
 
-        public MyAppException(string message) : base(message)
+        public void Deconstruct(out string firstName)
         {
-
+            firstName = this.FirstName;
         }
 
-        public MyAppException(string message, Exception innerException) : base(message, innerException)
+        public void Deconstruct(out string firstName, out string lastName)
         {
-
+            firstName = this.FirstName;
+            lastName = this.LastName;
         }
 
-        public MyAppException(SerializationInfo info, StreamingContext context) : base(info, context)
+        public void Deconstruct(out string firstName, out string lastName, out int age)
         {
-
+            firstName = this.FirstName;
+            lastName = this.LastName;
+            age = this.Age;
         }
     }
 
@@ -30,19 +39,11 @@ namespace Pro24
     {
         static void Main(string[] args)
         {
-            try
-            {
-                //throw new MyAppException("例外発生");
-                //throw new MyAppException("例外発生", new AggregateException());
-                throw new MyAppException("例外発生", new AggregateException());
-            }
-            catch (MyAppException ex)
-            {
-                WriteLine(ex.Data);
-                WriteLine(ex.InnerException);
-                WriteLine(ex.HResult);
-                WriteLine(ex.Message);
-            }
+            var p = new Person("太郎", "麻生", 85);
+            //var (fn,ln,age) = p;
+            //Write($"「名前：{fn}」 「姓：{ln}」 「年齢：{age}」");
+            var fn = p;
+            WriteLine(fn);
         }
     }
 }
