@@ -3,20 +3,26 @@ using static System.Console;
 
 namespace SelfCSharp.Chap09.Priority1
 {
-    internal enum Season : int
+    internal class Coordinate
     {
-        Spring,
-        Summer,
-        Autumn,
-        Winter,
-        All = Spring + Summer + Autumn + Winter
-    }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-    internal class SeasonEnum
-    {
-        public void ProcessSeason(Season season)
+        //public Coordinate() { }
+
+        public static bool operator true(Coordinate c)
         {
-            WriteLine(season);
+            return c.X >= 0 && c.Y >= 0;
+        }
+
+        public static bool operator false(Coordinate c)
+        {
+            return c.X < 0 || c.Y < 0;
+        }
+
+        public override string ToString()
+        {
+            return $"({this.X,3}, {this.Y,3})";
         }
     }
 
@@ -24,16 +30,16 @@ namespace SelfCSharp.Chap09.Priority1
     {
         static void Main(string[] args)
         {
-            //var sc = new SeasonEnum();
-            //sc.ProcessSeason((int)Season.Spring);
-            //sc.ProcessSeason((int)Season.Autumn);
-            //sc.ProcessSeason(4);
+            var c = new Coordinate() { X = 10, Y = 20 };
 
-            var all = Season.All;
-            WriteLine(all);
-            WriteLine(all.ToString());
-            WriteLine(all.ToString("D"));
-            WriteLine(all.ToString("X"));
+            if (c)
+            {
+                WriteLine($"\"{nameof(c)}\"は真です。");
+            }
+            else
+            {
+                WriteLine($"\"{nameof(c)}\"は偽です。");
+            }
         }
     }
 }
