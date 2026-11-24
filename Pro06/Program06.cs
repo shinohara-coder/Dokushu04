@@ -3,40 +3,41 @@ using static System.Console;
 
 namespace Pro06
 {
-    internal struct Coodinates
+    delegate void OutputProcess(string str);
+
+    internal class DelegateMulti
     {
-        //private double Latitude = default;
-        //private double longitude = default;
-
-        public double Latitude { private set; get; }
-        public double Longitude { private set; get; }
-
-
-        public Coodinates() { }
-
-        public Coodinates(double lat, double longt)
+        internal void ArrayWalk(string[] data, OutputProcess output)
         {
-            this.Latitude = lat;
-            //this.Longitude = longt;
+            foreach (var value in data)
+            {
+                output(value);
+            }
         }
 
-        public override string ToString()
+        static void AddQuote(string data)
         {
-            return $"緯度：{this.Latitude} / 経度：{this.Longitude}";
+            WriteLine($"［{data}］");
         }
-    }
 
-    internal class AsyncStream
-    {
+        static void Front4(string data)
+        {
+            WriteLine(data.Substring(0, 4));
+        }
+
         static void Main(string[] args)
         {
-            //var c = new Coodinates(35.681167, 139.767052);
-            Coodinates c = new Coodinates(35.68117, 139.767052);
-            //c.Latitude = 35.681167;
-            //c.Longitude = 139.767052;
+            var data = new[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
+            var dm = new DelegateMulti();
+            OutputProcess? proc = AddQuote;
+            proc += Front4;
+            proc += AddQuote;
+            proc += Front4;
+            //proc -= Front4;
+            //proc -= AddQuote;
+            //proc -= Front4;
 
-            //var c = default(Coodinates);
-            WriteLine(c.Latitude);
+            dm.ArrayWalk(data, proc);
         }
     }
 }
