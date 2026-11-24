@@ -2,19 +2,25 @@
 
 namespace Pro08
 {
-    internal record Person(string FirstName, string LastName, int Age);
-
-    internal class TryCatchOrder
+    internal class DelegateAnonymous
     {
+        internal void ArrayWalk(string[] data,Func<string,string> output)
+        {
+            foreach(var value in data)
+            {
+                WriteLine(output(value));
+            }
+        }
         static void Main(string[] args)
         {
-            var p1 = new Person("慎太郎", "小森田", 18);
-            var p2 = new Person("慎太郎", "小森田", 18);
-            WriteLine(p1);
-            WriteLine(p1.ToString());
-            WriteLine(p1 == p2);
-            (string fname, string lname, int age) = p1;
-            WriteLine($"{lname}{fname} {age}歳");
+            var data = new[] { "あかまきがみ", "あおまきがみ", "きまきがみ" };
+            var dm = new DelegateAnonymous();
+            //dm.ArrayWalk(data, delegate (string d)
+            //{
+            //    return $" [{d}] ";
+            //});
+
+            dm.ArrayWalk(data, d => $" [{d}] ");
         }
     }
 }
