@@ -6,9 +6,7 @@ namespace Pro14
     {
         static void Main(string[] args)
         {
-            var mc = new MyPartial("一郎", "板垣");
-            WriteLine(mc.Show());
-            WriteLine(mc.Greet());
+            
         }
     }
 }
