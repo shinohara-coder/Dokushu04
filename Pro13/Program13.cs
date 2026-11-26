@@ -2,38 +2,18 @@
 
 namespace Pro13
 {
-    internal class MyClass
-    {
-        string str1 = "包含・インスタンス";
-        static string str2 = "包含・静的";
-
-        public void Show()
-        {
-            var h = new MyHelper();
-            h.Show();
-            WriteLine(h.str1);
-            WriteLine(MyHelper.str2);
-        }
-
-        class MyHelper
-        {
-            internal string str1 = "入れ子・インスタンス";
-            internal static string str2 = "入れ子・静的";
-
-            public void Show()
-            {
-                var c = new MyClass();
-                WriteLine(c.str1);
-                WriteLine(MyClass.str2);
-            }
-        }
-    }
     internal class DelegateUse
     {
         static void Main(string[] args)
         {
-            var mc = new MyClass();
-            mc.Show();
+            //var list = new List<int> { 1, -15, 30, 60, -50, 40 };
+            //WriteLine(list.FindIndex(v => v < 0));
+            //WriteLine(list.FindLastIndex(v => v < 0));
+            //WriteLine(list.FindIndex(2, 3, v => v < 0));
+
+            List<string> list = new List<string> { "からすなぜ鳴くの", "からすは山に",
+                 "可愛い七つの", "子があるからよ" };
+            var result = list.ConvertAll(str => str.Substring(0, 5));
         }
     }
 }

@@ -1,34 +1,21 @@
 ﻿global using static System.Console;
-using static Pro12.MyClass;
 
 namespace Pro12
 {
-    internal class MyClass
-    {
-        internal class MyHelper
-        {
-            public void Show()
-            {
-                WriteLine("Nested Class is running!");
-            }
-        }
-
-        public void Run()
-        {
-            var helper = new MyHelper();
-            helper.Show();
-        }
-    }
-
-
     internal class LockBasicBad
     {
         static void Main(string[] args)
         {
-            var c = new MyClass();
-            c.Run();
+            List<string> list = new List<string> { "からすなぜ鳴くの", "からすは山に",
+                 "可愛い七つの", "子があるからよ" };
+            //var result = list.ConvertAll(str => str.Substring(0, 5));
+            //result.ForEach(str => WriteLine(str));
 
-            var h = new MyHelper();
+            //var result = list.Find(str => str.StartsWith("からす"));
+            //WriteLine(result);
+
+            var result = list.FindAll(str => str.StartsWith("からす"));
+            result.ForEach(str => WriteLine(str));
         }
     }
 }
